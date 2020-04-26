@@ -1,0 +1,11 @@
+.homeContainer {
+  background-color: white;
+  height: 100vh;
+}
+@media screen and (min-width: 800px) {
+  .homeContainer {
+    background-color: inherit;
+    height: 100vh;
+    overflow: auto;
+  }
+}

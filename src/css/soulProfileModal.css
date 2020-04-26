@@ -1,0 +1,58 @@
+.soulProfileModalContainer {
+  height: 80vh;
+  width: 90%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+.soulProfileModalHeader {
+  padding: 10px;
+  background-color: #29abe2;
+  color: white;
+  text-align: center;
+}
+.soulProfileModalHeader div {
+  font-size: 18px;
+}
+.soulProfileModalBody {
+  margin-top: 10px;
+  padding: 10px;
+  height: 80%;
+  overflow: auto;
+}
+.soulProfileModalDetailContainer {
+  margin-bottom: 10px;
+  display: flex;
+}
+.soulProfileModalIcon {
+  color: #29abe2;
+  display: inline-flex;
+}
+.soulProfileModalIconDetail {
+  display: inline-flex;
+  margin-left: 5px;
+  color: grey;
+  font-size: 14px;
+}
+.soulProfileModalPrayerRequestContainer {
+  margin-top: 15px;
+  padding-bottom: 20px;
+  padding-right: 10px;
+}
+.soulProfileModalPrayerRequestHeader {
+  font-size: 14px;
+  font-weight: 600;
+  color: grey;
+}
+.soulProfileModalPrayerRequest {
+  color: grey;
+  margin-top: 5px;
+  font-size: 14px;
+}
+@media screen and (min-width: 800px) {
+  .soulProfileModalContainer {
+    height: 450px;
+    width: 50%;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+}

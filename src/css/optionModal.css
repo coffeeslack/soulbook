@@ -1,0 +1,93 @@
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.optionModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.optionModalBlind {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  animation: fade 0.1s ease both;
+  animation-delay: 0.1s;
+}
+.optionModalContainer {
+  background-color: white;
+  position: relative;
+  width: 95%;
+  height: 20vh;
+  z-index: 7;
+  border-radius: 5px;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  animation: zoom 0.2s ease;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.optionModalMessage {
+  margin-top: 20px;
+}
+.optionModalOptions {
+  width: 70%;
+  padding: 20px;
+}
+.optionModalOptions div {
+  display: inline-block;
+  width: 50%;
+  padding: 5px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: 0.1s ease;
+  text-align: center;
+}
+.optionModalOptions div:hover {
+  background-color: lightgray;
+}
+@media screen and (min-width: 800px) {
+  .optionModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .optionModalContainer {
+    background-color: white;
+    position: relative;
+    width: 30%;
+    height: 20vh;
+    z-index: 7;
+  }
+}

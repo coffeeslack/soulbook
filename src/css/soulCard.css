@@ -1,0 +1,127 @@
+.soulCardContainer {
+  background-color: white;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  padding-left: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  height: 130px;
+  position: relative;
+  left: 0;
+  overflow: hidden;
+}
+.soulCardGradient {
+  position: absolute;
+  width: 7px;
+  height: 100%;
+  background: #29abe2;
+  top: 0;
+  left: 0;
+}
+.soulCardOptions {
+  width: 90%;
+  border-top: 1px solid lightgray;
+  margin-top: 10px;
+  position: absolute;
+  margin-bottom: 10px;
+  left: 15px;
+}
+.soulCardOptions a {
+  color: inherit;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.soulCardOptionIcon {
+  padding: 5px;
+  width: 33.33333333%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid lightgray;
+  font-size: 15px;
+}
+.soulCardMainIcon {
+  color: #29abe2;
+  margin-right: 5px;
+}
+.soulCardOptionIcon:last-child {
+  border-right: none;
+}
+.soulCardNameContainer {
+  width: 100%;
+}
+.soulCardName {
+  font-size: 16px;
+  font-weight: 600;
+  width: 20px;
+  width: 240px;
+  overflow: hidden;
+  display: inline-block;
+}
+.soulCardAddress {
+  font-size: 14px;
+  color: grey;
+  width: 350px;
+}
+.soulCardDate {
+  font-size: 13px;
+  color: grey;
+  margin-bottom: 10px;
+}
+.soulCardOtherDetails {
+  margin-top: 8px;
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  .soulCardContainer {
+    background-color: white;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    height: 325px;
+    width: 300px;
+    position: relative;
+    left: 0;
+    overflow: hidden;
+    display: inline-block;
+    margin-right: 12px;
+    cursor: pointer;
+  }
+  .soulCardName {
+    font-size: 15px;
+  }
+  .soulCardAddress {
+    font-size: 14px;
+  }
+  .soulCardDate {
+    font-size: 12px;
+  }
+  .soulCardOtherDetails {
+    margin-top: 8px;
+    display: block;
+  }
+  .soulCardOptions {
+    bottom: 0px;
+  }
+  .soulCardOptionIcon {
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  .soulCardOptionIcon:hover {
+    color: #29abe2;
+  }
+  .soulCardOptionIcon:first-child:hover {
+    color: #77ad30;
+  }
+  .soulCardOptionIcon:last-child:hover {
+    color: red;
+  }
+  .soulCardOptionIcon:active,
+  .soulCardOptionIcon:last-child:active,
+  .soulCardOptionIcon:first-child:active {
+    color: black;
+  }
+}

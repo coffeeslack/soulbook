@@ -1,0 +1,27 @@
+@keyframes slideDown {
+  from {
+    top: -100%;
+  }
+  to {
+    top: 0;
+  }
+}
+.alertBox {
+  width: 100%;
+  height: 90px;
+  z-index: 10;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  animation: slideDown 0.8s ease;
+}
+.alertBoxWrap {
+  background-color: white;
+  padding: 15px;
+  border-radius: 50px;
+  display: flex;
+  text-align: center;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+}

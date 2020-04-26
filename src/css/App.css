@@ -1,0 +1,44 @@
+a {
+  text-decoration: none !important;
+}
+textarea {
+  resize: none;
+}
+.loaderContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+@keyframes beat {
+  0% {
+    transform: scale(0.7);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.7);
+  }
+}
+.loaderContainer img {
+  width: 30%;
+  animation: beat 2s ease infinite both;
+}
+.reactLoaderContainer {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+select {
+  background-color: inherit !important;
+}
+@media screen and (min-width: 800px) {
+  .loaderContainer img {
+    width: 10%;
+  }
+}

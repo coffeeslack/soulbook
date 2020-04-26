@@ -1,0 +1,77 @@
+.notificationModal {
+  display: none;
+}
+.notificationModalForm {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.notificationModalAddBtn {
+  background-color: #29abe2;
+  color: white;
+  width: 150px;
+  font-size: 14px;
+  text-align: center;
+  margin: 0px auto;
+  padding: 8px;
+  border-radius: 5px;
+  bottom: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: block;
+  border: none;
+}
+.notificationModalAddBtn:active {
+  background-color: black;
+}
+.notificationModalForm {
+  padding: 30px;
+  width: 100%;
+  margin-top: 50px;
+  margin-left: 7px;
+}
+.notificationInputBoxTextArea {
+  width: 200px;
+  height: 200px !important;
+  font-family: sans-serif;
+}
+@media screen and (min-width: 800px) {
+  .notificationModal {
+    display: none;
+  }
+  .notificationModalForm {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .notificationModalAddBtn {
+    background-color: #29abe2;
+    color: white;
+    width: 150px;
+    font-size: 14px;
+    text-align: center;
+    margin: 0px auto;
+    padding: 8px;
+    border-radius: 5px;
+    bottom: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  .notificationModalAddBtn:active {
+    background-color: black;
+  }
+  .notificationModalForm {
+    padding: 30px;
+    width: 100%;
+    margin-top: 50px;
+  }
+  .notificationInputBoxTextArea {
+    width: 400px !important;
+    height: 150px !important;
+    font-family: sans-serif;
+  }
+}

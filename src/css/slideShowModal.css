@@ -1,0 +1,167 @@
+.slideShowModal {
+  display: none;
+}
+.slideShowModalAddBtn {
+  background-color: #29abe2;
+  color: white;
+  width: 100px;
+  font-size: 14px;
+  text-align: center;
+  margin: 0px auto;
+  padding: 8px;
+  border-radius: 5px;
+  bottom: 10px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.slideShowModalAddBtn:active {
+  background-color: black;
+}
+.slideShowModalLabel {
+  position: relative;
+  top: 15px;
+  left: 15px;
+  font-size: 16px;
+  margin-left: 5px;
+  width: 200px;
+}
+.bannerContainerWrap {
+  height: 80%;
+  overflow: auto;
+  margin-top: 35px;
+  padding: 0px 10px;
+  margin-bottom: 15px;
+}
+.bannerContainer {
+  display: block;
+  margin-left: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  height: 200px;
+  width: 95%;
+  overflow: hidden;
+  position: relative;
+}
+.bannerWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bannerDelete {
+  background-color: rgb(235, 0, 0);
+  color: white;
+  border-radius: 50px;
+  height: 25px;
+  width: 25px;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  cursor: pointer;
+}
+.bannerIndex {
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  background-color: #999999;
+  color: white;
+  border-radius: 50px;
+  height: 25px;
+  width: 25px;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  cursor: pointer;
+}
+@media screen and (min-width: 800px) {
+  .slideShowModal {
+    display: none;
+  }
+  .slideShowModalAddBtn {
+    background-color: #29abe2;
+    color: white;
+    width: 100px;
+    font-size: 14px;
+    text-align: center;
+    margin: 0px auto;
+    padding: 8px;
+    border-radius: 5px;
+    bottom: 10px;
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  .slideShowModalAddBtn:active {
+    background-color: black;
+  }
+  .slideShowModalLabel {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    font-size: 14px;
+    margin-left: 5px;
+    width: 300px;
+  }
+  .bannerContainerWrap {
+    height: 330px;
+    overflow: auto;
+    margin-top: 25px;
+    margin-bottom: 15px;
+    padding: 0px;
+  }
+  .bannerContainer {
+    display: inline-block;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    height: 200px;
+    width: 280px;
+    overflow: hidden;
+    position: relative;
+  }
+  .bannerContainer:nth-child(even) {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+  .bannerWrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bannerDelete {
+    background-color: rgb(235, 0, 0);
+    color: white;
+    border-radius: 50px;
+    height: 25px;
+    width: 25px;
+    font-size: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+    cursor: pointer;
+  }
+  .bannerIndex {
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    background-color: #999999;
+    color: white;
+    border-radius: 50px;
+    height: 25px;
+    width: 25px;
+    font-size: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    cursor: pointer;
+  }
+}

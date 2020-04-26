@@ -1,0 +1,99 @@
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ModalBlind {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  height: 100vh;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  animation: fade 0.1s ease both;
+  animation-delay: 0.1s;
+}
+.ModalContainer {
+  background-color: white;
+  position: relative;
+  width: 95%;
+  height: 90vh;
+  z-index: 7;
+  border-radius: 5px;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  animation: zoom 0.2s ease;
+}
+.ModalCloseBtn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  font-size: 35px;
+  cursor: pointer;
+  color: rgb(235, 0, 0);
+}
+@media screen and (min-width: 800px) {
+  .Modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .ModalBlind {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    animation: fade 0.1s ease both;
+    animation-delay: 0.1s;
+  }
+  .ModalContainer {
+    background-color: white;
+    position: relative;
+    width: 50%;
+    height: 70vh;
+    z-index: 7;
+    border-radius: 5px;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    animation: zoom 0.2s ease;
+  }
+  .ModalCloseBtn {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 25px;
+    cursor: pointer;
+    color: rgb(235, 0, 0);
+  }
+}

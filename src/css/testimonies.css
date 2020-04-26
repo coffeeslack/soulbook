@@ -1,0 +1,34 @@
+.testimoniesPageContainer {
+  background-color: white;
+  height: 100vh;
+  padding-top: 50px;
+  overflow: hidden;
+}
+.testimonyTabMenuMobile {
+  margin-left: 0px !important;
+}
+.addTestimonyBtn {
+  display: inline-block !important;
+  background-color: #29abe2;
+  color: white;
+  padding: 7px;
+  border-radius: 50px;
+  position: absolute;
+  right: 9px;
+}
+@media screen and (min-width: 800px) {
+  .testimoniesPageContainer {
+    background-color: inherit;
+    height: 91%;
+    margin-top: 50px;
+    margin-left: 22%;
+    position: fixed;
+    width: 78%;
+  }
+  .addTestimonyBtn {
+    display: none !important;
+  }
+  .testimonyMenu {
+    width: 74.3% !important;
+  }
+}

@@ -1,0 +1,202 @@
+@keyframes zoom {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#profileImageInput {
+  display: none;
+}
+.profileEditFormContainer {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profileEditModalBlind {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 6;
+  background: rgba(0, 0, 0, 0.2);
+  animation: fade 0.1s ease both;
+  animation-delay: 0.1s;
+}
+.profileEditModalContainer {
+  background-color: white;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  z-index: 7;
+  border-radius: 0px;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  animation: zoom 0.2s ease;
+  overflow: auto;
+  padding-bottom: 20px;
+}
+.profileDetail {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 100%;
+}
+.profileEditFormInputBoxContainer {
+  margin-top: 5px;
+}
+.profileEditFormInputBox {
+  border-radius: 0px;
+  border: none;
+  border-bottom: 1px solid #999999;
+  margin-top: 5px;
+  width: 95%;
+  padding: 7px 5px;
+}
+.profileEditFormInputBox:focus {
+  outline: 1px solid #29abe2;
+}
+.profileEditFormSaveBtn {
+  background-color: #29abe2;
+  color: white;
+  font-size: 14px;
+  width: 50%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0px auto;
+  margin-top: -35px;
+  display: block;
+  border: none;
+}
+.profileEditFormCloseBtnContainer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: none;
+}
+.profileEditFormCloseBtn {
+  color: white;
+  font-size: 22px;
+}
+.profileEditFormEditBtnContainer {
+  position: absolute;
+  top: 190px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: none;
+}
+.profileEditPicContainer {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+}
+.profileEditPicContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media screen and (min-width: 800px) {
+  .profileEditFormContainer {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .profileEditModalBlind {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 6;
+    background: rgba(0, 0, 0, 0.2);
+    animation: fade 0.1s ease both;
+    animation-delay: 0.1s;
+  }
+  .profileEditModalContainer {
+    background-color: white;
+    position: relative;
+    width: 35%;
+    height: 95vh;
+    z-index: 7;
+    border-radius: 5px;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    animation: zoom 0.2s ease;
+    overflow: auto;
+    overflow: hidden;
+  }
+  .profileEditFormInputBoxContainer {
+    position: absolute;
+    right: 80px;
+  }
+  .profileEditFormInputBox {
+    border-radius: 0px;
+    border: none;
+    border-bottom: 1px solid #999999;
+    width: 200px;
+    padding: 5px;
+  }
+  .profileEditFormSaveBtn {
+    background-color: #29abe2;
+    color: white;
+    font-size: 14px;
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 0px auto;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  .profileEditFormSaveBtn:active {
+    background-color: black;
+  }
+  .profileEditFormSaveBtn:focus {
+    outline: none;
+  }
+  .profileEditFormInputBoxContainer {
+    margin-top: 0px;
+  }
+  .profileEditFormCloseBtnContainer {
+    cursor: pointer;
+  }
+  .profileEditFormEditBtnContainer {
+    cursor: pointer;
+  }
+}

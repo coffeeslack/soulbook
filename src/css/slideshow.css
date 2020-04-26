@@ -1,0 +1,169 @@
+.slideShowContainer {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background-color: lightgray;
+  margin-top: 45px;
+  position: relative;
+}
+.slideShowImageContainer {
+  width: 100%;
+  height: 100%;
+}
+.slideShowImageContainer img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.slideShowEditBtn {
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  padding: 7px;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  cursor: pointer;
+}
+.slideShowBtnContainer {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  padding: 7px;
+  border-radius: 50px;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+}
+.slideShowNextBtn {
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  position: absolute;
+  right: 10px;
+  padding: 2px;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+}
+.slideShowPrevBtn {
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  position: absolute;
+  left: 10px;
+  padding: 2px;
+  border-radius: 50px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  cursor: pointer;
+}
+@keyframes fade {
+  from {
+    opacity: 0.95;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes wide {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.5);
+  }
+}
+.slideShowImage {
+  animation: fade 1s ease both, wide 80s ease both;
+}
+#slideShowInput {
+  display: none;
+}
+@media screen and (min-width: 800px) {
+  .slideShowContainer {
+    position: relative;
+    left: 22%;
+    top: 20px;
+    width: 50%;
+    height: 450px;
+    overflow: hidden;
+    background-color: lightgray;
+    margin-top: 45px;
+  }
+  .slideShowEditBtn {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    padding: 7px;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .slideShowBtnContainer {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    padding: 7px;
+    border-radius: 50px;
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+  }
+  .slideShowNextBtn {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    position: absolute;
+    right: 10px;
+    padding: 2px;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  .slideShowPrevBtn {
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    position: absolute;
+    left: 10px;
+    padding: 2px;
+    border-radius: 50px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
