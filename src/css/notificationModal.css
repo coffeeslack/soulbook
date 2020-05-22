@@ -26,14 +26,8 @@
 .notificationModalAddBtn:active {
   background-color: black;
 }
-.notificationModalForm {
-  padding: 30px;
-  width: 100%;
-  margin-top: 50px;
-  margin-left: 7px;
-}
 .notificationInputBoxTextArea {
-  width: 200px;
+  width: 100%;
   height: 200px !important;
   font-family: sans-serif;
 }
@@ -47,6 +41,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 0px;
+    margin-left: 0px;
   }
   .notificationModalAddBtn {
     background-color: #29abe2;
@@ -64,13 +60,7 @@
   .notificationModalAddBtn:active {
     background-color: black;
   }
-  .notificationModalForm {
-    padding: 30px;
-    width: 100%;
-    margin-top: 50px;
-  }
   .notificationInputBoxTextArea {
-    width: 400px !important;
     height: 150px !important;
     font-family: sans-serif;
   }

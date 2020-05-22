@@ -7,13 +7,13 @@ import { v4 as uuidv4 } from "uuid";
 function AddSoulForm(props) {
   const [userType, setUserType] = useState("evangelism");
 
-  const changeUserType = type => {
+  const changeUserType = (type) => {
     setUserType(type);
   };
   const closeModal = () => {
     document.querySelector(".addSoulModal").style.display = "none";
   };
-  const addSoul = e => {
+  const addSoul = (e) => {
     e.preventDefault();
     const form = document.querySelector("form.addSoulFormBox");
     const gender = document.querySelector("select.genderOptions");
@@ -29,7 +29,7 @@ function AddSoulForm(props) {
       createdAt: new Date(),
       wonBy: props.id,
       wonThrough: userType,
-      prayerRequest: prayerRequest.value
+      prayerRequest: prayerRequest.value,
     };
     closeModal();
     props.addSoul(soul);
@@ -46,11 +46,14 @@ function AddSoulForm(props) {
 
   return (
     <div className="addSoulModal">
-      <div className="Modal">
+      <div className="Modal row">
         <div className="ModalBlind"></div>
-        <div className="ModalContainer">
-          <div className="ModalCloseBtn" onClick={closeModal}>
-            <IoMdCloseCircle />
+        <div className="ModalContainer col-lg-6">
+          <div className="ModalHeader">
+            <span className="ModalTitle">Add Soul</span>
+            <div className="ModalCloseBtn" onClick={closeModal}>
+              <IoMdCloseCircle />
+            </div>
           </div>
           <div>
             <div className="AddSoulForm">
@@ -93,9 +96,9 @@ function AddSoulForm(props) {
                 className="addSoulModalForm"
                 style={{ paddingTop: props.accountType === "member" && "70px" }}
               >
-                <form className="addSoulFormBox" onSubmit={addSoul}>
-                  <div className="inputBoxRow">
-                    <div className="inputBoxContainer">
+                <form className="addSoulFormBox row" onSubmit={addSoul}>
+                  <div className="inputBoxRow row">
+                    <div className="inputBoxContainer col-lg-6">
                       <div className="inputBoxLabel">Full Name</div>
                       <input
                         name="fullName"
@@ -104,7 +107,7 @@ function AddSoulForm(props) {
                         required
                       />
                     </div>
-                    <div className="inputBoxContainer">
+                    <div className="inputBoxContainer col-lg-6">
                       <div className="inputBoxLabel">Address</div>
                       <input
                         name="address"
@@ -114,8 +117,8 @@ function AddSoulForm(props) {
                       />
                     </div>
                   </div>
-                  <div className="inputBoxRow">
-                    <div className="inputBoxContainer">
+                  <div className="inputBoxRow row">
+                    <div className="inputBoxContainer col-lg-6">
                       <div className="inputBoxLabel">Gender</div>
                       <select
                         className="inputBox selectBox genderOptions"
@@ -125,7 +128,7 @@ function AddSoulForm(props) {
                         <option value="female">female</option>
                       </select>
                     </div>
-                    <div className="inputBoxContainer">
+                    <div className="inputBoxContainer col-lg-6">
                       <div className="inputBoxLabel">Nearest Bus-stop</div>
                       <input
                         name="busStop"
@@ -135,8 +138,8 @@ function AddSoulForm(props) {
                       />
                     </div>
                   </div>
-                  <div className="inputBoxRow">
-                    <div className="inputBoxContainer">
+                  <div className="inputBoxRow row">
+                    <div className="inputBoxContainer col-lg-6">
                       <div className="inputBoxLabel">Phone Number</div>
                       <input
                         name="phoneNumber"
@@ -145,7 +148,7 @@ function AddSoulForm(props) {
                         required
                       />
                     </div>
-                    <div className="inputBoxContainer">
+                    <div className="inputBoxContainer col-lg-6">
                       <div className="inputBoxLabel">Occupation</div>
                       <input
                         name="occupation"
@@ -175,8 +178,8 @@ function AddSoulForm(props) {
                       </select>
                     </div>
                   </div> */}
-                  <div className="inputBoxRow">
-                    <div className="inputBoxContainer">
+                  <div className="inputBoxRow row">
+                    <div className="inputBoxContainer col-lg-12">
                       <div className="inputBoxLabel">Prayer request</div>
                       <textarea
                         name="prayerRequest"

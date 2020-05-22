@@ -1,26 +1,32 @@
 .header {
   background-color: white;
-  height: 45px;
+  height: 50px;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   text-align: center;
-  padding: 10px;
+  padding: 10px 15px;
   display: flex;
   align-items: center;
   color: black;
   z-index: 3;
+  border-bottom: 1px solid lightgrey;
 }
 .headerMenu {
   width: 10%;
-  display: inline-block;
+  display: inline-flex;
   font-size: 20px;
 }
 .headerTitle {
   width: 80%;
   padding-left: 10px;
   font-size: 16px;
+}
+.profileBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .headerProfilePic {
   width: 10%;

@@ -2,3 +2,14 @@
   padding: 20px;
   overflow: auto;
 }
+.testimonyCardModalContainer .ModalContainer {
+  width: 90%;
+  height: 80vh;
+  animation: zoom 0.2s ease;
+}
+@media screen and (min-width: 800px) {
+  .testimonyCardModalContainer .ModalContainer {
+    width: 50%;
+    height: 90%;
+  }
+}

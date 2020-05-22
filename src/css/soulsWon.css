@@ -1,87 +1,19 @@
 .soulsWonContainer {
   background-color: white;
-  height: 100vh;
-  padding-top: 50px;
-  overflow: hidden;
-}
-.soulsWonSearchBarContainer {
-  background-color: #e4e4e4;
-  padding: 10px 15px;
-  width: 95%;
-  margin: 0px auto 40px;
-  border-radius: 50px;
-  display: flex;
-  align-items: center;
-  height: 35px;
-}
-.soulsWonSearchBar {
-  display: inline-flex;
-  width: 200px;
-  align-items: center;
-  margin-left: 5px;
-}
-.soulsWonSearchBar input {
-  background-color: inherit;
-  border: none;
-  width: 80%;
-  margin-right: 10px;
-}
-.soulsWonSearchBar input:focus {
-  outline: none;
-}
-.soulsWonTabMenuMobile {
-  display: inline-flex;
-  margin-right: 10px;
-}
-.soulsWonTabMenuMobile span {
-  font-size: 12px;
-}
-.soulsWonTabMenuMobile select {
-  background-color: inherit;
-  border: none;
-  font-weight: 600;
-}
-.soulsWonTabMenuMobile select:focus {
-  outline: none;
+  margin-top: 50px;
+  overflow: auto;
+  position: relative;
 }
 .soulsWonCardContainer {
-  padding: 10px;
-  height: 100%;
-  overflow: auto;
+  padding: 100px 10px 20px;
   padding-bottom: 125px;
   position: relative;
   left: 0;
-  border-top: 1px solid #e4e4e4;
-}
-.soulsWonTabMenu {
-  display: none;
-}
-.soulsWonSortMenu {
-  display: inline-block;
-  align-items: center;
-  margin-left: 35px;
-  position: absolute;
-  top: 95px;
-  width: 90%;
-  left: -20px;
-}
-.soulsWonSortMenu span {
-  font-size: 14px;
-  color: grey;
-}
-.soulsWonSortMenu select {
-  border: none;
-  margin-left: 5px;
-  cursor: pointer;
-}
-.soulsWonSortMenu select:focus {
-  outline: none;
 }
 .soulsWonAddSoulBtn {
   display: none;
 }
 .totalSoulsWonContainer {
-  margin-left: 40px;
   float: right;
 }
 .totalSoulsWonCount {
@@ -90,100 +22,30 @@
   color: black !important;
   font-weight: bold;
 }
+.emptyDisplayText {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-style: italic;
+}
 @media screen and (min-width: 800px) {
   .soulsWonContainer {
     background-color: inherit;
-    height: 91%;
-    margin-top: 50px;
-    margin-left: 22%;
-    position: fixed;
-    width: 78%;
-  }
-  .soulsWonSearchBarContainer {
-    background-color: white;
-    padding: 10px 0px;
-    width: 65.2%;
-    border-radius: 0px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding-left: 305px;
-    position: fixed;
-    top: 60px;
-    height: 41px;
-  }
-  .soulsWonTabMenuMobile {
-    display: none;
-    margin-left: 30px;
-  }
-  .soulsWonTabMenu {
-    display: inline-block;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .soulsWonTabOption {
-    display: inline-block;
-    padding: 10px 15px;
-    font-size: 14px;
-    color: grey;
-    cursor: pointer;
-    transition: 0.1s ease;
-  }
-  .selectedSoulsWonTab {
-    border-bottom: 1.5px solid black;
-    color: black;
-    font-weight: 600;
+    width: 100%;
   }
   .soulsWonCardContainer {
-    padding: 10px;
-    height: 100%;
-    overflow: auto;
-    padding-bottom: 10px;
-    position: relative;
-    left: 0;
-    padding-left: 0px;
-    margin-top: 5px;
+    padding: 50px 0px 10px;
+    margin-top: 0px;
     border-top: none;
-  }
-  .soulsWonSortMenu {
-    display: inline-block;
-    margin-left: 30px;
-    position: relative;
-    top: 0;
-    width: auto;
-  }
-  .soulsWonSortMenu span {
-    font-size: 14px;
-    color: grey;
-  }
-  .soulsWonSortMenu select {
-    border: none;
-    margin-left: 5px;
-    cursor: pointer;
-  }
-  .soulsWonSortMenu select:focus {
-    outline: none;
-  }
-  .soulsWonSearchBar {
-    display: inline-flex;
-    width: 140px;
-    margin-left: 5px;
-  }
-  .soulsWonSearchBar input {
-    display: inline-flex;
-    width: 80%;
-    margin-left: 5px;
   }
   .soulsWonAddSoulBtn {
     display: inline-flex;
     background-color: #29abe2;
     color: white;
     font-size: 14px;
-    padding: 11px;
-    position: absolute;
-    top: 0px;
-    right: -115px;
+    padding: 9px;
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -195,14 +57,5 @@
   .soulsWonAddSoulBtnIcon {
     margin-left: 10px;
     font-size: 16px;
-  }
-  .totalSoulsWonContainer {
-    margin-left: 50px;
-  }
-  .totalSoulsWonCount {
-    display: inline-block;
-    margin-left: 10px;
-    color: black !important;
-    font-weight: bold;
   }
 }

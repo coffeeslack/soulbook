@@ -14,7 +14,7 @@ function SlideShowModal(props) {
   const closeModal = () => {
     document.querySelector(".slideShowModal").style.display = "none";
   };
-  const handleSlideImageUpload = e => {
+  const handleSlideImageUpload = (e) => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
       const uploadTask = firebase
@@ -24,26 +24,26 @@ function SlideShowModal(props) {
 
       uploadTask.on(
         "state_changed",
-        snapshot => {
+        (snapshot) => {
           const progress = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
           setUploading(true);
           setAlertMessage(`uploading image...(${progress}%)`);
         },
-        error => {
+        (error) => {
           console.log(error);
           setUploading(true);
           setAlertMessage(error.message);
           setTimeout(() => setUploading(false), 1000);
         },
         () => {
-          uploadTask.snapshot.ref.getDownloadURL().then(url => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
             setUploading(false);
             const pic = {
               id: uuidv4(),
               src: url,
-              createdAt: new Date()
+              createdAt: new Date(),
             };
             props.addSlidePic(pic);
           });
@@ -51,17 +51,15 @@ function SlideShowModal(props) {
       );
     }
   };
-  const BannerContainer = props => (
-    <div className="bannerContainer">
-      <div className="bannerWrapper">
-        <img src={props.pic.src} alt="banner" />
-      </div>
+  const BannerContainer = (props) => (
+    <div className="bannerContainer col-lg-6 ">
+      <img src={props.pic.src} alt="banner" />
       <div
         className="bannerDelete"
         onClick={() => props.deleteSlidePic(props.pic.id)}
         style={{
           display:
-            props.slideShowPics && props.slideShowPics.length === 1 && "none"
+            props.slideShowPics && props.slideShowPics.length === 1 && "none",
         }}
       >
         <FaRegTrashAlt />
@@ -70,23 +68,25 @@ function SlideShowModal(props) {
   );
   return (
     <div className="slideShowModal">
-      <div className="Modal">
+      <div className="Modal row mobileContainer">
         <div className="ModalBlind"></div>
-        <div className="ModalContainer">
+        <div className="ModalContainer col-lg-6">
           <div style={{ display: !uploading && "none" }}>
             <AlertBox message={alertMessage} />
           </div>
-          <div className="ModalCloseBtn" onClick={closeModal}>
-            <IoMdCloseCircle />
+          <div className="ModalHeader">
+            <span className="ModalTitle">Banners</span>
+            <div className="ModalCloseBtn" onClick={closeModal}>
+              <IoMdCloseCircle />
+            </div>
           </div>
-          <div className="slideShowModalLabel">slideshow banners</div>
-          <div className="bannerContainerWrap">
+          <div className="bannerContainerWrap row mobileContainer">
             {props.slideShowPics &&
               props.slideShowPics.map((pic, i) => (
                 <BannerContainer pic={pic} key={i} {...props} />
               ))}
           </div>
-          <div>
+          <div className="d-flex align-items-center justify-content-center">
             <input
               type="file"
               name="imageInput"

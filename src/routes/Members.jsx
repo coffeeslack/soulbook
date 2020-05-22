@@ -19,7 +19,7 @@ function Members(props) {
       members =
         props.members &&
         props.members.filter(
-          member =>
+          (member) =>
             member.name.toLowerCase().includes(searchValue.toLowerCase()) &&
             moment(member.createdAt).month() === eval(month) &&
             member.serviceGroup.toLowerCase() === serviceGroup.toLowerCase()
@@ -28,7 +28,7 @@ function Members(props) {
       members =
         props.members &&
         props.members.filter(
-          member =>
+          (member) =>
             member.name.toLowerCase().includes(searchValue.toLowerCase()) &&
             member.serviceGroup.toLowerCase() === serviceGroup.toLowerCase()
         );
@@ -36,14 +36,14 @@ function Members(props) {
       members =
         props.members &&
         props.members.filter(
-          member =>
+          (member) =>
             member.name.toLowerCase().includes(searchValue.toLowerCase()) &&
             moment(member.createdAt).month() === eval(month)
         );
     } else {
       members =
         props.members &&
-        props.members.filter(member =>
+        props.members.filter((member) =>
           member.name.toLowerCase().includes(searchValue.toLowerCase())
         );
     }
@@ -60,10 +60,10 @@ function Members(props) {
     }
   };
   const totalMembers = props.members && displayedMembers().length;
-  const changeMonth = value => {
+  const changeMonth = (value) => {
     setMonth(value);
   };
-  const changeSearchValue = value => {
+  const changeSearchValue = (value) => {
     setSetSearchValue(value);
   };
 
@@ -74,27 +74,40 @@ function Members(props) {
           <Loader />
         </div>
       ) : (
-        <div className="members">
-          <Header {...props} page="Members" />
-          <SearchBar
-            {...props}
-            searchValue={searchValue}
-            changeSearchValue={changeSearchValue}
-            changeMonth={changeMonth}
-            totalMembers={totalMembers}
-            serviceGroup={serviceGroup}
-            setServiceGroup={value => setServiceGroup(value)}
-            sortBy={sortBy}
-            setSortType={value => setSortBy(value)}
-          />
-          <div className="membersNavbar">
-            <Navbar page="members" />
-            <SideNav page="members" {...props} />
-          </div>
-          <div className="membersContainer">
-            {displayedMembers().map((member, i) => (
-              <MemberCard key={i} {...member} store={props} />
-            ))}
+        <div className="members soulsWonContainer">
+          <div className=" row section">
+            <div className="mobileContainer col-12">
+              <Header {...props} page="Members" />
+            </div>
+            <div className="mobileContainer col-lg-2">
+              <SideNav page="members" {...props} />
+            </div>
+            <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
+              <SearchBar
+                {...props}
+                searchValue={searchValue}
+                changeSearchValue={changeSearchValue}
+                changeMonth={changeMonth}
+                totalMembers={totalMembers}
+                serviceGroup={serviceGroup}
+                setServiceGroup={(value) => setServiceGroup(value)}
+                sortBy={sortBy}
+                setSortType={(value) => setSortBy(value)}
+              />
+
+              <div className="membersContainer row section">
+                {displayedMembers().length > 0 ? (
+                  displayedMembers().map((member, i) => (
+                    <MemberCard key={i} {...member} store={props} />
+                  ))
+                ) : (
+                  <div className="emptyDisplayText">no member found...</div>
+                )}
+              </div>
+            </div>
+            <div className="mobileContainer col-12">
+              <Navbar page="members" />
+            </div>
           </div>
         </div>
       )}

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import AppRouter from "./routes/AppRouter";
 import "./css/App.css";
+import "./css/bootstrap.min.css";
 import moment from "moment";
 import fb from "./config/config.jsx";
 import firebase from "firebase/app";

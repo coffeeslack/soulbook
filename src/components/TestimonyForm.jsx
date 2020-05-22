@@ -4,7 +4,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { v4 as uuidv4 } from "uuid";
 
 function TestimonyForm(props) {
-  const createTestimony = e => {
+  const createTestimony = (e) => {
     e.preventDefault();
     const title = document.querySelector("input.testimonyFormTitle");
     const text = document.querySelector("textarea.testimonyFormText");
@@ -16,7 +16,7 @@ function TestimonyForm(props) {
       text: text.value,
       userName: name.value,
       satelliteChurch: props.satelliteChurch,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
     props.createTestimony(testimony);
     props.hideTestimonyForm();
@@ -27,7 +27,7 @@ function TestimonyForm(props) {
     <div className="testimonyFormContainer">
       <div className="testimonyForm">
         <div className="testimonyFormHeader">
-          Give Testimony
+          <span>Give Testimony</span>
           <span
             className="testimonyFormCloseBtn"
             onClick={props.hideTestimonyForm}

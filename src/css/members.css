@@ -1,77 +1,16 @@
 .members {
   background-color: inherit;
-  height: 95vh;
-  margin-top: 45px;
-  padding: 10px;
-  position: fixed;
   width: 100%;
-  padding-top: 10px;
   overflow: hidden;
-  padding-bottom: 30px;
-  background-color: white;
-  position: fixed;
+  background-color: inherit;
 }
 .membersContainer {
-  margin-top: 10px;
   width: 100%;
-  height: 90%;
-  overflow: scroll;
-  padding-top: 10px;
-  padding-right: 5px;
-  padding-bottom: 50px;
-}
-.membersSearchBarContainer {
-  width: 100%;
-  margin-bottom: 10px;
-  position: relative;
-}
-.membersSearchBar {
-  width: 100%;
-}
-.membersSearchBar input {
-  width: 90%;
-}
-.selectLabel {
-  margin-left: 25px;
-}
-.membersNavbar {
-  position: absolute;
-  left: 0;
-}
-.membersSortMenu {
-  display: none;
+  padding: 10px;
+  padding: 100px 10px 60px !important;
 }
 @media screen and (min-width: 800px) {
-  .members {
-    background-color: inherit;
-    height: 100vh;
-    margin-top: 0px;
-    margin-left: 21%;
-    position: fixed;
-    width: 100%;
-    padding-top: 2px;
-    padding-right: 0;
-  }
   .membersContainer {
-    margin-top: 55px;
-    width: 79%;
-    height: 90%;
-    padding-bottom: 0px;
-  }
-  .membersSearchBarContainer {
-    padding-left: 10px;
-    width: 68%;
-  }
-  .selectLabel {
-    margin-left: 25px;
-  }
-  .membersSearchBar {
-    width: 20%;
-  }
-  .membersSearchBar input {
-    width: 90%;
-  }
-  .membersSortMenu {
-    display: block;
+    padding: 50px 0px 10px !important;
   }
 }

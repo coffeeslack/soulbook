@@ -7,7 +7,7 @@ function NotificationModal(props) {
   const closeModal = () => {
     document.querySelector(".notificationModal").style.display = "none";
   };
-  const addNotification = e => {
+  const addNotification = (e) => {
     e.preventDefault();
     const message = document.querySelector(".notificationInputBoxTextArea")
       .value;
@@ -15,17 +15,20 @@ function NotificationModal(props) {
       message: message,
       createdAt: new Date(),
       id: uuidv4(),
-      from: props.satelliteChurch
+      from: props.satelliteChurch,
     });
     closeModal();
   };
   return (
     <div className="notificationModal">
-      <div className="Modal">
+      <div className="Modal row mobileContainer">
         <div className="ModalBlind"></div>
-        <div className="ModalContainer">
-          <div className="ModalCloseBtn" onClick={closeModal}>
-            <IoMdCloseCircle />
+        <div className="ModalContainer col-lg-6">
+          <div className="ModalHeader">
+            <span className="ModalTitle">Send Notification</span>
+            <div className="ModalCloseBtn" onClick={closeModal}>
+              <IoMdCloseCircle />
+            </div>
           </div>
           <div>
             <form onSubmit={addNotification}>

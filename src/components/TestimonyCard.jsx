@@ -14,7 +14,7 @@ function TestimonyCard(props) {
     setShowModal(false);
   };
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const displayDeleteModal = option => {
+  const displayDeleteModal = (option) => {
     setShowDeleteModal(option);
   };
   const Text = () => {
@@ -36,29 +36,31 @@ function TestimonyCard(props) {
   return (
     <div className="testimonyCardContainer">
       <div className="testimonyCardGradient"></div>
-      <div className="testimonyCardDate">
-        {moment(props.createdAt.toDate()).format("LL")}
-      </div>
-      <div className="testimonyCardOptions">
-        <span
-          className="testimonyCardOption"
-          style={{
-            display:
-              props.store.accountType === "member" &&
-              props.userId !== props.store.id &&
-              "none"
-          }}
-        >
-          <span className="testimonyCardOptionIcon">
-            <MdDelete />
-          </span>
+      <div className="testimonyCardHeader">
+        <div className="testimonyCardDate">
+          {moment(props.createdAt.toDate()).format("LL")}
+        </div>
+        <div className="testimonyCardOptions">
           <span
-            className="testimonyCardOptionText"
-            onClick={() => displayDeleteModal(true)}
+            className="testimonyCardOption"
+            style={{
+              display:
+                props.store.accountType === "member" &&
+                props.userId !== props.store.id &&
+                "none",
+            }}
           >
-            Delete
+            <span className="testimonyCardOptionIcon">
+              <MdDelete />
+            </span>
+            <span
+              className="testimonyCardOptionText"
+              onClick={() => displayDeleteModal(true)}
+            >
+              Delete
+            </span>
           </span>
-        </span>
+        </div>
       </div>
       <div className="testimonyCardTitle">{props.title}</div>
       <div className="testimonyCardText">

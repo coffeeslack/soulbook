@@ -1,8 +1,17 @@
+.soulProfileModal .ModalContainer {
+  animation: zoom 0.2s ease both;
+  width: 90%;
+  padding: 0px !important;
+}
 .soulProfileModalContainer {
   height: 80vh;
   width: 90%;
   overflow: hidden;
   border-radius: 10px;
+  display: block;
+}
+.soulProfileModalContainer {
+  padding-top: 0px !important;
 }
 .soulProfileModalHeader {
   padding: 10px;
@@ -54,5 +63,8 @@
     width: 50%;
     overflow: hidden;
     border-radius: 10px;
+  }
+  .soulProfileModal .ModalContainer {
+    width: 30%;
   }
 }

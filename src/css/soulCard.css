@@ -5,7 +5,7 @@
   padding-left: 15px;
   margin-bottom: 15px;
   border-radius: 5px;
-  height: 130px;
+  height: 140px;
   position: relative;
   left: 0;
   overflow: hidden;
@@ -43,26 +43,29 @@
 }
 .soulCardMainIcon {
   color: #29abe2;
-  margin-right: 5px;
 }
 .soulCardOptionIcon:last-child {
   border-right: none;
 }
 .soulCardNameContainer {
   width: 100%;
+  display: flex;
+  align-items: center;
 }
 .soulCardName {
   font-size: 16px;
   font-weight: 600;
   width: 20px;
-  width: 240px;
+  width: 100%;
   overflow: hidden;
   display: inline-block;
+  padding-left: 5px;
 }
 .soulCardAddress {
   font-size: 14px;
   color: grey;
   width: 350px;
+  padding-left: 5px;
 }
 .soulCardDate {
   font-size: 13px;
@@ -82,12 +85,9 @@
     margin-bottom: 15px;
     border-radius: 5px;
     height: 325px;
-    width: 300px;
+    width: 100%;
     position: relative;
-    left: 0;
     overflow: hidden;
-    display: inline-block;
-    margin-right: 12px;
     cursor: pointer;
   }
   .soulCardName {
@@ -114,7 +114,7 @@
     color: #29abe2;
   }
   .soulCardOptionIcon:first-child:hover {
-    color: #77ad30;
+    color: #29abe2;
   }
   .soulCardOptionIcon:last-child:hover {
     color: red;

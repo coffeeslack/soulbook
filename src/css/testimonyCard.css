@@ -6,7 +6,7 @@
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
 }
 .testimonyCardDate {
   font-size: 12px;
@@ -15,7 +15,8 @@
 }
 .testimonyCardTitle {
   font-weight: bold;
-  font-size: 16px;
+  text-transform: uppercase;
+  font-size: 14px;
   margin-left: 5px;
   margin-top: 10px;
 }
@@ -44,13 +45,12 @@
   font-size: 12px;
   cursor: pointer;
 }
-.testimonyCardOptions {
-  position: absolute;
-  top: 5px;
-  right: 0;
+.testimonyCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .testimonyCardOption {
-  margin-right: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -76,29 +76,17 @@
 .testimonyCardOptionIcon {
   font-size: 14px;
   margin-right: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media screen and (min-width: 800px) {
   .testimonyCardContainer {
-    width: 200px;
-    background-color: white;
-    padding: 10px;
-    width: 58%;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.05);
-  }
-  .testimonyCardDate {
-    font-size: 12px;
-    color: #999999;
-    margin-left: 5px;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
   }
   .testimonyCardTitle {
     font-weight: 500;
     font-size: 14px;
-    margin-left: 5px;
-    margin-top: 10px;
   }
   .testimonyCardText {
     font-size: 14px;
@@ -111,50 +99,7 @@
     margin-top: 10px;
     margin-left: 5px;
   }
-  .testimonyCardGradient {
-    width: 7px;
-    height: 100%;
-    background: #29abe2;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .expandText {
-    color: #999999;
-    font-size: 12px;
-    cursor: pointer;
-  }
-  .testimonyCardOptions {
-    position: absolute;
-    top: 5px;
-    right: 0;
-  }
   .testimonyCardOption {
-    margin-right: 10px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    transition: 0.1s ease;
-  }
-  .testimonyCardOption:first-child:hover {
-    color: #29abe2;
-  }
-  .testimonyCardOption:first-child:hover .testimonyCardOptionText {
-    color: #29abe2;
-  }
-  .testimonyCardOption:last-child:hover {
-    color: rgb(235, 0, 0);
-  }
-  .testimonyCardOption:last-child:hover .testimonyCardOptionText {
-    color: rgb(235, 0, 0);
-  }
-  .testimonyCardOptionText {
-    font-size: 14px;
-    color: grey;
-  }
-  .testimonyCardOptionIcon {
-    font-size: 14px;
-    margin-right: 5px;
   }
 }

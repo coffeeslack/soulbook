@@ -9,7 +9,10 @@ function DataSummary(props) {
   };
   const firstTimers =
     props.soulsWon &&
-    props.soulsWon.filter(soul => soul.wonThrough === "firstTimer");
+    props.soulsWon.filter((soul) => soul.wonThrough === "firstTimer");
+  const altarCall =
+    props.soulsWon &&
+    props.soulsWon.filter((soul) => soul.wonThrough === "altarCall");
   return (
     <div className="dataSummaryContainer">
       <div className="dataSummaryCard">
@@ -21,7 +24,18 @@ function DataSummary(props) {
       <div
         className="dataSummaryCard"
         style={{
-          display: props.accountType && props.accountType === "member" && "none"
+          display:
+            props.accountType && props.accountType === "member" && "none",
+        }}
+      >
+        <div className="dataCount">{altarCall && altarCall.length}</div>
+        <div className="dataLabel">altar call</div>
+      </div>
+      <div
+        className="dataSummaryCard"
+        style={{
+          display:
+            props.accountType && props.accountType === "member" && "none",
         }}
       >
         <div className="dataCount">{firstTimers && firstTimers.length}</div>
@@ -30,7 +44,8 @@ function DataSummary(props) {
       <div
         className="dataSummaryCard"
         style={{
-          display: props.accountType && props.accountType === "member" && "none"
+          display:
+            props.accountType && props.accountType === "member" && "none",
         }}
       >
         <div className="dataCount">{props.members && props.members.length}</div>

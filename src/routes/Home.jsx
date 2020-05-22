@@ -17,12 +17,28 @@ function Home(props) {
         </div>
       ) : (
         <div>
-          <Header {...props} page="SoulBook" />
-          <SlideShow {...props} />
-          <Notifications {...props} />
-          <Navbar page="home" />
-          <SideNav page="home" {...props} />
-          <DataSummary {...props} />
+          <div className="row section">
+            <div className="mobileContainer col-12">
+              <Header {...props} page="SoulBook" />
+            </div>
+            <div className="mobileContainer col-lg-2">
+              <SideNav page="home" {...props} />
+            </div>
+            <div className="mobileContainer col-lg-10 contentContainer">
+              <div className="row">
+                <div className="mobileContainer col-lg-8">
+                  <SlideShow {...props} />
+                  <DataSummary {...props} />
+                </div>
+                <div className="mobileContainer col-lg-4">
+                  <Notifications {...props} />
+                </div>
+              </div>
+            </div>
+            <div className="mobileContainer col-12">
+              <Navbar page="home" />
+            </div>
+          </div>
         </div>
       )}
     </div>

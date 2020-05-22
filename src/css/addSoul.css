@@ -2,6 +2,7 @@
   background-color: white;
   margin-top: 45px;
   width: 100%;
+  padding-bottom: 200px;
   overflow: hidden;
 }
 .addSoulForm {
@@ -9,8 +10,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 80px;
-  padding-top: 55px;
+  padding-top: 70px;
 }
 .AddSoulPage {
   width: 100%;
@@ -34,17 +34,19 @@
 }
 .addSoulTabMenu {
   width: 100%;
-  padding: 10px;
+  padding: 15px 10px;
   display: flex;
   align-items: center;
   position: fixed;
   background-color: white;
+  border-bottom: 1px solid lightgrey;
 }
 .addSoulTab {
   width: 33.3333%;
   display: inline-block;
   text-align: center;
   padding: 5px 10px;
+  font-size: 14px;
   border-radius: 50px;
   transition: 0.1s ease;
 }
@@ -55,6 +57,7 @@
   display: inline-block;
   text-align: center;
   padding: 5px 10px;
+  font-size: 14px;
   border-radius: 50px;
   transition: 0.1s ease;
 }

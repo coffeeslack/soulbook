@@ -7,7 +7,7 @@ import {
   MdTextsms,
   MdDelete,
   MdDirectionsBus,
-  MdBusinessCenter
+  MdBusinessCenter,
 } from "react-icons/md";
 import { FaTransgender } from "react-icons/fa";
 import OptionModal from "./OptionModal";
@@ -22,127 +22,131 @@ function SoulCard(props) {
     setShowModal(false);
   };
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const displayDeleteModal = option => {
+  const displayDeleteModal = (option) => {
     setShowDeleteModal(option);
   };
   return (
-    <div className="soulCardContainer">
-      <div className="soulCardGradient"></div>
-      <div onClick={openModal}>
-        <div className="soulCardDate">
-          {moment(props.createdAt.toDate()).format("LL")}
-        </div>
-        <div className="soulCardNameContainer">
-          <span className="soulCardMainIcon">
-            <MdPerson />
-          </span>
-          {props.name.length < 30 ? (
-            <span className="soulCardName">{props.name}</span>
-          ) : (
-            <span className="soulCardName">{props.name.slice(0, 30)}...</span>
-          )}
-        </div>
-        <div className="soulCardAddressContainer">
-          <span className="soulCardMainIcon">
-            <MdLocationOn />
-          </span>
-          {props.address.length < 35 ? (
-            <span className="soulCardAddress">{props.address}</span>
-          ) : (
-            <span className="soulCardAddress">
-              {props.address.slice(0, 35)}...
+    <div className=" col-lg-4 col-md-6 pl-0 pl-md-2 pl-lg-0 mobileContainer">
+      <div className="soulCardContainer">
+        <div className="soulCardGradient"></div>
+        <div onClick={openModal}>
+          <div className="soulCardDate">
+            {moment(props.createdAt.toDate()).format("LL")}
+          </div>
+          <div className="soulCardNameContainer">
+            <span className="soulCardMainIcon">
+              <MdPerson />
             </span>
-          )}
-        </div>
-        <div className="soulCardOtherDetails">
-          <div className="soulProfileModalDetailContainer">
-            <div className="soulProfileModalIcon">
-              <MdPhone />
-            </div>
-            <div className="soulProfileModalIconDetail">
-              {props.phoneNumber}
-            </div>
+            {props.name.length < 30 ? (
+              <span className="soulCardName">{props.name}</span>
+            ) : (
+              <span className="soulCardName">{props.name.slice(0, 30)}...</span>
+            )}
           </div>
-          <div className="soulProfileModalDetailContainer">
-            <div className="soulProfileModalIcon">
-              <MdBusinessCenter />
-            </div>
-            <div className="soulProfileModalIconDetail">{props.occupation}</div>
+          <div className="soulCardAddressContainer">
+            <span className="soulCardMainIcon">
+              <MdLocationOn />
+            </span>
+            {props.address.length < 35 ? (
+              <span className="soulCardAddress">{props.address}</span>
+            ) : (
+              <span className="soulCardAddress">
+                {props.address.slice(0, 35)}...
+              </span>
+            )}
           </div>
-          <div className="soulProfileModalDetailContainer">
-            <div className="soulProfileModalIcon">
-              <MdDirectionsBus />
+          <div className="soulCardOtherDetails">
+            <div className="soulProfileModalDetailContainer">
+              <div className="soulProfileModalIcon">
+                <MdPhone />
+              </div>
+              <div className="soulProfileModalIconDetail">
+                {props.phoneNumber}
+              </div>
             </div>
-            <div className="soulProfileModalIconDetail">{props.busStop}</div>
-          </div>
-          <div className="soulProfileModalDetailContainer">
-            <div className="soulProfileModalIcon">
-              <FaTransgender />
+            <div className="soulProfileModalDetailContainer">
+              <div className="soulProfileModalIcon">
+                <MdBusinessCenter />
+              </div>
+              <div className="soulProfileModalIconDetail">
+                {props.occupation}
+              </div>
             </div>
-            <div className="soulProfileModalIconDetail">{props.gender}</div>
-          </div>
-          <div className="soulProfileModalPrayerRequestContainer">
-            <div
-              className="soulProfileModalPrayerRequestHeader"
-              style={{ display: !props.prayerRequest && "none" }}
-            >
-              PRAYER REQUEST
+            <div className="soulProfileModalDetailContainer">
+              <div className="soulProfileModalIcon">
+                <MdDirectionsBus />
+              </div>
+              <div className="soulProfileModalIconDetail">{props.busStop}</div>
             </div>
-            <div className="soulProfileModalPrayerRequest">
-              {props.prayerRequest.length > 50 ? (
-                <span>
-                  {props.prayerRequest.slice(0, 50)}
-                  <span className="expandText" onClick={openModal}>
-                    ...continue reading
+            <div className="soulProfileModalDetailContainer">
+              <div className="soulProfileModalIcon">
+                <FaTransgender />
+              </div>
+              <div className="soulProfileModalIconDetail">{props.gender}</div>
+            </div>
+            <div className="soulProfileModalPrayerRequestContainer">
+              <div
+                className="soulProfileModalPrayerRequestHeader"
+                style={{ display: !props.prayerRequest && "none" }}
+              >
+                PRAYER REQUEST
+              </div>
+              <div className="soulProfileModalPrayerRequest">
+                {props.prayerRequest.length > 50 ? (
+                  <span>
+                    {props.prayerRequest.slice(0, 50)}
+                    <span className="expandText" onClick={openModal}>
+                      ...continue reading
+                    </span>
                   </span>
-                </span>
-              ) : (
-                props.prayerRequest
-              )}
+                ) : (
+                  props.prayerRequest
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="soulCardOptions">
-        <span className="soulCardOptionIcon">
-          <a
-            href={`tel:${props.phoneNumber}`}
-            style={{ display: !props.phoneNumber && "none" }}
+        <div className="soulCardOptions">
+          <span className="soulCardOptionIcon">
+            <a
+              href={`tel:${props.phoneNumber}`}
+              style={{ display: !props.phoneNumber && "none" }}
+            >
+              <MdPhone />
+            </a>
+          </span>
+          <span className="soulCardOptionIcon">
+            <a href={`sms:${props.phoneNumber}`}>
+              <MdTextsms />
+            </a>
+          </span>
+          <span
+            className="soulCardOptionIcon"
+            onClick={() => displayDeleteModal(true)}
           >
-            <MdPhone />
-          </a>
-        </span>
-        <span className="soulCardOptionIcon">
-          <a href={`sms:${props.phoneNumber}`}>
-            <MdTextsms />
-          </a>
-        </span>
-        <span
-          className="soulCardOptionIcon"
-          onClick={() => displayDeleteModal(true)}
+            <MdDelete />
+          </span>
+        </div>
+        <div
+          className="soulProfileModalWrapper"
+          style={{ display: showModal ? "flex" : "none" }}
         >
-          <MdDelete />
-        </span>
-      </div>
-      <div
-        className="soulProfileModalWrapper"
-        style={{ display: showModal ? "flex" : "none" }}
-      >
-        <SoulProfileModal {...props} closeModal={closeModal} />
-      </div>
-      <div
-        className="deleteOptionModal"
-        style={{ display: !showDeleteModal && "none" }}
-      >
-        <OptionModal
-          {...props}
-          closeModal={() => displayDeleteModal(false)}
-          message={"Are you sure you want to delete?"}
-          action={() => {
-            props.store.deleteSoul(props.id);
-            displayDeleteModal(false);
-          }}
-        />
+          <SoulProfileModal {...props} closeModal={closeModal} />
+        </div>
+        <div
+          className="deleteOptionModal"
+          style={{ display: !showDeleteModal && "none" }}
+        >
+          <OptionModal
+            {...props}
+            closeModal={() => displayDeleteModal(false)}
+            message={"Are you sure you want to delete?"}
+            action={() => {
+              props.store.deleteSoul(props.id);
+              displayDeleteModal(false);
+            }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -37,8 +37,35 @@ textarea {
 select {
   background-color: inherit !important;
 }
+.row {
+  width: 100%;
+  margin: 0 !important;
+}
+.section {
+  padding-top: 0px;
+  margin: 0 !important;
+}
+.mobileContainer {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+  margin: 0 !important;
+}
+.scrollContainer {
+  position: relative;
+}
 @media screen and (min-width: 800px) {
+  .contentContainer {
+    margin-top: 55px !important;
+  }
   .loaderContainer img {
     width: 10%;
+  }
+  .section {
+    padding-top: 10px;
+  }
+  .mobileContainer {
+    padding-right: 15px !important;
+    padding-left: 15px !important;
+    margin: 0;
   }
 }

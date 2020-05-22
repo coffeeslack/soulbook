@@ -18,7 +18,7 @@ function Notifications(props) {
           onClick={showModal}
           style={{ display: props.accountType === "member" && "none" }}
         >
-          Send Notification{" "}
+          Send{" "}
           <span className="notificationsSendBtnPlus">
             <AiOutlinePlusCircle />
           </span>
