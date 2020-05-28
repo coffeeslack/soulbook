@@ -1,6 +1,5 @@
 import React from "react";
 import "../css/notifications.css";
-import { AiOutlinePlusCircle } from "react-icons/ai";
 import Notification from "./Notification";
 import NotificationModal from "./NotificationModal";
 import ReactLoading from "react-loading";
@@ -18,10 +17,7 @@ function Notifications(props) {
           onClick={showModal}
           style={{ display: props.accountType === "member" && "none" }}
         >
-          Send{" "}
-          <span className="notificationsSendBtnPlus">
-            <AiOutlinePlusCircle />
-          </span>
+          Send
         </div>
       </div>
       <div className="notificationsCardContainer">

@@ -13,7 +13,7 @@ function Navbar(props) {
     document.querySelector(".sideNavContainer").style.display = "block";
   };
   const [showModal, setShowModal] = useState(false);
-  const displayLogOutModal = option => {
+  const displayLogOutModal = (option) => {
     setShowModal(option);
   };
   const [redirect, setRedirect] = useState(false);
@@ -23,9 +23,7 @@ function Navbar(props) {
     }
   };
   const logOut = () => {
-    fb.auth()
-      .signOut()
-      .then(localStorage.clear("loginDetail"));
+    fb.auth().signOut().then(localStorage.clear("loginDetail"));
     setRedirect(true);
   };
   return (
@@ -43,7 +41,7 @@ function Navbar(props) {
               className="headerUserNameVerifiedIcon"
               style={{
                 display:
-                  props.accountType && props.accountType === "member" && "none"
+                  props.accountType && props.accountType === "member" && "none",
               }}
             >
               <MdVerifiedUser />
@@ -71,9 +69,11 @@ function Navbar(props) {
       >
         <OptionModal
           {...props}
+          type="logout"
           closeModal={() => displayLogOutModal(false)}
           action={logOut}
-          message={"Are you sure you want to log out?"}
+          title="Logout?"
+          message={"your account would be logged out"}
         />
       </div>
     </div>

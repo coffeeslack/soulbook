@@ -4,6 +4,7 @@ import { MdNoteAdd } from "react-icons/md";
 function TestimoniesSearchBar(props) {
   return (
     <div className="searchBarContainer">
+      {/* Testimony Tab For Desktop */}
       <div className="tabMenu">
         <div
           className={
@@ -26,16 +27,8 @@ function TestimoniesSearchBar(props) {
           My Testimonies
         </div>
       </div>
-      {/* <div
-        className="soulsWonAddSoulBtn addTestimonyBtn"
-        onClick={props.showTestimonyForm}
-      >
-        <span className="soulsWonAddSoulBtnText">Give Testimony </span>
-        <span className="soulsWonAddSoulBtnIcon">
-          <MdNoteAdd />
-        </span>
-      </div> */}
       <div className="sortMenuContainer">
+        {/* Testimony Tab For Mobile */}
         <div className="sortMenu sortMenuMobile">
           <select
             name="tabMenuMobile"
@@ -46,8 +39,8 @@ function TestimoniesSearchBar(props) {
             <option value="myTestimonies">My Testimonies</option>
           </select>
         </div>
+        {/* Testimony Month Selector */}
         <div className="sortMenu">
-          {/* <span>Month</span> */}
           <select
             name="sortType"
             className="monthOptions"
@@ -69,10 +62,21 @@ function TestimoniesSearchBar(props) {
             <option value="11">Dec</option>
           </select>
         </div>
+        {/* Total Testimonies */}
         <div className="totalSoulsWonContainer sortMenu">
           <span className="totalSoulsWonText">Total</span>
           <span className="totalSoulsWonCount">{props.totalTestimonies}</span>
         </div>
+      </div>
+      {/* Add Testimony Button */}
+      <div
+        className="soulsWonAddSoulBtn addTestimonyBtn"
+        onClick={props.displayForm}
+      >
+        <span className="soulsWonAddSoulBtnText">Add Testimony</span>
+        <span className="soulsWonAddSoulBtnIcon">
+          <MdNoteAdd />
+        </span>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import Loader from "../components/Loader";
 function AddSoul(props) {
   const [selectedTab, setSelectedTab] = useState("evangelism");
   const [redirect, setRedirect] = useState(false);
-  const addSoul = e => {
+  const addSoul = (e) => {
     e.preventDefault();
     const form = document.querySelector("form.addSoulForm");
     const gender = document.querySelector("select.genderOptions");
@@ -28,7 +28,7 @@ function AddSoul(props) {
       createdAt: new Date(),
       wonBy: props.id,
       wonThrough: selectedTab,
-      prayerRequest: prayerRequest.value
+      prayerRequest: prayerRequest.value,
     };
     props.addSoul(soul);
     setRedirect(true);
@@ -169,7 +169,7 @@ function AddSoul(props) {
                   className="inputBox inputBoxTextAreaMobile"
                 />
               </div>
-              <button className="addSoulModalAddBtn">Add soul</button>
+              <button className="mainBtn">Add soul</button>
             </form>
           </div>
         </div>

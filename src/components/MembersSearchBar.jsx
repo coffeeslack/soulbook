@@ -22,7 +22,7 @@ function MembersSearchBar(props) {
             value={props.sortBy}
             onChange={(e) => props.setSortType(e.target.value)}
           >
-            <option value="soulsWon">Sort by</option>
+            <option value="">Sort by</option>
             <option value="soulsWon">Souls won</option>
             <option value="name">Name</option>
           </select>

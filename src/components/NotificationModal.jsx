@@ -45,9 +45,7 @@ function NotificationModal(props) {
                   </div>
                 </div>
               </div>
-              <button className="notificationModalAddBtn">
-                send Notification
-              </button>
+              <button className="mainBtn">send Notification</button>
             </form>
           </div>
         </div>

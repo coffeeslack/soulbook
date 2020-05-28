@@ -5,7 +5,7 @@ import moment from "moment";
 
 function Notification(props) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const displayDeleteModal = option => {
+  const displayDeleteModal = (option) => {
     setShowDeleteModal(option);
   };
   return (
@@ -15,7 +15,7 @@ function Notification(props) {
       </div>
       <div className="notificationMessage">{props.message}</div>
       <div className="notificationDate">
-        {moment(props.createdAt.toDate()).calendar()}
+        <div>{moment(props.createdAt.toDate()).format("LL")}</div>
         <div
           className="notificationDeleteBtn"
           onClick={() => displayDeleteModal(true)}
@@ -23,7 +23,7 @@ function Notification(props) {
             display:
               props.store.accountType &&
               props.store.accountType === "member" &&
-              "none"
+              "none",
           }}
         >
           delete
@@ -36,7 +36,11 @@ function Notification(props) {
         <OptionModal
           {...props}
           closeModal={() => displayDeleteModal(false)}
-          message={"Are you sure you want to delete?"}
+          type="delete"
+          title="Delete Notification?"
+          message={
+            "notification would be permanently deleted and members will no longer see it"
+          }
           action={() => {
             props.store.deleteNotification(props.id);
             displayDeleteModal(false);

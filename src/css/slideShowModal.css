@@ -1,45 +1,22 @@
 .slideShowModal {
   display: none;
 }
-.slideShowModalAddBtn {
-  background-color: #29abe2;
-  color: white;
-  width: 100px;
-  font-size: 14px;
-  text-align: center;
-  margin: 15px auto;
-  padding: 8px;
-  border-radius: 5px;
-  bottom: 10px;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-.slideShowModalAddBtn:active {
-  background-color: black;
-}
-.slideShowModalLabel {
-  position: relative;
-  top: 15px;
-  left: 15px;
-  font-size: 16px;
-  margin-left: 5px;
-  width: 200px;
+.slideShowModal .Modal .ModalContainer {
+  padding: 10px !important;
 }
 .bannerContainerWrap {
   height: 80%;
   overflow: auto;
-  margin-top: 35px;
-  padding: 0px 10px;
-  margin-bottom: 15px;
+  padding: 0px;
+  margin-top: 55px;
 }
 .bannerContainer {
-  display: block;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  /* height: 200px; */
+  display: flex;
+  border-radius: 10px;
   width: 95%;
   overflow: hidden;
   position: relative;
+  padding: 2px !important;
 }
 .bannerContainer img {
   width: 100%;
@@ -57,8 +34,8 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 25px;
-  bottom: 8px;
+  right: 10px;
+  bottom: 10px;
   cursor: pointer;
 }
 .bannerIndex {
@@ -77,46 +54,16 @@
   cursor: pointer;
 }
 @media screen and (min-width: 800px) {
-  .slideShowModal {
-    display: none;
-  }
-  .slideShowModalAddBtn {
-    cursor: pointer;
-    transition: 0.2s ease;
-  }
-  .slideShowModalAddBtn:active {
-    background-color: black;
-  }
-  .slideShowModalLabel {
-    position: relative;
-    top: 10px;
-    left: 10px;
-    font-size: 14px;
-    margin-left: 5px;
-    width: 300px;
-  }
   .bannerContainerWrap {
-    height: 330px;
-    overflow: auto;
-    margin-top: 25px;
-    margin-bottom: 15px;
-    padding: 0px;
+    height: 380px;
   }
   .bannerContainer {
-    display: inline-block;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    /* height: 200px; */
     width: 280px;
     overflow: hidden;
     position: relative;
   }
-  .bannerContainer:nth-child(even) {
-    margin-right: 0px;
-    margin-left: 0px;
-  }
   .bannerDelete {
-    right: 25px;
+    right: 10px;
     bottom: 10px;
     cursor: pointer;
   }

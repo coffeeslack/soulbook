@@ -27,7 +27,11 @@ function Home(props) {
             <div className="mobileContainer col-lg-10 contentContainer">
               <div className="row">
                 <div className="mobileContainer col-lg-8">
-                  <SlideShow {...props} />
+                  <SlideShow
+                    slideShowPics={props.slideShowPics}
+                    deleteSlidePic={props.deleteSlidePic}
+                    addSlidePic={props.addSlidePic}
+                  />
                   <DataSummary {...props} />
                 </div>
                 <div className="mobileContainer col-lg-4">

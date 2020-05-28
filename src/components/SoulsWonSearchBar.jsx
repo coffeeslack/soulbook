@@ -92,7 +92,7 @@ function SoulsWonSearchBar(props) {
         </div>
       </div>
       <div className="soulsWonAddSoulBtn" onClick={props.showModal}>
-        <span className="soulsWonAddSoulBtnText">Add</span>
+        <span className="soulsWonAddSoulBtnText">Add Soul</span>
         <span className="soulsWonAddSoulBtnIcon">
           <MdPersonAdd />
         </span>

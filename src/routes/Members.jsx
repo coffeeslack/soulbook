@@ -12,7 +12,7 @@ function Members(props) {
   const [month, setMonth] = useState("all");
   const [searchValue, setSetSearchValue] = useState("");
   const [serviceGroup, setServiceGroup] = useState("all");
-  const [sortBy, setSortBy] = useState("soulsWon");
+  const [sortBy, setSortBy] = useState("");
   const displayedMembers = () => {
     let members;
     if (month !== "all" && serviceGroup !== "all") {
@@ -50,22 +50,20 @@ function Members(props) {
     if (sortBy === "soulsWon") {
       return (
         props.members &&
-        members.sort((a, b) => (a.soulsWon < b.soulWon ? -1 : 1))
+        members.sort((a, b) => (a.soulsWon < b.soulsWon ? 1 : -1))
       );
-    }
-    if (sortBy === "name") {
+    } else if (sortBy === "name") {
       return (
-        props.members && members.sort((a, b) => (a.name < b.name ? -1 : 1))
+        props.members &&
+        members.sort((a, b) =>
+          a.name.toLowerCase() < b.name.toLowerCase() ? -1 : 1
+        )
       );
+    } else {
+      return props.members && members;
     }
   };
   const totalMembers = props.members && displayedMembers().length;
-  const changeMonth = (value) => {
-    setMonth(value);
-  };
-  const changeSearchValue = (value) => {
-    setSetSearchValue(value);
-  };
 
   return (
     <div>
@@ -86,8 +84,8 @@ function Members(props) {
               <SearchBar
                 {...props}
                 searchValue={searchValue}
-                changeSearchValue={changeSearchValue}
-                changeMonth={changeMonth}
+                changeSearchValue={(value) => setSetSearchValue(value)}
+                changeMonth={(value) => setMonth(value)}
                 totalMembers={totalMembers}
                 serviceGroup={serviceGroup}
                 setServiceGroup={(value) => setServiceGroup(value)}

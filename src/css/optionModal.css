@@ -33,7 +33,7 @@
   z-index: 6;
   height: 100vh;
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   animation: fade 0.1s ease both;
   animation-delay: 0.1s;
 }
@@ -41,53 +41,52 @@
   background-color: white;
   position: relative;
   width: 95%;
-  height: 20vh;
   z-index: 7;
   border-radius: 5px;
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
   animation: zoom 0.2s ease;
-  padding: 10px;
+  padding: 20px;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.optionModalTitle {
+  font-weight: bold;
 }
 .optionModalMessage {
-  margin-top: 20px;
+  font-size: 14px;
+  margin-top: 5px;
 }
 .optionModalOptions {
-  width: 70%;
-  padding: 20px;
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: flex-end;
 }
 .optionModalOptions div {
-  display: inline-block;
-  width: 50%;
-  padding: 5px;
-  border-radius: 50px;
+  display: inline-flex;
+  background: #29abe2;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 5px;
   cursor: pointer;
   transition: 0.1s ease;
   text-align: center;
 }
-.optionModalOptions div:hover {
+.optionModalOptions div:first-child {
+  background-color: lightgray;
+  color: black;
+  margin-right: 10px;
+}
+.optionModalOptions div:first-child:hover {
   background-color: lightgray;
 }
 @media screen and (min-width: 800px) {
-  .optionModal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 6;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .optionModalContainer {
-    background-color: white;
-    position: relative;
     width: 30%;
-    height: 20vh;
     z-index: 7;
   }
 }

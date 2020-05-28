@@ -188,7 +188,7 @@ function AddSoulForm(props) {
                       />
                     </div>
                   </div>
-                  <button className="addSoulModalAddBtn">Add soul</button>
+                  <button className="mainBtn">Add soul</button>
                 </form>
               </div>
             </div>

@@ -10,7 +10,6 @@ import FoundationClass from "./FoundationClass";
 import LogIn from "./LogIn";
 import SignUp from "./SignUp";
 import AddSoul from "./AddSoul";
-import LiveStream from "./LiveStream";
 
 function AppRouter(props) {
   return (
@@ -52,9 +51,6 @@ function AppRouter(props) {
             </Route>
             <Route path="/addSoul">
               <AddSoul {...props} />
-            </Route>
-            <Route path="/liveStream">
-              <LiveStream {...props} />
             </Route>
           </Switch>
         </div>

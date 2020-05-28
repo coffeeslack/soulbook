@@ -39,9 +39,9 @@ function SoulsWon(props) {
 
   const soulsWon =
     props.soulsWon &&
-    displayedSouls.map((soul, i) => (
-      <SoulCard key={i} {...soul} store={props} />
-    ));
+    displayedSouls
+      .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+      .map((soul, i) => <SoulCard key={i} {...soul} store={props} />);
 
   const totalSoulsWon = props.soulsWon && displayedSouls.length;
 

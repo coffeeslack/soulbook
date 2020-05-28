@@ -94,13 +94,13 @@
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
-    width: 90%;
+    flex-basis: 90%;
   }
   .searchBarContainer {
     width: 84%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 41px;
     top: 50px;
     left: 16%;
@@ -111,18 +111,30 @@
     width: initial;
     border-bottom: none;
     padding: 0;
+    display: flex;
+    flex-basis: 30%;
+    border: 1px solid lightgray;
+    padding: 4px 10px;
+    margin-right: 5px;
   }
   .searchBar input {
     text-align: left;
     font-size: 14px;
+    order: 2;
+  }
+  .searchBar svg {
+    order: 1;
+    margin-right: 5px;
   }
   .sortMenuContainer {
     border-bottom: none;
     padding: 0px;
-    display: inline-flex;
+    display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-left: 10px;
+  }
+  .sortMenuContainer div {
+    margin-right: 0px;
   }
   .sortMenu {
     display: inline-flex;
@@ -134,13 +146,15 @@
     width: initial;
   }
   .sortMenu span {
-    margin-left: 5px;
     font-size: 14px;
     margin-bottom: 0px;
   }
   .sortMenu select {
     margin-left: 0px;
     font-size: 14px;
+    cursor: pointer;
+    border: 1px solid lightgray;
+    padding: 5px 10px;
   }
   .tabOption {
     display: inline-flex;
@@ -157,9 +171,13 @@
     color: black;
     font-weight: 600;
   }
+  .totalSoulsWonContainer {
+    border: 1px solid lightgray !important;
+    padding: 5px 10px;
+  }
   .totalSoulsWonCount {
-    display: inline-block;
-    margin-left: 10px;
+    display: flex;
+    margin-left: 5px;
     color: black !important;
     font-weight: bold;
   }

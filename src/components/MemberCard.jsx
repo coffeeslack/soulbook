@@ -30,7 +30,7 @@ function MemberCard(props) {
     setShowDeleteModal(option);
   };
   return (
-    <div className=" col-lg-4 col-md-6 pl-0 pl-md-2 pl-lg-0 m-0 mobileContainer">
+    <div className=" col-lg-4 col-xl-3 col-md-6 pl-0 pl-md-2 pl-lg-0 m-0 mobileContainer">
       <div className="soulCardContainer memberCardContainer">
         <div className="soulCardGradient"></div>
         <div onClick={openModal}>
@@ -47,21 +47,21 @@ function MemberCard(props) {
             <span className="soulCardMainIcon">
               <MdPerson />
             </span>
-            {props.name.length < 30 ? (
+            {props.name.length < 20 ? (
               <span className="soulCardName">{props.name}</span>
             ) : (
-              <span className="soulCardName">{props.name.slice(0, 30)}...</span>
+              <span className="soulCardName">{props.name.slice(0, 20)}...</span>
             )}
           </div>
           <div className="soulCardAddressContainer">
             <span className="soulCardMainIcon">
               <MdLocationOn />
             </span>
-            {props.address.length < 35 ? (
+            {props.address.length < 20 ? (
               <span className="soulCardAddress">{props.address}</span>
             ) : (
               <span className="soulCardAddress">
-                {props.address.slice(0, 35)}...
+                {props.address.slice(0, 20)}...
               </span>
             )}
           </div>
@@ -100,8 +100,10 @@ function MemberCard(props) {
                 <MdPeople />
               </div>
               <div className="soulProfileModalIconDetail">
-                Souls won{" "}
-                <span className="soulsWonCounterLabel"> {props.soulsWon}</span>
+                Souls won -{" "}
+                <span style={{ fontWeight: "bold", color: "black" }}>
+                  {props.soulsWon}
+                </span>
               </div>
             </div>
             <div className="soulProfileModalDetailContainer">

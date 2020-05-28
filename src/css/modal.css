@@ -40,27 +40,41 @@
   z-index: 6;
   height: 100vh;
   width: 100%;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
   animation: fade 0.1s ease both;
-  animation-delay: 0.1s;
+  animation-delay: 0.12s;
 }
 .ModalContainer {
   background-color: white;
   position: relative;
-  width: 100%;
-  height: 100vh;
+  width: 92% !important;
+  height: 90vh;
   padding: 25px !important;
+  padding-top: 80px !important;
   right: 0;
   z-index: 7;
   border-radius: 5px;
-  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
-  animation: slide-in 0.2s ease both;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+  animation: zoom 0.2s ease both;
+  overflow: auto;
+}
+.ImageModalContainer {
+  height: initial !important;
+  padding: 0 !important;
+  width: initial !important;
 }
 .ModalHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  border-bottom: 1px solid lightgray;
+  padding: 10px 25px;
+  background-color: #eeeeee;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 3;
 }
 .ModalTitle {
   font-weight: 500;
@@ -75,12 +89,7 @@
 }
 @media screen and (min-width: 800px) {
   .ModalContainer {
-    height: 70vh;
+    height: initial !important;
     animation: zoom 0.2s ease;
-  }
-}
-@media screen and (min-width: 2560px) {
-  .ModalContainer {
-    height: 30vh;
   }
 }

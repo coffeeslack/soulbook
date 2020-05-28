@@ -26,7 +26,7 @@ function SoulCard(props) {
     setShowDeleteModal(option);
   };
   return (
-    <div className=" col-lg-4 col-md-6 pl-0 pl-md-2 pl-lg-0 mobileContainer">
+    <div className=" col-lg-4 col-md-6 col-xl-3 pl-0 pl-md-2 pl-lg-0 mobileContainer">
       <div className="soulCardContainer">
         <div className="soulCardGradient"></div>
         <div onClick={openModal}>
@@ -37,21 +37,21 @@ function SoulCard(props) {
             <span className="soulCardMainIcon">
               <MdPerson />
             </span>
-            {props.name.length < 30 ? (
+            {props.name.length < 20 ? (
               <span className="soulCardName">{props.name}</span>
             ) : (
-              <span className="soulCardName">{props.name.slice(0, 30)}...</span>
+              <span className="soulCardName">{props.name.slice(0, 20)}...</span>
             )}
           </div>
           <div className="soulCardAddressContainer">
             <span className="soulCardMainIcon">
               <MdLocationOn />
             </span>
-            {props.address.length < 35 ? (
+            {props.address.length < 20 ? (
               <span className="soulCardAddress">{props.address}</span>
             ) : (
               <span className="soulCardAddress">
-                {props.address.slice(0, 35)}...
+                {props.address.slice(0, 20)}...
               </span>
             )}
           </div>
@@ -92,9 +92,9 @@ function SoulCard(props) {
                 PRAYER REQUEST
               </div>
               <div className="soulProfileModalPrayerRequest">
-                {props.prayerRequest.length > 50 ? (
+                {props.prayerRequest.length > 25 ? (
                   <span>
-                    {props.prayerRequest.slice(0, 50)}
+                    {props.prayerRequest.slice(0, 25)}
                     <span className="expandText" onClick={openModal}>
                       ...continue reading
                     </span>
@@ -120,11 +120,10 @@ function SoulCard(props) {
               <MdTextsms />
             </a>
           </span>
-          <span
-            className="soulCardOptionIcon"
-            onClick={() => displayDeleteModal(true)}
-          >
-            <MdDelete />
+          <span className="soulCardOptionIcon">
+            <a onClick={() => displayDeleteModal(true)}>
+              <MdDelete />
+            </a>
           </span>
         </div>
         <div
@@ -139,8 +138,12 @@ function SoulCard(props) {
         >
           <OptionModal
             {...props}
+            type="delete"
             closeModal={() => displayDeleteModal(false)}
-            message={"Are you sure you want to delete?"}
+            title="Delete Soul?"
+            message={
+              "soul would be permanently deleted and cannot be recovered"
+            }
             action={() => {
               props.store.deleteSoul(props.id);
               displayDeleteModal(false);

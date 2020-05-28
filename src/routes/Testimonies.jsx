@@ -8,9 +8,10 @@ import TestimonyForm from "../components/TestimonyForm";
 import SearchBar from "../components/TestimoniesSearchBar";
 import moment from "moment";
 import Loader from "../components/Loader";
+import { AiOutlinePlus } from "react-icons/ai";
 
 function Testimonies(props) {
-  const [showForm, setShowForm] = useState(false);
+  const [displayForm, setDisplayForm] = useState(false);
   const [month, setMonth] = useState("all");
   const [selectedTab, setSelectedTab] = useState("allTestimonies");
   const allTestimonies =
@@ -35,10 +36,6 @@ function Testimonies(props) {
 
   const displayedTestimonies =
     selectedTab === "allTestimonies" ? allTestimonies : myTestimonies;
-
-  const displayForm = (option) => {
-    setShowForm(option);
-  };
   const changeTab = (value) => {
     setSelectedTab(value);
     setMonth("all");
@@ -56,16 +53,18 @@ function Testimonies(props) {
       ) : (
         <div className="testimoniesPageContainer">
           <div className=" row section">
+            {/* Header */}
             <div className="mobileContainer col-12">
               <Header {...props} page="Testimonies" />
             </div>
+            {/* Sidenav */}
             <div className="mobileContainer col-lg-2">
               <SideNav page="testimonies" {...props} />
             </div>
             <div className="mobileContainer col-lg-10">
+              {/* Top Menu */}
               <SearchBar
                 {...props}
-                showTestimonyForm={() => displayForm(true)}
                 selectedTab={selectedTab}
                 changeTab={changeTab}
                 totalTestimonies={
@@ -73,14 +72,18 @@ function Testimonies(props) {
                 }
                 changeMonth={changeMonth}
                 selectedMonth={month}
+                displayForm={() => setDisplayForm(true)}
               />
+              {/* Displayed Testimonies */}
               <div className="row">
                 <div className="col-lg-8 mobileContainer p-0">
                   <div className="soulsWonCardContainer testimoniesCardContainer">
                     {displayedTestimonies.length > 0 ? (
-                      displayedTestimonies.map((testimony, i) => (
-                        <TestimonyCard key={i} {...testimony} store={props} />
-                      ))
+                      displayedTestimonies
+                        .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+                        .map((testimony, i) => (
+                          <TestimonyCard key={i} {...testimony} store={props} />
+                        ))
                     ) : (
                       <div className="emptyDisplayText">
                         no testimony found...
@@ -88,22 +91,29 @@ function Testimonies(props) {
                     )}
                   </div>
                 </div>
-                <div className="mobileContainer col-lg-4 testimonyFormCol">
-                  <div
-                    className="testimonyFormWrapper"
-                    style={{ display: !showForm && "none" }}
-                  >
-                    <TestimonyForm
-                      {...props}
-                      hideTestimonyForm={() => displayForm(false)}
-                    />
-                  </div>
-                </div>
               </div>
             </div>
+            {/* Mobile Navbar */}
             <div className="mobileContainer col-12">
               <Navbar page="testimonies" />
             </div>
+          </div>
+          {/* Testimony Form */}
+          <div
+            className="mobileContainer col-12"
+            style={{ display: !displayForm && "none" }}
+          >
+            <TestimonyForm
+              {...props}
+              closeModal={() => setDisplayForm(false)}
+            />
+          </div>
+          {/* Mobile Testimony Add Button */}
+          <div
+            className="addTestimonyBtnMobile"
+            onClick={() => setDisplayForm(true)}
+          >
+            <AiOutlinePlus />
           </div>
         </div>
       )}

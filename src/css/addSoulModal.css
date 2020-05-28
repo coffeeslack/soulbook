@@ -36,27 +36,6 @@
 .selectedTab:hover {
   background-color: #29abe2 !important;
 }
-.addSoulModalAddBtn {
-  background-color: #29abe2;
-  color: white;
-  width: 80px;
-  font-size: 14px;
-  text-align: center;
-  margin: 0px auto;
-  padding: 8px;
-  border-radius: 5px;
-  bottom: 10px;
-  cursor: pointer;
-  border: none;
-  display: block;
-  margin-top: 10px;
-}
-.addSoulModalAddBtn:active {
-  background-color: black;
-}
-.addSoulModalAddBtn:focus {
-  outline: none;
-}
 .inputBoxRow .inputBoxContainer {
   display: inline-block;
   width: 100%;

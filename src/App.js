@@ -5,18 +5,16 @@ import "./css/bootstrap.min.css";
 import moment from "moment";
 import fb from "./config/config.jsx";
 import firebase from "firebase/app";
+import data from "./data.js";
 
 export default class App extends Component {
   constructor() {
     super();
-    this.state = {
-      user: {},
-      loading: true,
-    };
+    this.state = data();
   }
-  componentDidMount() {
-    this.authListener();
-  }
+  // componentDidMount() {
+  //   this.authListener();
+  // }
   authListener() {
     fb.auth().onAuthStateChanged((user) => {
       if (user) {

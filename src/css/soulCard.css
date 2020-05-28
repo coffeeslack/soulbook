@@ -1,6 +1,6 @@
 .soulCardContainer {
   background-color: white;
-  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid lightgray;
   padding: 10px;
   padding-left: 15px;
   margin-bottom: 15px;
@@ -9,6 +9,7 @@
   position: relative;
   left: 0;
   overflow: hidden;
+  transition: 0.2s ease;
 }
 .soulCardGradient {
   position: absolute;
@@ -26,11 +27,22 @@
   margin-bottom: 10px;
   left: 15px;
 }
-.soulCardOptions a {
+.soulCardOptionIcon a {
   color: inherit;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
   width: 100%;
+  border-radius: 50px;
   text-align: center;
+}
+.soulCardOptionIcon a:hover {
+  color: black !important;
+  background-color: lightgray;
+}
+.soulCardOptionIcon:active {
+  color: black;
 }
 .soulCardOptionIcon {
   padding: 5px;
@@ -58,7 +70,7 @@
   width: 20px;
   width: 100%;
   overflow: hidden;
-  display: inline-block;
+  display: inline-flex;
   padding-left: 5px;
 }
 .soulCardAddress {
@@ -76,19 +88,25 @@
   margin-top: 8px;
   display: none;
 }
+.soulProfileModalDetailContainer {
+  display: flex;
+  align-items: center;
+}
 @media screen and (min-width: 800px) {
   .soulCardContainer {
     background-color: white;
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
     padding-left: 15px;
     margin-bottom: 15px;
     border-radius: 5px;
-    height: 325px;
+    height: 350px;
     width: 100%;
     position: relative;
     overflow: hidden;
     cursor: pointer;
+  }
+  .soulCardContainer:hover {
+    border-color: #29abe2;
   }
   .soulCardName {
     font-size: 15px;
@@ -109,19 +127,5 @@
   .soulCardOptionIcon {
     cursor: pointer;
     transition: 0.2s ease;
-  }
-  .soulCardOptionIcon:hover {
-    color: #29abe2;
-  }
-  .soulCardOptionIcon:first-child:hover {
-    color: #29abe2;
-  }
-  .soulCardOptionIcon:last-child:hover {
-    color: red;
-  }
-  .soulCardOptionIcon:active,
-  .soulCardOptionIcon:last-child:active,
-  .soulCardOptionIcon:first-child:active {
-    color: black;
   }
 }
