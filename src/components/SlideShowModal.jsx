@@ -80,25 +80,27 @@ function SlideShowModal(props) {
               <IoMdCloseCircle />
             </div>
           </div>
-          <div className="bannerContainerWrap">
-            <div className="row">
-              {props.slideShowPics &&
-                props.slideShowPics.map((pic, i) => (
-                  <BannerContainer pic={pic} key={i} {...props} />
-                ))}
+          <div className="ModalBody">
+            <div className="bannerContainerWrap">
+              <div className="row">
+                {props.slideShowPics &&
+                  props.slideShowPics.map((pic, i) => (
+                    <BannerContainer pic={pic} key={i} {...props} />
+                  ))}
+              </div>
             </div>
-          </div>
-          <div className="d-flex align-items-center justify-content-center mt-3">
-            <input
-              type="file"
-              name="imageInput"
-              id="slideShowInput"
-              accept="image/*"
-              onChange={handleSlideImageUpload}
-            />
-            <label htmlFor="slideShowInput" className="m-0">
-              <div className="mainBtn">Add picture</div>
-            </label>
+            <div className="d-flex align-items-center justify-content-center mt-3">
+              <input
+                type="file"
+                name="imageInput"
+                id="slideShowInput"
+                accept="image/*"
+                onChange={handleSlideImageUpload}
+              />
+              <label htmlFor="slideShowInput" className="m-0">
+                <div className="mainBtn">Add picture</div>
+              </label>
+            </div>
           </div>
         </div>
       </div>

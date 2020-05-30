@@ -7,6 +7,7 @@
   position: relative;
   overflow: hidden;
   border: 1px solid lightgray;
+  animation: slide 0.2s ease both;
 }
 .testimonyCardDate {
   font-size: 12px;
@@ -14,16 +15,20 @@
   margin-left: 5px;
 }
 .testimonyCardTitle {
-  font-weight: bold;
-  text-transform: uppercase;
-  font-size: 14px;
-  margin-left: 5px;
-  margin-top: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100%;
+  overflow: hidden;
+  display: inline-flex;
+  padding-left: 5px;
+  text-transform: capitalize;
+  color: black;
+  margin-top: 5px;
 }
 .testimonyCardText {
   font-size: 15px;
   line-height: 25px;
-  margin-top: 8px;
+  margin-top: 5px;
   margin-left: 5px;
 }
 .testimonyCardFrom {
@@ -63,8 +68,7 @@
 }
 @media screen and (min-width: 800px) {
   .testimonyCardTitle {
-    font-weight: 500;
-    font-size: 14px;
+    font-size: 15px;
   }
   .testimonyCardText {
     font-size: 14px;

@@ -3,7 +3,7 @@ import "../css/slideshow.css";
 import {
   MdEdit,
   MdKeyboardArrowRight,
-  MdKeyboardArrowLeft
+  MdKeyboardArrowLeft,
 } from "react-icons/md";
 import SlideShowModal from "../components/SlideShowModal";
 
@@ -12,7 +12,7 @@ function SlideShow(props) {
     document.querySelector(".slideShowModal").style.display = "flex";
   };
   let slideIndex = 0;
-  const nextSlide = num => {
+  const nextSlide = (num) => {
     slideIndex += num;
     if (props.slideShowPics && slideIndex > props.slideShowPics.length - 1) {
       slideIndex = 0;
@@ -27,13 +27,13 @@ function SlideShow(props) {
     }
   };
 
-  const carousel = () => {
-    if (props.slideShowPics && props.slideShowPics.length > 1) {
-      nextSlide(1);
-      setTimeout(carousel, 10000);
-    }
-  };
-  carousel();
+  // const carousel = () => {
+  //   if (props.slideShowPics && props.slideShowPics.length > 1) {
+  //     nextSlide(1);
+  //     setTimeout(carousel, 10000);
+  //   }
+  // };
+  // carousel();
   return (
     <div className="slideShowContainer">
       <div className="slideShowImageContainer">
@@ -58,7 +58,7 @@ function SlideShow(props) {
         className="slideShowBtnContainer"
         style={{
           display:
-            props.slideShowPics && props.slideShowPics.length === 1 && "none"
+            props.slideShowPics && props.slideShowPics.length === 1 && "none",
         }}
       >
         <div className="slideShowNextBtn" onClick={() => nextSlide(1)}>

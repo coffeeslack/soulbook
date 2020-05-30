@@ -1,14 +1,10 @@
 .slideShowModal {
   display: none;
 }
-.slideShowModal .Modal .ModalContainer {
-  padding: 10px !important;
-}
 .bannerContainerWrap {
-  height: 80%;
+  height: 90%;
   overflow: auto;
   padding: 0px;
-  margin-top: 55px;
 }
 .bannerContainer {
   display: flex;

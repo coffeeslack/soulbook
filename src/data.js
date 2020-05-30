@@ -24,7 +24,7 @@ export default function data() {
         satelliteChurch: "odili road",
         createdAt: moment(),
         text:
-          "papa encouraged us to sow into the cathedral roofing project. I obeyed and sowed all my salary for the month of January 2020. Shortly after, God blesed me with a house and I was also sponsored by my organization for a training in India. I give God all the Glory.",
+          "papa encouraged us to sow into the cathedral roofing project. I obeyed and sowed all my salary for the month of January 2020. Shortly after, God blesed me with a house and I was also sponsored by my organization for a training in India. I give God all the Glory. papa encouraged us to sow into the cathedral roofing project. I obeyed and sowed all my salary for the month of January 2020. Shortly after, God blesed me with a house and I was also sponsored by my organization for a training in India. I give God all the Glory. papa encouraged us to sow into the cathedral roofing project. I obeyed and sowed all my salary for the month of January 2020. Shortly after, God blesed me with a house and I was also sponsored by my organization for a training in India. I give God all the Glory. papa encouraged us to sow into the cathedral roofing project. I obeyed and sowed all my salary for the month of January 2020. Shortly after, God blesed me with a house and I was also sponsored by my organization for a training in India. I give God all the Glory.",
         title: "divine breakthrough",
         userId: "onnon2813ds",
         userName: "Shadrack Ibiso",

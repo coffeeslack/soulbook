@@ -20,20 +20,21 @@
 .soulProfileModalDetailContainer {
   margin-bottom: 10px;
   display: flex;
+  align-items: flex-start;
 }
 .soulProfileModalIcon {
   color: #29abe2;
   display: inline-flex;
 }
 .soulProfileModalIconDetail {
-  display: inline-flex;
+  display: flex;
+  align-items: flex-start;
   margin-left: 5px;
   color: grey;
   font-size: 14px;
-  align-items: center;
   text-transform: capitalize;
 }
-.soulProfileModalIconDetail span {
+.soulProfileModalIconDetail span:first-child {
   font-size: 12px;
   color: #2895c4;
   margin-right: 5px;

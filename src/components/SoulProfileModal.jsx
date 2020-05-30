@@ -9,7 +9,7 @@ import {
   MdPeople,
   MdMyLocation,
 } from "react-icons/md";
-import { FaTransgender } from "react-icons/fa";
+import { FaTransgender, FaChurch } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import profilePic from "../pics/avatar.png";
 
@@ -27,7 +27,8 @@ function SoulProfileModal(props) {
             </div>
           </div>
           {/* Main content */}
-          <div className="soulProfileModalBody">
+          <div className="ModalBody">
+            {/* Profile Pic */}
             <div
               className="soulProfileModalImageContainer"
               style={{ display: !props.serviceGroup && "none" }}
@@ -36,6 +37,7 @@ function SoulProfileModal(props) {
                 <img src={props.profilePic ? props.profilePic : profilePic} />
               </div>
             </div>
+            {/* Name*/}
             <div className="soulProfileModalDetailContainer">
               <div className="soulProfileModalIcon">
                 <MdPerson />
@@ -45,7 +47,13 @@ function SoulProfileModal(props) {
                 {props.name}
               </div>
             </div>
-            <div className="soulProfileModalDetailContainer">
+            {/* Address */}
+            <div
+              className="soulProfileModalDetailContainer"
+              style={{
+                display: props.page && props.page === "leaderBoard" && "none",
+              }}
+            >
               <div className="soulProfileModalIcon">
                 <MdLocationOn />
               </div>
@@ -54,7 +62,13 @@ function SoulProfileModal(props) {
                 {props.address}
               </div>
             </div>
-            <div className="soulProfileModalDetailContainer">
+            {/* Phone Number */}
+            <div
+              className="soulProfileModalDetailContainer"
+              style={{
+                display: props.page && props.page === "leaderBoard" && "none",
+              }}
+            >
               <div className="soulProfileModalIcon">
                 <MdPhone />
               </div>
@@ -63,7 +77,13 @@ function SoulProfileModal(props) {
                 {props.phoneNumber}
               </div>
             </div>
-            <div className="soulProfileModalDetailContainer">
+            {/* Occupation */}
+            <div
+              className="soulProfileModalDetailContainer"
+              style={{
+                display: props.page && props.page === "leaderBoard" && "none",
+              }}
+            >
               <div className="soulProfileModalIcon">
                 <MdBusinessCenter />
               </div>
@@ -72,7 +92,13 @@ function SoulProfileModal(props) {
                 {props.occupation}
               </div>
             </div>
-            <div className="soulProfileModalDetailContainer">
+            {/* Bus stop */}
+            <div
+              className="soulProfileModalDetailContainer"
+              style={{
+                display: props.page && props.page === "leaderBoard" && "none",
+              }}
+            >
               <div className="soulProfileModalIcon">
                 <MdDirectionsBus />
               </div>
@@ -81,6 +107,7 @@ function SoulProfileModal(props) {
                 {props.busStop}
               </div>
             </div>
+            {/* Gender */}
             <div className="soulProfileModalDetailContainer">
               <div className="soulProfileModalIcon">
                 <FaTransgender />
@@ -90,6 +117,7 @@ function SoulProfileModal(props) {
                 {props.gender}
               </div>
             </div>
+            {/* Souls Won */}
             <div
               className="soulProfileModalDetailContainer"
               style={{ display: !props.soulsWon && "none" }}
@@ -102,6 +130,20 @@ function SoulProfileModal(props) {
                 {props.soulsWon}
               </div>
             </div>
+            {/* Satellite Church */}
+            <div
+              className="soulProfileModalDetailContainer"
+              style={{ display: !props.satelliteChurch && "none" }}
+            >
+              <div className="soulProfileModalIcon">
+                <FaChurch />
+              </div>
+              <div className="soulProfileModalIconDetail">
+                <span>Satellite Church</span>
+                {props.satelliteChurch}
+              </div>
+            </div>
+            {/* Service Group */}
             <div
               className="soulProfileModalDetailContainer"
               style={{ display: !props.serviceGroup && "none" }}
@@ -114,6 +156,7 @@ function SoulProfileModal(props) {
                 {props.serviceGroup}
               </div>
             </div>
+            {/* Prayer Request */}
             <div className="soulProfileModalPrayerRequestContainer">
               <div
                 className="soulProfileModalPrayerRequestHeader"

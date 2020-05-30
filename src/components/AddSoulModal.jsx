@@ -55,7 +55,7 @@ function AddSoulForm(props) {
               <IoMdCloseCircle />
             </div>
           </div>
-          <div>
+          <div className="ModalBody">
             <div className="AddSoulForm">
               <div
                 className="addSoulModalTab"

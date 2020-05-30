@@ -3,6 +3,7 @@ import "../css/notifications.css";
 import Notification from "./Notification";
 import NotificationModal from "./NotificationModal";
 import ReactLoading from "react-loading";
+import { MdAddAlert } from "react-icons/md";
 
 function Notifications(props) {
   const showModal = () => {
@@ -17,7 +18,10 @@ function Notifications(props) {
           onClick={showModal}
           style={{ display: props.accountType === "member" && "none" }}
         >
-          Send
+          Add{" "}
+          <span className="ml-2">
+            <MdAddAlert />
+          </span>
         </div>
       </div>
       <div className="notificationsCardContainer">

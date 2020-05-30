@@ -17,6 +17,9 @@
   .notificationModal {
     display: none;
   }
+  .notificationModal .Modal .ModalContainer {
+    height: 500px !important;
+  }
   .notificationModalForm {
     height: 100%;
     width: 100%;

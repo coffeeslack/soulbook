@@ -1,15 +1,24 @@
+@keyframes slide {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 0;
+  }
+}
 .soulCardContainer {
   background-color: white;
   border: 1px solid lightgray;
   padding: 10px;
   padding-left: 15px;
   margin-bottom: 15px;
+  padding-bottom: 50px;
   border-radius: 5px;
-  height: 140px;
   position: relative;
   left: 0;
   overflow: hidden;
   transition: 0.2s ease;
+  animation: slide 0.2s ease both;
 }
 .soulCardGradient {
   position: absolute;
@@ -37,13 +46,6 @@
   border-radius: 50px;
   text-align: center;
 }
-.soulCardOptionIcon a:hover {
-  color: black !important;
-  background-color: lightgray;
-}
-.soulCardOptionIcon:active {
-  color: black;
-}
 .soulCardOptionIcon {
   padding: 5px;
   width: 33.33333333%;
@@ -64,14 +66,18 @@
   display: flex;
   align-items: center;
 }
+.soulCardNameContainer span svg {
+  display: flex;
+  align-items: center;
+}
 .soulCardName {
   font-size: 16px;
   font-weight: 600;
-  width: 20px;
   width: 100%;
   overflow: hidden;
   display: inline-flex;
   padding-left: 5px;
+  text-transform: capitalize;
 }
 .soulCardAddress {
   font-size: 14px;
@@ -80,7 +86,7 @@
   padding-left: 5px;
 }
 .soulCardDate {
-  font-size: 13px;
+  font-size: 12px;
   color: grey;
   margin-bottom: 10px;
 }
@@ -88,21 +94,8 @@
   margin-top: 8px;
   display: none;
 }
-.soulProfileModalDetailContainer {
-  display: flex;
-  align-items: center;
-}
 @media screen and (min-width: 800px) {
   .soulCardContainer {
-    background-color: white;
-    padding: 10px;
-    padding-left: 15px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    height: 350px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
     cursor: pointer;
   }
   .soulCardContainer:hover {
@@ -127,5 +120,12 @@
   .soulCardOptionIcon {
     cursor: pointer;
     transition: 0.2s ease;
+  }
+  .soulCardOptionIcon a:hover {
+    color: black !important;
+    background-color: lightgray;
+  }
+  .soulCardOptionIcon:active {
+    color: black;
   }
 }

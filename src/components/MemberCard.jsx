@@ -11,7 +11,7 @@ import {
   MdPeople,
   MdMyLocation,
 } from "react-icons/md";
-import { FaTransgender } from "react-icons/fa";
+import { FaTransgender, FaChurch } from "react-icons/fa";
 import "../css/memberCard.css";
 import OptionModal from "./OptionModal";
 import moment from "moment";
@@ -30,7 +30,7 @@ function MemberCard(props) {
     setShowDeleteModal(option);
   };
   return (
-    <div className=" col-lg-4 col-xl-3 col-md-6 pl-0 pl-md-2 pl-lg-0 m-0 mobileContainer">
+    <div className=" col-lg-4 col-md-6 pl-0 pl-md-2 pl-lg-0 m-0 mobileContainer">
       <div className="soulCardContainer memberCardContainer">
         <div className="soulCardGradient"></div>
         <div onClick={openModal}>
@@ -47,21 +47,23 @@ function MemberCard(props) {
             <span className="soulCardMainIcon">
               <MdPerson />
             </span>
-            {props.name.length < 20 ? (
+            {props.name.length < 25 ? (
               <span className="soulCardName">{props.name}</span>
             ) : (
-              <span className="soulCardName">{props.name.slice(0, 20)}...</span>
+              <span className="soulCardName">
+                {props.name.slice(0, 25) + ` [...]`}
+              </span>
             )}
           </div>
           <div className="soulCardAddressContainer">
             <span className="soulCardMainIcon">
               <MdLocationOn />
             </span>
-            {props.address.length < 20 ? (
+            {props.address.length < 30 ? (
               <span className="soulCardAddress">{props.address}</span>
             ) : (
               <span className="soulCardAddress">
-                {props.address.slice(0, 20)}...
+                {props.address.slice(0, 30) + ` [...]`}
               </span>
             )}
           </div>
@@ -71,6 +73,7 @@ function MemberCard(props) {
                 <MdPhone />
               </div>
               <div className="soulProfileModalIconDetail">
+                <span>Phone Number</span>
                 {props.phoneNumber}
               </div>
             </div>
@@ -80,6 +83,7 @@ function MemberCard(props) {
                 <MdBusinessCenter />
               </div>
               <div className="soulProfileModalIconDetail">
+                <span>Occupation</span>
                 {props.occupation}
               </div>
             </div>
@@ -87,20 +91,26 @@ function MemberCard(props) {
               <div className="soulProfileModalIcon">
                 <MdDirectionsBus />
               </div>
-              <div className="soulProfileModalIconDetail">{props.busStop}</div>
+              <div className="soulProfileModalIconDetail">
+                <span>Bus Stop</span>
+                {props.busStop}
+              </div>
             </div>
             <div className="soulProfileModalDetailContainer">
               <div className="soulProfileModalIcon">
                 <FaTransgender />
               </div>
-              <div className="soulProfileModalIconDetail">{props.gender}</div>
+              <div className="soulProfileModalIconDetail">
+                <span>Gender</span>
+                {props.gender}
+              </div>
             </div>
             <div className="soulProfileModalDetailContainer">
               <div className="soulProfileModalIcon">
                 <MdPeople />
               </div>
               <div className="soulProfileModalIconDetail">
-                Souls won -{" "}
+                <span>Souls won</span>
                 <span style={{ fontWeight: "bold", color: "black" }}>
                   {props.soulsWon}
                 </span>
@@ -108,10 +118,20 @@ function MemberCard(props) {
             </div>
             <div className="soulProfileModalDetailContainer">
               <div className="soulProfileModalIcon">
+                <FaChurch />
+              </div>
+              <div className="soulProfileModalIconDetail">
+                <span>Satellite Church</span>
+                {props.satelliteChurch}
+              </div>
+            </div>
+            <div className="soulProfileModalDetailContainer">
+              <div className="soulProfileModalIcon">
                 <MdMyLocation />
               </div>
               <div className="soulProfileModalIconDetail">
-                Service group - {props.serviceGroup}
+                <span>Service group</span>
+                {props.serviceGroup}
               </div>
             </div>
           </div>

@@ -26,7 +26,7 @@ function SoulCard(props) {
     setShowDeleteModal(option);
   };
   return (
-    <div className=" col-lg-4 col-md-6 col-xl-3 pl-0 pl-md-2 pl-lg-0 mobileContainer">
+    <div className=" col-lg-4 col-md-6 col-xl-4 pl-0 pl-md-2 pl-lg-0 mobileContainer">
       <div className="soulCardContainer">
         <div className="soulCardGradient"></div>
         <div onClick={openModal}>
@@ -37,21 +37,23 @@ function SoulCard(props) {
             <span className="soulCardMainIcon">
               <MdPerson />
             </span>
-            {props.name.length < 20 ? (
+            {props.name.length < 25 ? (
               <span className="soulCardName">{props.name}</span>
             ) : (
-              <span className="soulCardName">{props.name.slice(0, 20)}...</span>
+              <span className="soulCardName">
+                {props.name.slice(0, 25) + ` [...]`}
+              </span>
             )}
           </div>
           <div className="soulCardAddressContainer">
             <span className="soulCardMainIcon">
               <MdLocationOn />
             </span>
-            {props.address.length < 20 ? (
+            {props.address.length < 26 ? (
               <span className="soulCardAddress">{props.address}</span>
             ) : (
               <span className="soulCardAddress">
-                {props.address.slice(0, 20)}...
+                {props.address.slice(0, 26) + ` [...]`}
               </span>
             )}
           </div>
@@ -61,6 +63,7 @@ function SoulCard(props) {
                 <MdPhone />
               </div>
               <div className="soulProfileModalIconDetail">
+                <span>Phone Number</span>
                 {props.phoneNumber}
               </div>
             </div>
@@ -69,6 +72,7 @@ function SoulCard(props) {
                 <MdBusinessCenter />
               </div>
               <div className="soulProfileModalIconDetail">
+                <span>Occupation</span>
                 {props.occupation}
               </div>
             </div>
@@ -76,13 +80,19 @@ function SoulCard(props) {
               <div className="soulProfileModalIcon">
                 <MdDirectionsBus />
               </div>
-              <div className="soulProfileModalIconDetail">{props.busStop}</div>
+              <div className="soulProfileModalIconDetail">
+                <span>Bus Stop</span>
+                {props.busStop}
+              </div>
             </div>
             <div className="soulProfileModalDetailContainer">
               <div className="soulProfileModalIcon">
                 <FaTransgender />
               </div>
-              <div className="soulProfileModalIconDetail">{props.gender}</div>
+              <div className="soulProfileModalIconDetail">
+                <span>Gender</span>
+                {props.gender}
+              </div>
             </div>
             <div className="soulProfileModalPrayerRequestContainer">
               <div
@@ -92,13 +102,8 @@ function SoulCard(props) {
                 PRAYER REQUEST
               </div>
               <div className="soulProfileModalPrayerRequest">
-                {props.prayerRequest.length > 25 ? (
-                  <span>
-                    {props.prayerRequest.slice(0, 25)}
-                    <span className="expandText" onClick={openModal}>
-                      ...continue reading
-                    </span>
-                  </span>
+                {props.prayerRequest.length > 35 ? (
+                  <span>{props.prayerRequest.slice(0, 35) + ` [...]`}</span>
                 ) : (
                   props.prayerRequest
                 )}
@@ -111,17 +116,18 @@ function SoulCard(props) {
             <a
               href={`tel:${props.phoneNumber}`}
               style={{ display: !props.phoneNumber && "none" }}
+              title="call"
             >
               <MdPhone />
             </a>
           </span>
           <span className="soulCardOptionIcon">
-            <a href={`sms:${props.phoneNumber}`}>
+            <a href={`sms:${props.phoneNumber}`} title="message">
               <MdTextsms />
             </a>
           </span>
           <span className="soulCardOptionIcon">
-            <a onClick={() => displayDeleteModal(true)}>
+            <a onClick={() => displayDeleteModal(true)} title="delete">
               <MdDelete />
             </a>
           </span>

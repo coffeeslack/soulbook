@@ -15,8 +15,12 @@ function MembersSearchBar(props) {
         <MdSearch />
       </div>
       <div className="sortMenuContainer">
-        <span className="sortMenu">
-          {/* <span>Sort by</span> */}
+        <span
+          className="sortMenu"
+          style={{
+            display: props.page && props.page === "leaderBoard" && "none",
+          }}
+        >
           <select
             name="sortType"
             value={props.sortBy}
@@ -28,7 +32,6 @@ function MembersSearchBar(props) {
           </select>
         </span>
         <span className="sortMenu">
-          {/* <span className="selectLabel">Service group</span> */}
           <select
             name="sortType"
             value={props.serviceGroup}
@@ -43,8 +46,12 @@ function MembersSearchBar(props) {
             <option value="cc2">CC2</option>
           </select>
         </span>
-        <span className="sortMenu">
-          {/* <span className="selectLabel">Month</span> */}
+        <span
+          className="sortMenu"
+          style={{
+            display: props.page && props.page === "leaderBoard" && "none",
+          }}
+        >
           <select
             name="sortType"
             className="monthOptions"

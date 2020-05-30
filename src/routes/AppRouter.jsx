@@ -5,6 +5,7 @@ import SoulsWon from "./SoulsWon";
 import Testimonies from "./Testimonies";
 import HomeCell from "./HomeCell";
 import Members from "./Members";
+import LeaderBoard from "./LeaderBoard";
 import Profile from "./Profile";
 import FoundationClass from "./FoundationClass";
 import LogIn from "./LogIn";
@@ -39,6 +40,9 @@ function AppRouter(props) {
             </Route>
             <Route path="/homeCell">
               <HomeCell {...props} />
+            </Route>
+            <Route path="/leaderBoard">
+              <LeaderBoard {...props} />
             </Route>
             <Route path="/members">
               <Members {...props} />

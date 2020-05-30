@@ -26,6 +26,10 @@
   align-items: center;
   cursor: none;
 }
+.notificationsSendBtn span svg {
+  display: flex;
+  align-items: center;
+}
 .notificationContainer {
   padding: 15px 10px 15px 25px;
   background-color: white;
@@ -33,6 +37,7 @@
   position: relative;
   margin-bottom: 10px;
   border: 1px solid lightgrey;
+  animation: slide 0.2s ease both;
 }
 .notificationMessage {
   font-size: 14px;

@@ -106,69 +106,71 @@ function TestimonyForm(props) {
           </div>
         </div>
         {/* Main Modal content */}
-        <form onSubmit={createTestimony} className="row no-gutters">
-          {/*  */}
-          <div className="col-md-6 pr-md-3">
-            {/* Name */}
-            <div className="testimonyFormInputLabel">Name</div>
-            <input
-              type="text"
-              name="name"
-              className="testimonyFormInput inputName"
-              defaultValue={props.name}
-              readOnly={props.accountType && props.accountType === "member"}
-            />
-          </div>
-          {/* Testimony Title */}
-          <div className="col-md-6">
-            <div className="testimonyFormInputLabel">Testimony title</div>
-            <input
-              type="text"
-              name="testimonyTitle"
-              className="testimonyFormInput testimonyFormTitle"
-              placeholder="e.g divine breakthrough (optional)"
-            />
-          </div>
-          {/*  */}
-          {/* Testimony Content */}
-          <div className="col-12">
-            <div className="testimonyFormInputLabel">Testimony</div>
-            <textarea
-              name="testimony"
-              className="testimonyFormTextArea testimonyFormText"
-              required
-            />
-          </div>
-          <div className="col-12">
-            {/* Testimony Images */}
-            <div className="testimonyFormInputLabel">Testimony Images</div>
-            {/* Attached Images */}
-            <div className="testimonyAttachmentContainer row ">
-              {images.map((image, i) => (
-                <div
-                  className="testimonyAttachmentWrapper col-md-2 col-4"
-                  key={i}
-                >
-                  <div className="testimonyAttachmentImage">
-                    <img src={image.src} />
+        <div className="ModalBody">
+          <form onSubmit={createTestimony} className="row no-gutters">
+            {/*  */}
+            <div className="col-md-6 pr-md-3">
+              {/* Name */}
+              <div className="testimonyFormInputLabel">Name</div>
+              <input
+                type="text"
+                name="name"
+                className="testimonyFormInput inputName"
+                defaultValue={props.name}
+                readOnly={props.accountType && props.accountType === "member"}
+              />
+            </div>
+            {/* Testimony Title */}
+            <div className="col-md-6">
+              <div className="testimonyFormInputLabel">Testimony title</div>
+              <input
+                type="text"
+                name="testimonyTitle"
+                className="testimonyFormInput testimonyFormTitle"
+                placeholder="e.g divine breakthrough (optional)"
+              />
+            </div>
+            {/*  */}
+            {/* Testimony Content */}
+            <div className="col-12">
+              <div className="testimonyFormInputLabel">Testimony</div>
+              <textarea
+                name="testimony"
+                className="testimonyFormTextArea testimonyFormText"
+                required
+              />
+            </div>
+            <div className="col-12">
+              {/* Testimony Images */}
+              <div className="testimonyFormInputLabel">Testimony Images</div>
+              {/* Attached Images */}
+              <div className="testimonyAttachmentContainer row ">
+                {images.map((image, i) => (
+                  <div
+                    className="testimonyAttachmentWrapper col-md-2 col-4"
+                    key={i}
+                  >
+                    <div className="testimonyAttachmentImage">
+                      <img src={image.src} />
+                    </div>
                   </div>
-                </div>
-              ))}
-              {/* Add Image Button */}
-              <div className="testimonyAttachmentWrapper col-md-2 col-4">
-                <div
-                  className="testimonyAttachmentImage testimonyAttachmentBtn"
-                  onClick={addImage}
-                >
-                  <AiOutlinePlusCircle />
-                  <div>Add Image</div>
+                ))}
+                {/* Add Image Button */}
+                <div className="testimonyAttachmentWrapper col-md-2 col-4">
+                  <div
+                    className="testimonyAttachmentImage testimonyAttachmentBtn"
+                    onClick={addImage}
+                  >
+                    <AiOutlinePlusCircle />
+                    <div>Add Image</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          {/* Send Button */}
-          <button className="mainBtn">Send</button>
-        </form>
+            {/* Send Button */}
+            <button className="mainBtn">Send</button>
+          </form>
+        </div>
       </div>
     </div>
   );

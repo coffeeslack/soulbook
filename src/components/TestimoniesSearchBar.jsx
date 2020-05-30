@@ -1,5 +1,5 @@
 import React from "react";
-import { MdNoteAdd } from "react-icons/md";
+import { MdNoteAdd, MdSearch } from "react-icons/md";
 
 function TestimoniesSearchBar(props) {
   return (
@@ -26,6 +26,15 @@ function TestimoniesSearchBar(props) {
         >
           My Testimonies
         </div>
+      </div>
+      <div className="searchBar">
+        <input
+          type="text"
+          name="soulsWonSearchBar"
+          placeholder="search..."
+          onChange={(e) => props.changeSearchValue(e.target.value)}
+        />
+        <MdSearch />
       </div>
       <div className="sortMenuContainer">
         {/* Testimony Tab For Mobile */}

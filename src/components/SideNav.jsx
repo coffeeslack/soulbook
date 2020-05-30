@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../css/sideNav.css";
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineHome, AiOutlineRead } from "react-icons/ai";
 import { MdPeopleOutline, MdChatBubbleOutline } from "react-icons/md";
-import { FiBook } from "react-icons/fi";
+import { FiBook, FiBarChart } from "react-icons/fi";
 import { GoHome } from "react-icons/go";
 import { NavLink, Redirect } from "react-router-dom";
 import { IoMdLogOut } from "react-icons/io";
@@ -19,9 +19,7 @@ function SideNav(props) {
     }
   };
   const logOut = () => {
-    fb.auth()
-      .signOut()
-      .then(localStorage.clear("loginDetail"));
+    fb.auth().signOut().then(localStorage.clear("loginDetail"));
 
     setRedirect(true);
   };
@@ -30,6 +28,7 @@ function SideNav(props) {
       {renderRedirect()}
       <div className="sideNavBlind" onClick={hideSideNav}></div>
       <div className="sideNavPane">
+        {/* HOME */}
         <NavLink to="/">
           <div
             className={
@@ -44,6 +43,7 @@ function SideNav(props) {
             <div className="sideNavIconLabel">Home</div>
           </div>
         </NavLink>
+        {/* SOULS WON */}
         <NavLink to="/soulsWon">
           <div
             className={
@@ -58,6 +58,7 @@ function SideNav(props) {
             <div className="sideNavIconLabel">Souls won</div>
           </div>
         </NavLink>
+        {/* TESTIMONIES */}
         <NavLink to="/testimonies">
           <div
             className={
@@ -70,6 +71,21 @@ function SideNav(props) {
               <MdChatBubbleOutline />
             </div>
             <div className="sideNavIconLabel">Testimonies</div>
+          </div>
+        </NavLink>
+        {/* SERMONS */}
+        <NavLink to="/sermons">
+          <div
+            className={
+              props.page === "sermons"
+                ? "sideNavIconContainer selected"
+                : "sideNavIconContainer"
+            }
+          >
+            <div className="sidenavIcon">
+              <AiOutlineRead />
+            </div>
+            <div className="sideNavIconLabel">Sermons</div>
           </div>
         </NavLink>
         {/* <NavLink to="/foundationClass">
@@ -90,6 +106,26 @@ function SideNav(props) {
             <div className="sideNavIconLabel">Foundation class</div>
           </div>
         </NavLink> */}
+        {/* LEADER BOARD */}
+        <NavLink to="/leaderBoard">
+          <div
+            className={
+              props.page === "leaderBoard"
+                ? "sideNavIconContainer selected"
+                : "sideNavIconContainer"
+            }
+            style={{
+              display:
+                props.accountType && props.accountType === "member" && "none",
+            }}
+          >
+            <div className="sidenavIcon">
+              <FiBarChart />
+            </div>
+            <div className="sideNavIconLabel">Leader board</div>
+          </div>
+        </NavLink>
+        {/* MEMBERS */}
         <NavLink to="/members">
           <div
             className={
@@ -99,7 +135,7 @@ function SideNav(props) {
             }
             style={{
               display:
-                props.accountType && props.accountType === "member" && "none"
+                props.accountType && props.accountType === "member" && "none",
             }}
           >
             <div className="sidenavIcon">
@@ -108,6 +144,7 @@ function SideNav(props) {
             <div className="sideNavIconLabel">Members</div>
           </div>
         </NavLink>
+        {/* HOME CELL */}
         <NavLink to="/homeCell">
           <div
             className={

@@ -13,6 +13,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 function Testimonies(props) {
   const [displayForm, setDisplayForm] = useState(false);
   const [month, setMonth] = useState("all");
+  const [searchValue, setSearchValue] = useState("");
   const [selectedTab, setSelectedTab] = useState("allTestimonies");
   const allTestimonies =
     month !== "all"
@@ -35,7 +36,13 @@ function Testimonies(props) {
         props.testimonies.filter((testimony) => testimony.userId === props.id);
 
   const displayedTestimonies =
-    selectedTab === "allTestimonies" ? allTestimonies : myTestimonies;
+    selectedTab === "allTestimonies"
+      ? allTestimonies.filter((testimony) =>
+          testimony.title.toLowerCase().includes(searchValue.toLowerCase())
+        )
+      : myTestimonies.filter((testimony) =>
+          testimony.title.toLowerCase().includes(searchValue.toLowerCase())
+        );
   const changeTab = (value) => {
     setSelectedTab(value);
     setMonth("all");
@@ -71,13 +78,14 @@ function Testimonies(props) {
                   props.testimonies && displayedTestimonies.length
                 }
                 changeMonth={changeMonth}
+                changeSearchValue={(value) => setSearchValue(value)}
                 selectedMonth={month}
                 displayForm={() => setDisplayForm(true)}
               />
               {/* Displayed Testimonies */}
               <div className="row">
                 <div className="col-lg-8 mobileContainer p-0">
-                  <div className="soulsWonCardContainer testimoniesCardContainer">
+                  <div className="soulsWonCardContainer">
                     {displayedTestimonies.length > 0 ? (
                       displayedTestimonies
                         .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))

@@ -92,7 +92,7 @@
   }
 }
 .slideShowImage {
-  animation: fade 1s ease both, wide 80s ease both;
+  /* animation: fade 1s ease both, wide 80s ease both;s */
 }
 #slideShowInput {
   display: none;

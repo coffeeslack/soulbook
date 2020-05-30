@@ -64,6 +64,7 @@ select {
   transition: 0.2s ease;
   display: flex;
   border: 1px solid #29abe2;
+  text-transform: capitalize;
 }
 @media screen and (min-width: 800px) {
   .contentContainer {

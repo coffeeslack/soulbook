@@ -30,7 +30,7 @@ function NotificationModal(props) {
               <IoMdCloseCircle />
             </div>
           </div>
-          <div>
+          <div className="ModalBody">
             <form onSubmit={addNotification}>
               <div className="notificationModalForm">
                 <div className="inputBoxRow">
@@ -45,7 +45,7 @@ function NotificationModal(props) {
                   </div>
                 </div>
               </div>
-              <button className="mainBtn">send Notification</button>
+              <button className="mainBtn">Send Notification</button>
             </form>
           </div>
         </div>
