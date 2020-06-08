@@ -11,40 +11,39 @@ import Loader from "../components/Loader";
 function Home(props) {
   return (
     <div className="homeContainer">
-      {props.loading ? (
-        <div className="loaderContainer">
-          <Loader />
-        </div>
-      ) : (
-        <div>
-          <div className="row section">
-            <div className="mobileContainer col-12">
-              <Header {...props} page="SoulBook" />
-            </div>
-            <div className="mobileContainer col-lg-2">
-              <SideNav page="home" {...props} />
-            </div>
-            <div className="mobileContainer col-lg-10 contentContainer">
-              <div className="row">
-                <div className="mobileContainer col-lg-8">
-                  <SlideShow
-                    slideShowPics={props.slideShowPics}
-                    deleteSlidePic={props.deleteSlidePic}
-                    addSlidePic={props.addSlidePic}
-                  />
-                  <DataSummary {...props} />
-                </div>
-                <div className="mobileContainer col-lg-4">
-                  <Notifications {...props} />
-                </div>
+      <div>
+        <div className="row section">
+          <div className="mobileContainer col-12">
+            <Header {...props} page="SoulBook" />
+          </div>
+          <div className="mobileContainer col-lg-2">
+            <SideNav page="home" {...props} />
+          </div>
+          <div className="mobileContainer col-lg-10 contentContainer">
+            {props.loading && (
+              <div className="loaderContainer">
+                <Loader />
+              </div>
+            )}
+            <div className="row" style={{ display: props.loading && "none" }}>
+              <div className="mobileContainer col-lg-8">
+                <SlideShow
+                  slideShowPics={props.slideShowPics}
+                  deleteSlidePic={props.deleteSlidePic}
+                  addSlidePic={props.addSlidePic}
+                />
+                <DataSummary {...props} />
+              </div>
+              <div className="mobileContainer col-lg-4">
+                <Notifications {...props} />
               </div>
             </div>
-            <div className="mobileContainer col-12">
-              <Navbar page="home" />
-            </div>
+          </div>
+          <div className="mobileContainer col-12">
+            <Navbar page="home" />
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -11,6 +11,8 @@
   flex-direction: column;
   align-items: center;
   padding-top: 70px;
+  position: relative;
+  animation: slide 0.2s ease both;
 }
 .AddSoulPage {
   width: 100%;
@@ -36,6 +38,7 @@
   width: 100%;
   padding: 15px 10px;
   display: flex;
+  z-index: 1;
   align-items: center;
   position: fixed;
   background-color: white;

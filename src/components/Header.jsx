@@ -34,7 +34,7 @@ function Navbar(props) {
       </div>
       <div className="headerTitle">{props.page}</div>
       <div className="headerAppName">SALVATION MINISTRIES SOUL BOOK</div>
-      <NavLink to="/profile" className="profileBtn">
+      <NavLink to="/profile" className="profileBtn" title="profile">
         <div className="headerProfilePic">
           <div className="headerUserNameLabel">
             <span
@@ -60,7 +60,11 @@ function Navbar(props) {
           </div>
         </div>
       </NavLink>
-      <div className="logOutBtn" onClick={() => displayLogOutModal(true)}>
+      <div
+        className="logOutBtn"
+        title="log out"
+        onClick={() => displayLogOutModal(true)}
+      >
         <IoMdLogOut />
       </div>
       <div

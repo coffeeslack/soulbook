@@ -67,48 +67,49 @@ function Members(props) {
 
   return (
     <div>
-      {!props.members ? (
-        <div className="loaderContainer">
-          <Loader />
-        </div>
-      ) : (
-        <div className="members soulsWonContainer">
-          <div className=" row section">
-            <div className="mobileContainer col-12">
-              <Header {...props} page="Members" />
-            </div>
-            <div className="mobileContainer col-lg-2">
-              <SideNav page="members" {...props} />
-            </div>
-            <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
-              <SearchBar
-                {...props}
-                searchValue={searchValue}
-                changeSearchValue={(value) => setSetSearchValue(value)}
-                changeMonth={(value) => setMonth(value)}
-                totalMembers={totalMembers}
-                serviceGroup={serviceGroup}
-                setServiceGroup={(value) => setServiceGroup(value)}
-                sortBy={sortBy}
-                setSortType={(value) => setSortBy(value)}
-              />
-
-              <div className="membersContainer row section">
-                {displayedMembers().length > 0 ? (
-                  displayedMembers().map((member, i) => (
-                    <MemberCard key={i} {...member} store={props} />
-                  ))
-                ) : (
-                  <div className="emptyDisplayText">no member found...</div>
-                )}
+      <div className="members soulsWonContainer">
+        <div className=" row section">
+          <div className="mobileContainer col-12">
+            <Header {...props} page="Members" />
+          </div>
+          <div className="mobileContainer col-lg-2">
+            <SideNav page="members" {...props} />
+          </div>
+          <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
+            <SearchBar
+              {...props}
+              searchValue={searchValue}
+              changeSearchValue={(value) => setSetSearchValue(value)}
+              changeMonth={(value) => setMonth(value)}
+              totalMembers={totalMembers}
+              serviceGroup={serviceGroup}
+              setServiceGroup={(value) => setServiceGroup(value)}
+              sortBy={sortBy}
+              setSortType={(value) => setSortBy(value)}
+            />
+            {!props.members && (
+              <div className="loaderContainer">
+                <Loader />
               </div>
-            </div>
-            <div className="mobileContainer col-12">
-              <Navbar page="members" />
+            )}
+            <div
+              className="membersContainer row section"
+              style={{ display: !props.members && "none" }}
+            >
+              {props.members && displayedMembers().length > 0 ? (
+                displayedMembers().map((member, i) => (
+                  <MemberCard key={i} {...member} store={props} />
+                ))
+              ) : (
+                <div className="emptyDisplayText">no member found...</div>
+              )}
             </div>
           </div>
+          <div className="mobileContainer col-12">
+            <Navbar page="members" />
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

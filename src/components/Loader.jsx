@@ -1,10 +1,17 @@
 import React from "react";
-import logo from "../icons/logoBlue.svg";
+import ReactLoading from "react-loading";
 
 function Loader() {
   return (
-    <div className="loaderContainer">
-      <img src={logo} alt="logo" />
+    <div className="reactLoaderContainer">
+      <ReactLoading
+        type="spin"
+        color="#29abe2"
+        height={50}
+        width={50}
+        className="reactLoader"
+      />
+      <div className="mt-2">Loading</div>
     </div>
   );
 }

@@ -114,10 +114,6 @@ function SideNav(props) {
                 ? "sideNavIconContainer selected"
                 : "sideNavIconContainer"
             }
-            style={{
-              display:
-                props.accountType && props.accountType === "member" && "none",
-            }}
           >
             <div className="sidenavIcon">
               <FiBarChart />

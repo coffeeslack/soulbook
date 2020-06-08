@@ -9,7 +9,7 @@ import {
   MdMyLocation,
   MdClose,
   MdLocationCity,
-  MdFlag
+  MdFlag,
 } from "react-icons/md";
 import { FaTransgender, FaRegImage, FaChurch } from "react-icons/fa";
 import fb from "../config/config.jsx";
@@ -26,15 +26,15 @@ function SignUpForm(props) {
     createdAt: new Date(),
     name: "",
     address: "",
-    satelliteChurch: "odili road",
+    satelliteChurch: "",
     profilePic: "",
     phoneNumber: "",
     occupation: "",
-    country: "Nigeria",
-    state: "Rivers state",
+    country: "",
+    state: "",
     busStop: "",
     gender: "male",
-    serviceGroup: "none"
+    serviceGroup: "none",
   });
 
   const handleRedirect = () => {
@@ -43,39 +43,39 @@ function SignUpForm(props) {
     }
   };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     let detail = { [e.target.name]: e.target.value };
-    setUser(prevState => ({ ...prevState, ...detail }));
+    setUser((prevState) => ({ ...prevState, ...detail }));
   };
 
-  const signUp = e => {
+  const signUp = (e) => {
     e.preventDefault();
     fb.auth()
       .createUserWithEmailAndPassword(props.email, props.password)
-      .then(data => {
+      .then((data) => {
         const profile = {
           id: data.user.uid,
-          ...user
+          ...user,
         };
 
         firebase
           .firestore()
           .collection("members")
-          .doc(`${data.user.uid}`)
+          .doc(`${profile.name}-${data.user.uid}`)
           .set(profile)
           .then(props.checkData())
-          .catch(error => console.log(error));
+          .catch((error) => console.log(error));
 
         setRedirect(true);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         setAlertMessage(error.message);
         setTimeout(() => setAlertMessage(null), 5000);
       });
   };
 
-  const handleProfileImageChange = e => {
+  const handleProfileImageChange = (e) => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
 
@@ -86,28 +86,28 @@ function SignUpForm(props) {
 
       uploadTask.on(
         "state_changed",
-        snapshot => {
+        (snapshot) => {
           const progress = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
           setAlertMessage(`uploading image...(${progress})%`);
         },
-        error => {
+        (error) => {
           console.log(error);
           setAlertMessage(error.message);
           setTimeout(() => setAlertMessage(null), 5000);
         },
         () => {
-          uploadTask.snapshot.ref.getDownloadURL().then(url => {
+          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
             setTimeout(() => setAlertMessage(null), 1000);
-            setUser(prevState => ({ ...prevState, profilePic: url }));
+            setUser((prevState) => ({ ...prevState, profilePic: url }));
           });
         }
       );
     }
     previewProfileImage(e.target.files[0]);
   };
-  const previewProfileImage = img => {
+  const previewProfileImage = (img) => {
     var reader = new FileReader();
     var imageField = document.getElementById("profile-image-field");
 
@@ -120,244 +120,239 @@ function SignUpForm(props) {
   };
 
   return (
-    <div className="profileEditFormContainer">
+    <>
       {handleRedirect()}
-      <div className="profileEditModalBlind"></div>
-      <div className="profileEditModalContainer">
-        <div style={{ display: !alertMessage && "none" }}>
-          <AlertBox message={alertMessage} />
+      <div className="Modal">
+        <div className="ModalBlind" onClick={props.closeForm}></div>
+        <div className="ModalContainer profileModalContainer">
+          {/* Header */}
+          <div className="ModalHeader m-0">
+            <span className="ModalTitle">Create Profile</span>
+            <div className="ModalCloseBtn" onClick={props.closeForm}>
+              <MdClose />
+            </div>
+          </div>
+          {/* Main content */}
+          <div className="ModalBody profileModalBody">
+            <form className="profileEditForm" onSubmit={signUp}>
+              <div style={{ display: !alertMessage && "none" }}>
+                <AlertBox message={alertMessage} />
+              </div>
+              {/* profile image input */}
+              <input
+                type="file"
+                name="imageInput"
+                id="profileImageInput"
+                accept="image/*"
+                onChange={handleProfileImageChange}
+              />
+              {/* profile image */}
+              <div className="profileEditPicContainer">
+                <img
+                  src={props.profilePic ? props.profilePic : profilePic}
+                  alt="profilePic"
+                  id="profile-image-field"
+                />
+                <label htmlFor="profileImageInput">
+                  <div
+                    className="profileEditFormEditBtnContainer"
+                    title="change profile picture"
+                  >
+                    <FaRegImage className="profileEditFormEditBtn" />
+                  </div>
+                </label>
+              </div>
+              {/* profile details */}
+              <div className="profileDetailsContainer  row no-gutters">
+                {/* profile name */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">name</div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="name"
+                        className="profileEditFormInputBox"
+                        type="text"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* profile address */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">address</div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="address"
+                        className="profileEditFormInputBox"
+                        type="text"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* phone number */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    {" "}
+                    <div className="profileEitFormLInputLabel">
+                      phone number
+                    </div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="phoneNumber"
+                        className="profileEditFormInputBox"
+                        type="number"
+                        onChange={handleChange}
+                        maxLength="11"
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* country */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">country</div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="country"
+                        className="profileEditFormInputBox"
+                        type="text"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* state */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">state</div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="state"
+                        className="profileEditFormInputBox"
+                        type="text"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* satellite church */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">
+                      satellite church
+                    </div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="satelliteChurch"
+                        className="profileEditFormInputBox"
+                        type="text"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* occupation */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">occupation</div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="occupation"
+                        className="profileEditFormInputBox"
+                        type="text"
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* bus stop */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">bus stop</div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <input
+                        name="busStop"
+                        className="profileEditFormInputBox"
+                        type="text"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* gender */}
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">gender</div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <select
+                        name="gender"
+                        className="profileEditFormInputBox"
+                        onChange={handleChange}
+                        defaultValue="male"
+                      >
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div className="profileDetailContainer col-12">
+                  <div className="profileDetail">
+                    <div className="profileEitFormLInputLabel">
+                      service group
+                    </div>
+                    <div className="profileEditFormInputBoxContainer">
+                      <select
+                        name="serviceGroup"
+                        className="profileEditFormInputBox"
+                        onChange={handleChange}
+                      >
+                        <option value="none">None</option>
+                        <option value="childrenMinistry">
+                          Children Ministry
+                        </option>
+                        <option value="specialCare">Special Care</option>
+                        <option value="miracleSquad">Miracle Squad</option>
+                        <option value="prayerSquad">Prayer Squad</option>
+                        <option value="crowdControl">Crowd Control</option>
+                        <option value="transport">Transport</option>
+                        <option value="safety">Safety</option>
+                        <option value="decoration">Decoration</option>
+                        <option value="praise">Praise</option>
+                        <option value="peaceKeepers">Peace Keepers</option>
+                        <option value="medical">Medical</option>
+                        <option value="editorial">Editorial</option>
+                        <option value="technical">Technical</option>
+                        <option value="sanctuary">Sanctuary</option>
+                        <option value="ushering">Ushering</option>
+                        <option value="soul establishment">
+                          Soul Establishment
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button className="mainBtn">Save</button>
+            </form>
+          </div>
         </div>
-        <form className="profileEditForm" onSubmit={signUp}>
-          <input
-            type="file"
-            name="imageInput"
-            id="profileImageInput"
-            accept="image/*"
-            onChange={handleProfileImageChange}
-          />
-          <div className="profileEditPicContainer">
-            <img src={profilePic} alt="profilePic" id="profile-image-field" />
-            <div
-              className="profileEditFormCloseBtnContainer"
-              onClick={props.closeForm}
-            >
-              <MdClose className="profileEditFormCloseBtn" />
-            </div>
-            <label htmlFor="profileImageInput">
-              <div className="profileEditFormEditBtnContainer">
-                <FaRegImage className="profileEditFormEditBtn" />
-              </div>
-            </label>
-          </div>
-          <div className="profileDetailsContainer">
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdPerson />
-              </div>
-              <div className="profileDetail">
-                <div className="profileEitFormLInputLabel">Name</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <input
-                    name="name"
-                    className="profileEditFormInputBox"
-                    type="text"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdLocationOn />
-              </div>
-              <div className="profileDetail">
-                <div className="profileEitFormLInputLabel">Address</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <input
-                    name="address"
-                    className="profileEditFormInputBox"
-                    type="text"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdPhone />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">Phone number</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <input
-                    name="phoneNumber"
-                    className="profileEditFormInputBox"
-                    type="number"
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdFlag />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">Country</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <select
-                    defaultValue="Nigeria"
-                    name="country"
-                    className="profileEditFormInputBox"
-                    onChange={handleChange}
-                  >
-                    <option value="Nigeria">Nigeria</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdLocationCity />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">State</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <select
-                    defaultValue="Rivers state"
-                    name="state"
-                    className="profileEditFormInputBox"
-                    onChange={handleChange}
-                  >
-                    <option value="Rivers state">Rivers state</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <FaChurch />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">
-                  Satellite church
-                </div>
-                <div className="profileEditFormInputBoxContainer">
-                  <select
-                    defaultValue="odili road"
-                    name="satelliteChurch"
-                    className="profileEditFormInputBox"
-                    onChange={handleChange}
-                  >
-                    <option value="odili road">Odili road</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdBusinessCenter />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">Occupation</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <input
-                    name="occupation"
-                    className="profileEditFormInputBox"
-                    type="text"
-                    required
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdDirectionsBus />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">Bus stop</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <input
-                    name="busStop"
-                    className="profileEditFormInputBox"
-                    type="text"
-                    onChange={handleChange}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <FaTransgender />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">Gender</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <select
-                    name="gender"
-                    defaultValue="male"
-                    className="profileEditFormInputBox"
-                    onChange={handleChange}
-                  >
-                    <option value="male">male</option>
-                    <option value="female">female</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div className="profileDetailContainer">
-              <div className="profileDetailIcon">
-                <MdMyLocation />
-              </div>
-              <div className="profileDetail">
-                {" "}
-                <div className="profileEitFormLInputLabel">Service group</div>
-                <div className="profileEditFormInputBoxContainer">
-                  <select
-                    name="serviceGroup"
-                    className="profileEditFormInputBox"
-                    onChange={handleChange}
-                    defaultValue="none"
-                  >
-                    <option value="none">None</option>
-                    <option value="childrenMinistry">Children Ministry</option>
-                    <option value="specialCare">Special Care</option>
-                    <option value="miracleSquad">Miracle Squad</option>
-                    <option value="prayerSquad">Prayer Squad</option>
-                    <option value="crowdControl">Crowd Control</option>
-                    <option value="transport">Transport</option>
-                    <option value="safety">Safety</option>
-                    <option value="decoration">Decoration</option>
-                    <option value="praise">Praise</option>
-                    <option value="peaceKeepers">Peace Keepers</option>
-                    <option value="medical">Medical</option>
-                    <option value="editorial">Editorial</option>
-                    <option value="technical">Technical</option>
-                    <option value="sanctuary">Sanctuary</option>
-                    <option value="ushering">Ushering</option>
-                    <option value="soul establishment">
-                      Soul Establishment
-                    </option>
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <button className="profileEditFormSaveBtn">sign up</button>
-        </form>
+        {/* Mobile Close Btn */}
+        <div className="ModalCloseMobile" onClick={props.closeForm}>
+          close
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

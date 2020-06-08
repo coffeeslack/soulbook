@@ -89,7 +89,7 @@ function AddSoul(props) {
             <form
               className="addSoulForm"
               onSubmit={addSoul}
-              style={{ paddingTop: props.accountType === "member" && "0px" }}
+              style={{ paddingTop: props.accountType === "member" && "15px" }}
             >
               <div className="inputBoxContainer inputBoxContainerMobile">
                 <div className="inputBoxLabel">Full Name</div>

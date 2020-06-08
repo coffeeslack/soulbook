@@ -1,38 +1,38 @@
 .testimonyFormInputLabel {
   font-size: 13px;
-  color: #999999;
+  color: #777777;
   margin-top: 10px;
+  text-transform: lowercase;
 }
 .testimonyFormInput {
-  border: 1px solid #999999;
+  border: 1px solid lightgrey;
   padding: 5px;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 3px;
   margin-top: 5px;
   font-size: 14px;
-  transition: 0.1s ease;
+  text-transform: capitalize;
 }
 .testimonyFormTextArea {
-  border: 1px solid #999999;
+  border: 1px solid lightgrey;
   height: 100px;
   padding: 5px;
-  border-radius: 5px;
+  border-radius: 3px;
   margin-top: 5px;
   font-size: 14px !important;
   width: 100%;
-  transition: 0.1s ease;
   font-family: sans-serif;
 }
 .testimonyFormInput:focus,
 .testimonyFormTextArea:focus {
-  outline: none;
-  border: 1.5px solid #29abe2;
+  outline: 1px solid #29abe2;
+  border: 1px solid #29abe2;
 }
 .testimonyFormCol {
   padding: 10px;
 }
 .testimonyAttachmentBtn {
-  border: 1px solid #999999;
+  border: 1px solid lightgray;
   background-color: white !important;
   display: flex;
   flex-direction: column;
@@ -58,9 +58,9 @@
   padding: 2px !important;
 }
 .testimonyAttachmentImage {
-  border-radius: 5px;
+  border-radius: 3px;
   overflow: hidden;
-  height: 75px;
+  height: 80px;
   background-color: lightgray;
 }
 .testimonyAttachmentImage img {

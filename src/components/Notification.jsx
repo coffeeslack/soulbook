@@ -34,7 +34,6 @@ function Notification(props) {
         style={{ display: !showDeleteModal && "none" }}
       >
         <OptionModal
-          {...props}
           closeModal={() => displayDeleteModal(false)}
           type="delete"
           title="Delete Notification?"

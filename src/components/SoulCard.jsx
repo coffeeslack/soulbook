@@ -25,8 +25,9 @@ function SoulCard(props) {
   const displayDeleteModal = (option) => {
     setShowDeleteModal(option);
   };
+
   return (
-    <div className=" col-lg-4 col-md-6 col-xl-4 pl-0 pl-md-2 pl-lg-0 mobileContainer">
+    <div className=" col-lg-4 col-md-6 col-xl-3 pl-0 pl-md-2 pl-lg-0 mobileContainer">
       <div className="soulCardContainer">
         <div className="soulCardGradient"></div>
         <div onClick={openModal}>
@@ -94,21 +95,6 @@ function SoulCard(props) {
                 {props.gender}
               </div>
             </div>
-            <div className="soulProfileModalPrayerRequestContainer">
-              <div
-                className="soulProfileModalPrayerRequestHeader"
-                style={{ display: !props.prayerRequest && "none" }}
-              >
-                PRAYER REQUEST
-              </div>
-              <div className="soulProfileModalPrayerRequest">
-                {props.prayerRequest.length > 35 ? (
-                  <span>{props.prayerRequest.slice(0, 35) + ` [...]`}</span>
-                ) : (
-                  props.prayerRequest
-                )}
-              </div>
-            </div>
           </div>
         </div>
         <div className="soulCardOptions">
@@ -127,9 +113,13 @@ function SoulCard(props) {
             </a>
           </span>
           <span className="soulCardOptionIcon">
-            <a onClick={() => displayDeleteModal(true)} title="delete">
+            <span
+              onClick={() => displayDeleteModal(true)}
+              title="delete"
+              className="optionBtn"
+            >
               <MdDelete />
-            </a>
+            </span>
           </span>
         </div>
         <div
@@ -143,7 +133,6 @@ function SoulCard(props) {
           style={{ display: !showDeleteModal && "none" }}
         >
           <OptionModal
-            {...props}
             type="delete"
             closeModal={() => displayDeleteModal(false)}
             title="Delete Soul?"

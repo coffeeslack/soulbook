@@ -19,7 +19,7 @@ function SoulsWon(props) {
     if (props.soulsWon && props.accountType && props.accountType === "member") {
       return props.soulsWon.filter((soul) => soul.wonBy === props.id);
     } else {
-      return props.soulsWon;
+      return props.soulsWon && props.soulsWon;
     }
   };
   const displayedSouls =
@@ -61,52 +61,54 @@ function SoulsWon(props) {
 
   return (
     <>
-      {!props.soulsWon ? (
-        <div className="loaderContainer">
-          <Loader />
-        </div>
-      ) : (
-        <div className="soulsWonContainer">
-          <div className=" row section">
-            <div className="mobileContainer col-12">
-              <Header {...props} page="Souls Won" />
-            </div>
-            <div className="mobileContainer col-lg-2">
-              <SideNav page="soulsWon" {...props} />
-            </div>
-            <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
-              <SearchBar
-                {...props}
-                showModal={showModal}
-                changeTab={changeTab}
-                selectedTab={selectedTab}
-                totalSouls={totalSoulsWon}
-                selectedMonth={month}
-                changeMonth={changeMonth}
-                searchValue={searchValue}
-                changeSearchValue={changeSearchValue}
-              />
-              <div className="soulsWonCardContainer row">
-                {displayedSouls.length > 0 ? (
-                  soulsWon
-                ) : (
-                  <div className="emptyDisplayText">no soul found...</div>
-                )}
+      <div className="soulsWonContainer">
+        <div className=" row section">
+          <div className="mobileContainer col-12">
+            <Header {...props} page="Souls Won" />
+          </div>
+          <div className="mobileContainer col-lg-2">
+            <SideNav page="soulsWon" {...props} />
+          </div>
+          <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
+            <SearchBar
+              {...props}
+              showModal={showModal}
+              changeTab={changeTab}
+              selectedTab={selectedTab}
+              totalSouls={totalSoulsWon}
+              selectedMonth={month}
+              changeMonth={changeMonth}
+              searchValue={searchValue}
+              changeSearchValue={changeSearchValue}
+            />
+            {!props.soulsWon && (
+              <div className="loaderContainer">
+                <Loader />
               </div>
-            </div>
-            <div className="mobileContainer col-12">
-              <AddSoulModal
-                {...props}
-                changeTab={changeTab}
-                selectedTab={selectedTab}
-              />
-            </div>
-            <div className="mobileContainer col-12">
-              <Navbar page="soulsWon" />
+            )}
+            <div
+              className="soulsWonCardContainer row"
+              style={{ display: !props.soulsWon && "none" }}
+            >
+              {props.soulsWon && displayedSouls.length > 0 ? (
+                soulsWon
+              ) : (
+                <div className="emptyDisplayText">no soul found...</div>
+              )}
             </div>
           </div>
+          <div className="mobileContainer col-12">
+            <AddSoulModal
+              {...props}
+              changeTab={changeTab}
+              selectedTab={selectedTab}
+            />
+          </div>
+          <div className="mobileContainer col-12">
+            <Navbar page="soulsWon" />
+          </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/addSoulModal.css";
 import "../css/modal.css";
-import { IoMdCloseCircle } from "react-icons/io";
+import { MdClose } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 
 function AddSoulForm(props) {
@@ -47,12 +47,12 @@ function AddSoulForm(props) {
   return (
     <div className="addSoulModal">
       <div className="Modal row">
-        <div className="ModalBlind"></div>
+        <div className="ModalBlind" onClick={closeModal}></div>
         <div className="ModalContainer col-lg-6">
           <div className="ModalHeader">
             <span className="ModalTitle">Add Soul</span>
             <div className="ModalCloseBtn" onClick={closeModal}>
-              <IoMdCloseCircle />
+              <MdClose />
             </div>
           </div>
           <div className="ModalBody">
@@ -94,7 +94,7 @@ function AddSoulForm(props) {
               </div>
               <div
                 className="addSoulModalForm"
-                style={{ paddingTop: props.accountType === "member" && "70px" }}
+                style={{ paddingTop: props.accountType === "member" && "0px" }}
               >
                 <form className="addSoulFormBox row" onSubmit={addSoul}>
                   <div className="inputBoxRow row">

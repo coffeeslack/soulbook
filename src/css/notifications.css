@@ -19,12 +19,15 @@
   color: white;
   font-size: 14px;
   padding: 5px 15px;
-  border-radius: 5px;
+  border-radius: 3px;
   position: absolute;
   right: 0;
   display: inline-flex;
   align-items: center;
   cursor: none;
+}
+.notificationsSendBtn:hover {
+  background-color: #258ebb;
 }
 .notificationsSendBtn span svg {
   display: flex;
@@ -91,7 +94,6 @@
   }
   .notificationsSendBtn {
     padding: 5px 15px;
-    border-radius: 5px;
     cursor: pointer;
   }
   .notificationDeleteBtn {

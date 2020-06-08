@@ -37,7 +37,7 @@
 }
 .logInInputBox:focus {
   outline: none;
-  border-bottom: 1px solid #29abe2;
+  border-bottom: 2px solid #29abe2;
 }
 .logInButton {
   margin-top: 20px;

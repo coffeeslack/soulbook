@@ -19,17 +19,17 @@ function TestimonyCard(props) {
     setShowDeleteModal(option);
   };
   const Text = () => {
-    if (props.text.length > 500) {
+    if (props.text.length > 550) {
       return (
         <span>
-          {props.text.slice(0, 500)}
-          <span className="expandText" onClick={openModal}>
-            continue reading
+          {props.text.slice(0, 550)}
+          <span className="expandText ml-1" onClick={openModal}>
+            continue reading [...]
           </span>
         </span>
       );
     }
-    if (props.text.length < 500) {
+    if (props.text.length < 550) {
       return props.text;
     }
   };
@@ -58,32 +58,34 @@ function TestimonyCard(props) {
               }}
               onClick={() => displayDeleteModal(true)}
             >
-              Delete
+              delete
             </span>
             {/*  */}
           </div>
         </div>
-        {/* Testimony Title */}
-        <div className="testimonyCardTitle">{props.title}</div>
-        {/* Testimony Text */}
-        <div className="testimonyCardText">
-          <Text />
-        </div>
-        {/* Testimony Images */}
-        <div className="testimonyAttachmentContainer row ">
-          {props.images &&
-            props.images.map((image, i) => (
-              <div
-                className="testimonyAttachmentWrapper col-md-2 col-4"
-                key={i}
-                onClick={() => setModalImage(image.src)}
-                style={{ cursor: "pointer" }}
-              >
-                <div className="testimonyAttachmentImage">
-                  <img src={image.src} />
+        <div className="testimonyCardBody" onClick={openModal}>
+          {/* Testimony Title */}
+          <div className="testimonyCardTitle">{props.title}</div>
+          {/* Testimony Text */}
+          <div className="testimonyCardText">
+            <Text />
+          </div>
+          {/* Testimony Images */}
+          <div className="testimonyAttachmentContainer row ">
+            {props.images &&
+              props.images.map((image, i) => (
+                <div
+                  className="testimonyAttachmentWrapper col-md-2 col-4"
+                  key={i}
+                  onClick={() => setModalImage(image.src)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className="testimonyAttachmentImage">
+                    <img src={image.src} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
         {/* Modal to display single images */}
         <div style={{ display: !modalImage && "none" }}>
@@ -91,7 +93,7 @@ function TestimonyCard(props) {
         </div>
         {/* Testimony User Detail */}
         <div className="testimonyCardFrom">
-          - {props.userName} from {props.satelliteChurch} satellite church
+          {props.userName} from {props.satelliteChurch} satellite church
         </div>
       </div>
       {/* Testimony Modal To Display Long Testimonies */}
@@ -107,7 +109,6 @@ function TestimonyCard(props) {
         style={{ display: !showDeleteModal && "none" }}
       >
         <OptionModal
-          {...props}
           type="delete"
           closeModal={() => displayDeleteModal(false)}
           title="Delete Testimony?"

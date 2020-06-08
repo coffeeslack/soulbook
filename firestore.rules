@@ -18,5 +18,8 @@ service cloud.firestore {
      match /testimonies/{testimony} {
       allow read, write: if request.auth.uid != null
     }
+     match /sermons/{sermon} {
+      allow read, write: if request.auth.uid != null
+    }
   }
 }

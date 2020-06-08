@@ -8,7 +8,7 @@ import TestimonyForm from "../components/TestimonyForm";
 import SearchBar from "../components/TestimoniesSearchBar";
 import moment from "moment";
 import Loader from "../components/Loader";
-import { AiOutlinePlus } from "react-icons/ai";
+import { MdAdd } from "react-icons/md";
 
 function Testimonies(props) {
   const [displayForm, setDisplayForm] = useState(false);
@@ -37,10 +37,12 @@ function Testimonies(props) {
 
   const displayedTestimonies =
     selectedTab === "allTestimonies"
-      ? allTestimonies.filter((testimony) =>
+      ? props.testimonies &&
+        allTestimonies.filter((testimony) =>
           testimony.title.toLowerCase().includes(searchValue.toLowerCase())
         )
-      : myTestimonies.filter((testimony) =>
+      : props.testimonies &&
+        myTestimonies.filter((testimony) =>
           testimony.title.toLowerCase().includes(searchValue.toLowerCase())
         );
   const changeTab = (value) => {
@@ -53,78 +55,82 @@ function Testimonies(props) {
 
   return (
     <>
-      {!props.testimonies ? (
-        <div className="loaderContainer">
-          <Loader />
-        </div>
-      ) : (
-        <div className="testimoniesPageContainer">
-          <div className=" row section">
-            {/* Header */}
-            <div className="mobileContainer col-12">
-              <Header {...props} page="Testimonies" />
-            </div>
-            {/* Sidenav */}
-            <div className="mobileContainer col-lg-2">
-              <SideNav page="testimonies" {...props} />
-            </div>
-            <div className="mobileContainer col-lg-10">
-              {/* Top Menu */}
-              <SearchBar
-                {...props}
-                selectedTab={selectedTab}
-                changeTab={changeTab}
-                totalTestimonies={
-                  props.testimonies && displayedTestimonies.length
-                }
-                changeMonth={changeMonth}
-                changeSearchValue={(value) => setSearchValue(value)}
-                selectedMonth={month}
-                displayForm={() => setDisplayForm(true)}
-              />
-              {/* Displayed Testimonies */}
-              <div className="row">
-                <div className="col-lg-8 mobileContainer p-0">
-                  <div className="soulsWonCardContainer">
-                    {displayedTestimonies.length > 0 ? (
-                      displayedTestimonies
-                        .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
-                        .map((testimony, i) => (
-                          <TestimonyCard key={i} {...testimony} store={props} />
-                        ))
-                    ) : (
-                      <div className="emptyDisplayText">
-                        no testimony found...
-                      </div>
-                    )}
+      <div className="testimoniesPageContainer">
+        <div className=" row section">
+          {/* Header */}
+          <div className="mobileContainer col-12">
+            <Header {...props} page="Testimonies" />
+          </div>
+          {/* Sidenav */}
+          <div className="mobileContainer col-lg-2">
+            <SideNav page="testimonies" {...props} />
+          </div>
+          <div className="mobileContainer col-lg-10">
+            {/* Top Menu */}
+            <SearchBar
+              {...props}
+              selectedTab={selectedTab}
+              changeTab={changeTab}
+              totalTestimonies={
+                props.testimonies && displayedTestimonies.length
+              }
+              changeMonth={changeMonth}
+              changeSearchValue={(value) => setSearchValue(value)}
+              selectedMonth={month}
+              displayForm={() => setDisplayForm(true)}
+            />
+            {/* Displayed Testimonies */}
+            <div className="row">
+              <div
+                className="col-lg-10 mobileContainer p-0"
+                style={{ display: props.testimonies && "none" }}
+              >
+                {!props.testimonies && (
+                  <div className="loaderContainer">
+                    <Loader />
                   </div>
+                )}
+              </div>
+              <div
+                className="col-lg-8 mobileContainer p-0"
+                style={{ display: !props.testimonies && "none" }}
+              >
+                <div className="soulsWonCardContainer">
+                  {props.testimonies && displayedTestimonies.length > 0 ? (
+                    displayedTestimonies
+                      .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+                      .map((testimony, i) => (
+                        <TestimonyCard key={i} {...testimony} store={props} />
+                      ))
+                  ) : (
+                    <div className="emptyDisplayText">
+                      no testimony found...
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            {/* Mobile Navbar */}
-            <div className="mobileContainer col-12">
-              <Navbar page="testimonies" />
-            </div>
           </div>
-          {/* Testimony Form */}
-          <div
-            className="mobileContainer col-12"
-            style={{ display: !displayForm && "none" }}
-          >
-            <TestimonyForm
-              {...props}
-              closeModal={() => setDisplayForm(false)}
-            />
-          </div>
-          {/* Mobile Testimony Add Button */}
-          <div
-            className="addTestimonyBtnMobile"
-            onClick={() => setDisplayForm(true)}
-          >
-            <AiOutlinePlus />
+          {/* Mobile Navbar */}
+          <div className="mobileContainer col-12">
+            <Navbar page="testimonies" />
           </div>
         </div>
-      )}
+        {/* Testimony Form */}
+        <div
+          className="mobileContainer col-12"
+          style={{ display: !displayForm && "none" }}
+        >
+          <TestimonyForm {...props} closeModal={() => setDisplayForm(false)} />
+        </div>
+        {/* Mobile Testimony Add Button */}
+        <div
+          className="addTestimonyBtnMobile"
+          onClick={() => setDisplayForm(true)}
+        >
+          <MdAdd />
+        </div>
+      </div>
     </>
   );
 }

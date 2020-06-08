@@ -24,6 +24,7 @@
   left: 0;
   z-index: 2;
   margin-bottom: 5px;
+  transition: 0.2s ease;
 }
 .searchBar {
   display: flex;
@@ -120,10 +121,10 @@
   .searchBar input {
     text-align: left;
     font-size: 14px;
-    order: 2;
+    order: 1;
   }
   .searchBar svg {
-    order: 1;
+    order: 2;
     margin-right: 5px;
   }
   .sortMenuContainer {

@@ -43,24 +43,18 @@
 }
 .profileHeader {
   margin-bottom: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .profileHeaderLabel {
   display: none;
 }
 .profileEditBtn {
-  position: absolute;
-  right: 10px;
-  top: 265px;
-  background-color: #29abe2;
-  color: white;
-  padding: 5px 10px;
-  font-size: 12px;
-  border-radius: 50px;
-  cursor: none;
-  transition: 0.1s ease;
-}
-.profileEditBtn:active {
-  background-color: black;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 @media screen and (min-width: 800px) {
   .profilePage {
@@ -69,14 +63,15 @@
   .profileContainer {
     width: 400px;
     position: relative;
-    margin-top: 55px;
-  }
-  .profileDetailsContainer {
-    padding-bottom: 10px;
-    height: 100%;
+    margin-top: 70px;
   }
   .profileDetailContainer div {
     display: inline-flex;
+  }
+  .profileDetailsContainer {
+    padding: 20px;
+    background-color: white;
+    padding-bottom: 30px;
   }
   .profileDetailContainer {
     margin-top: 10px;
@@ -85,20 +80,9 @@
   }
   .profileHeader {
     margin-bottom: 10px;
+    width: 100%;
   }
-  .profileHeader div {
-    display: inline-block;
-  }
-  .profileEditBtn {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background-color: #29abe2;
-    color: white;
-    padding: 5px 10px;
-    font-size: 12px;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: 0.1s ease;
+  .profileHeaderLabel {
+    display: flex;
   }
 }

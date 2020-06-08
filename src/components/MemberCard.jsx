@@ -30,7 +30,7 @@ function MemberCard(props) {
     setShowDeleteModal(option);
   };
   return (
-    <div className=" col-lg-4 col-md-6 pl-0 pl-md-2 pl-lg-0 m-0 mobileContainer">
+    <div className=" col-lg-4 col-md-6 col-xl-3 pl-0 pl-md-2 pl-lg-0 m-0 mobileContainer">
       <div className="soulCardContainer memberCardContainer">
         <div className="soulCardGradient"></div>
         <div onClick={openModal}>
@@ -59,11 +59,11 @@ function MemberCard(props) {
             <span className="soulCardMainIcon">
               <MdLocationOn />
             </span>
-            {props.address.length < 30 ? (
+            {props.address.length < 28 ? (
               <span className="soulCardAddress">{props.address}</span>
             ) : (
               <span className="soulCardAddress">
-                {props.address.slice(0, 30) + ` [...]`}
+                {props.address.slice(0, 28) + ` [...]`}
               </span>
             )}
           </div>
@@ -138,12 +138,12 @@ function MemberCard(props) {
         </div>
         <div className="soulCardOptions">
           <span className="soulCardOptionIcon">
-            <a href={`tel:${props.phoneNumber}`}>
+            <a href={`tel:${props.phoneNumber}`} title="call">
               <MdPhone />
             </a>
           </span>
           <span className="soulCardOptionIcon">
-            <a href={`sms:${props.phoneNumber}`}>
+            <a href={`sms:${props.phoneNumber}`} title="message">
               <MdTextsms />
             </a>
           </span>
@@ -166,7 +166,6 @@ function MemberCard(props) {
           style={{ display: !showDeleteModal && "none" }}
         >
           <OptionModal
-            {...props}
             closeModal={() => displayDeleteModal(false)}
             message={"Are you sure you want to delete?"}
             action={() => {

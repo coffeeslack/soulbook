@@ -36,10 +36,13 @@ function Notifications(props) {
             />
           </div>
         )}
-        {props.notifications &&
+        {props.notifications && props.notifications.length > 0 ? (
           props.notifications.map((notification, i) => (
             <Notification key={i} {...notification} store={props} />
-          ))}
+          ))
+        ) : (
+          <div className="emptyDisplayText">no notification...</div>
+        )}
       </div>
       <NotificationModal {...props} />
     </div>

@@ -4,7 +4,10 @@ import { MdSearch, MdPersonAdd } from "react-icons/md";
 function SoulsWonSearchBar(props) {
   return (
     <div className="searchBarContainer">
-      <div className="tabMenu">
+      <div
+        className="tabMenu"
+        style={{ display: props.accountType === "member" && "none" }}
+      >
         <span
           className={
             props.selectedTab === "evangelism"
@@ -22,7 +25,6 @@ function SoulsWonSearchBar(props) {
               : "tabOption"
           }
           onClick={() => props.changeTab("altarCall")}
-          style={{ display: props.accountType === "member" && "none" }}
         >
           Altar call
         </span>
@@ -33,7 +35,6 @@ function SoulsWonSearchBar(props) {
               : "tabOption"
           }
           onClick={() => props.changeTab("firstTimer")}
-          style={{ display: props.accountType === "member" && "none" }}
         >
           First Timers
         </span>

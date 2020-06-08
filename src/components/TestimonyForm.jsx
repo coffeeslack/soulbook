@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/testimonyForm.css";
 import "../css/modal.css";
-import { IoMdCloseCircle } from "react-icons/io";
+import { MdClose } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 import placeholder from "../pics/profilePic.png";
 import { AiOutlinePlusCircle } from "react-icons/ai";
@@ -89,7 +89,13 @@ function TestimonyForm(props) {
   return (
     <div className="Modal row">
       {/* Modal Backdrop */}
-      <div className="ModalBlind"></div>
+      <div
+        className="ModalBlind"
+        onClick={() => {
+          props.closeModal();
+          setImages([]);
+        }}
+      ></div>
       {/* Modal Content */}
       <div className="ModalContainer col-lg-6">
         {/* Modal Header */}
@@ -102,7 +108,7 @@ function TestimonyForm(props) {
               setImages([]);
             }}
           >
-            <IoMdCloseCircle />
+            <MdClose />
           </div>
         </div>
         {/* Main Modal content */}
@@ -111,7 +117,7 @@ function TestimonyForm(props) {
             {/*  */}
             <div className="col-md-6 pr-md-3">
               {/* Name */}
-              <div className="testimonyFormInputLabel">Name</div>
+              <div className="testimonyFormInputLabel">name</div>
               <input
                 type="text"
                 name="name"
@@ -122,18 +128,19 @@ function TestimonyForm(props) {
             </div>
             {/* Testimony Title */}
             <div className="col-md-6">
-              <div className="testimonyFormInputLabel">Testimony title</div>
+              <div className="testimonyFormInputLabel">testimony title</div>
               <input
                 type="text"
                 name="testimonyTitle"
                 className="testimonyFormInput testimonyFormTitle"
-                placeholder="e.g divine breakthrough (optional)"
+                placeholder="e.g divine breakthrough"
+                required
               />
             </div>
             {/*  */}
             {/* Testimony Content */}
             <div className="col-12">
-              <div className="testimonyFormInputLabel">Testimony</div>
+              <div className="testimonyFormInputLabel">testimony</div>
               <textarea
                 name="testimony"
                 className="testimonyFormTextArea testimonyFormText"
@@ -142,7 +149,7 @@ function TestimonyForm(props) {
             </div>
             <div className="col-12">
               {/* Testimony Images */}
-              <div className="testimonyFormInputLabel">Testimony Images</div>
+              <div className="testimonyFormInputLabel">testimony images</div>
               {/* Attached Images */}
               <div className="testimonyAttachmentContainer row ">
                 {images.map((image, i) => (
@@ -171,6 +178,16 @@ function TestimonyForm(props) {
             <button className="mainBtn">Send</button>
           </form>
         </div>
+      </div>
+      {/* Mobile Close Btn */}
+      <div
+        className="ModalCloseMobile"
+        onClick={() => {
+          props.closeModal();
+          setImages([]);
+        }}
+      >
+        close
       </div>
     </div>
   );

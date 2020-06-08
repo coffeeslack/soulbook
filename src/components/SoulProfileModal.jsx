@@ -10,7 +10,7 @@ import {
   MdMyLocation,
 } from "react-icons/md";
 import { FaTransgender, FaChurch } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
+import { MdClose } from "react-icons/md";
 import profilePic from "../pics/avatar.png";
 
 function SoulProfileModal(props) {
@@ -23,7 +23,7 @@ function SoulProfileModal(props) {
           <div className="ModalHeader m-0">
             <span className="ModalTitle">Profile</span>
             <div className="ModalCloseBtn" onClick={props.closeModal}>
-              <IoMdCloseCircle />
+              <MdClose />
             </div>
           </div>
           {/* Main content */}
@@ -169,6 +169,10 @@ function SoulProfileModal(props) {
               </div>
             </div>
           </div>
+        </div>
+        {/* Mobile Close Btn */}
+        <div className="ModalCloseMobile" onClick={props.closeModal}>
+          close
         </div>
       </div>
     </div>

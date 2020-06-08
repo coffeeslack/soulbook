@@ -10,7 +10,7 @@ import {
   MdPhone,
   MdDirectionsBus,
   MdBusinessCenter,
-  MdMyLocation
+  MdMyLocation,
 } from "react-icons/md";
 import { FaTransgender, FaChurch } from "react-icons/fa";
 import profilePic from "../pics/pic1.png";
@@ -23,12 +23,6 @@ function Profile(props) {
       <SideNav page="profile" {...props} />
       <Navbar />
       <div className="profileContainer">
-        <div className="profileHeader">
-          <div className="profileHeaderLabel">Profile</div>
-          <div className="profileEditBtn" onClick={() => setShowEditForm(true)}>
-            Edit profile
-          </div>
-        </div>
         <div className="profilePicContainer">
           <img
             src={props.profilePic ? props.profilePic : profilePic}
@@ -86,6 +80,11 @@ function Profile(props) {
               <MdMyLocation />
             </div>
             <div className="profileDetail">{props.serviceGroup}</div>
+          </div>
+          <div className=" profileEditBtn">
+            <div className="mainBtn" onClick={() => setShowEditForm(true)}>
+              Edit profile
+            </div>
           </div>
         </div>
       </div>

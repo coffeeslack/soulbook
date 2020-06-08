@@ -25,6 +25,7 @@ export default class App extends Component {
         this.setState({ user });
         this.checkData();
         this.checkSlideShowPics();
+        this.checkSermons();
       } else {
         this.setState({ user: null });
       }
@@ -76,13 +77,13 @@ export default class App extends Component {
       .then((data) => {
         let notifications = [];
         data.forEach((notification) => {
-          if (
-            notification.data().from.toLowerCase() ===
-              this.state.satelliteChurch.toLowerCase() ||
-            notification.data().from.toLowerCase() === "headquarters"
-          ) {
-            notifications.push({ ...notification.data() });
-          }
+          // if (
+          //   notification.data().from.toLowerCase() ===
+          //     this.state.satelliteChurch.toLowerCase() ||
+          //   notification.data().from.toLowerCase() === "headquarters"
+          // ) {
+          notifications.push({ ...notification.data() });
+          // }
         });
         notifications.sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1));
         this.setState((prevState) => ({
@@ -123,6 +124,23 @@ export default class App extends Component {
           testimonies,
         }));
       });
+  };
+  checkSermons = () => {
+    firebase
+      .firestore()
+      .collection("sermons")
+      .get()
+      .then((data) => {
+        let sermons = [];
+        data.forEach((sermon) => {
+          sermons.push({ ...sermon.data() });
+        });
+        this.setState((prevState) => ({
+          ...prevState,
+          sermons,
+        }));
+      })
+      .catch((error) => console.log("sermon error:", error));
   };
   checkMembers = () => {
     firebase
@@ -186,7 +204,7 @@ export default class App extends Component {
     firebase
       .firestore()
       .collection("soulsWon")
-      .doc(`${soul.id}`)
+      .doc(`${soul.name}-${soul.id}`)
       .set(soul)
       .then(
         this.setState((prevState) => ({
@@ -214,7 +232,7 @@ export default class App extends Component {
     firebase
       .firestore()
       .collection("testimonies")
-      .doc(`${testimony.id}`)
+      .doc(`${testimony.title}-${testimony.id}`)
       .set(testimony)
       .then(
         this.setState((prevState) => ({
@@ -239,6 +257,39 @@ export default class App extends Component {
           testimonies: prevState.testimonies.filter(
             (testimony) => testimony.id !== id
           ),
+        }))
+      )
+      .catch((error) => console.log(error));
+  };
+  addSermon = (sermon) => {
+    firebase
+      .firestore()
+      .collection("sermons")
+      .doc(`${sermon.title}-${sermon.id}`)
+      .set(sermon)
+      .then(
+        this.setState((prevState) => ({
+          ...prevState,
+          sermons: [{ ...sermon, createdAt: moment() }, ...prevState.sermons],
+        }))
+      )
+      .catch((error) => console.log(error));
+
+    // this.setState((prevState) => ({
+    //   ...prevState,
+    //   sermons: [{ ...sermon, createdAt: moment() }, ...prevState.sermons],
+    // }));
+  };
+  deleteSermon = (id) => {
+    firebase
+      .firestore()
+      .collection("sermons")
+      .doc(`${id}`)
+      .delete()
+      .then(
+        this.setState((prevState) => ({
+          ...prevState,
+          sermons: prevState.sermons.filter((sermon) => sermon.id !== id),
         }))
       )
       .catch((error) => console.log(error));
@@ -291,6 +342,8 @@ export default class App extends Component {
         satelliteChurch: profile.satelliteChurch,
         profilePic: profile.profilePic,
         phoneNumber: profile.phoneNumber,
+        country: profile.country,
+        state: profile.state,
         occupation: profile.occupation,
         busStop: profile.busStop,
         gender: profile.gender,
@@ -304,6 +357,8 @@ export default class App extends Component {
           satelliteChurch: profile.satelliteChurch,
           profilePic: profile.profilePic,
           phoneNumber: profile.phoneNumber,
+          country: profile.country,
+          state: profile.state,
           occupation: profile.occupation,
           busStop: profile.busStop,
           gender: profile.gender,
@@ -314,6 +369,21 @@ export default class App extends Component {
   };
 
   render() {
+    const scrollFunction = () => {
+      if (document.querySelector(".searchBarContainer")) {
+        if (
+          document.body.scrollTop > 25 ||
+          document.documentElement.scrollTop > 25
+        ) {
+          document.querySelector(".searchBarContainer").style.top = "-50px";
+        } else {
+          document.querySelector(".searchBarContainer").style.top = "50px";
+        }
+      }
+    };
+    window.onscroll = function () {
+      scrollFunction();
+    };
     return (
       <div>
         <AppRouter
@@ -323,6 +393,8 @@ export default class App extends Component {
           deleteTestimony={this.deleteTestimony}
           createNotification={this.addNotification}
           createTestimony={this.addTestimony}
+          addSermon={this.addSermon}
+          deleteSermon={this.deleteSermon}
           addSoul={this.addSoul}
           deleteSoul={this.deleteSoul}
           deleteMember={this.deleteMember}

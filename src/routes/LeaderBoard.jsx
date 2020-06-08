@@ -56,47 +56,48 @@ function LeaderBoard(props) {
 
   return (
     <div>
-      {!props.members ? (
-        <div className="loaderContainer">
-          <Loader />
-        </div>
-      ) : (
-        <div className="members soulsWonContainer">
-          <div className=" row section">
-            <div className="mobileContainer col-12">
-              <Header {...props} page="Leader Board" />
-            </div>
-            <div className="mobileContainer col-lg-2">
-              <SideNav page="leaderBoard" {...props} />
-            </div>
-            <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
-              <SearchBar
-                {...props}
-                searchValue={searchValue}
-                changeSearchValue={(value) => setSetSearchValue(value)}
-                changeMonth={(value) => setMonth(value)}
-                totalMembers={totalMembers}
-                serviceGroup={serviceGroup}
-                setServiceGroup={(value) => setServiceGroup(value)}
-                page="leaderBoard"
-              />
-
-              <div className="membersContainer row section">
-                {displayedMembers().length > 0 ? (
-                  displayedMembers().map((member, i) => (
-                    <LeaderBoardCard key={i} {...member} rank={i} />
-                  ))
-                ) : (
-                  <div className="emptyDisplayText">no member found...</div>
-                )}
+      <div className="members soulsWonContainer">
+        <div className=" row section">
+          <div className="mobileContainer col-12">
+            <Header {...props} page="Leader Board" />
+          </div>
+          <div className="mobileContainer col-lg-2">
+            <SideNav page="leaderBoard" {...props} />
+          </div>
+          <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
+            <SearchBar
+              {...props}
+              searchValue={searchValue}
+              changeSearchValue={(value) => setSetSearchValue(value)}
+              changeMonth={(value) => setMonth(value)}
+              totalMembers={totalMembers}
+              serviceGroup={serviceGroup}
+              setServiceGroup={(value) => setServiceGroup(value)}
+              page="leaderBoard"
+            />
+            {!props.members && (
+              <div className="loaderContainer">
+                <Loader />
               </div>
-            </div>
-            <div className="mobileContainer col-12">
-              <Navbar page="leaderBoard" />
+            )}
+            <div
+              className="membersContainer row section"
+              style={{ display: !props.members && "none" }}
+            >
+              {props.members && displayedMembers().length > 0 ? (
+                displayedMembers().map((member, i) => (
+                  <LeaderBoardCard key={i} {...member} rank={i} />
+                ))
+              ) : (
+                <div className="emptyDisplayText">no member found...</div>
+              )}
             </div>
           </div>
+          <div className="mobileContainer col-12">
+            <Navbar page="leaderBoard" />
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

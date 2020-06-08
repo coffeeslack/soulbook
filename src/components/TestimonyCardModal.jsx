@@ -1,7 +1,7 @@
 import React from "react";
 import "../css/testimonyCardModal.css";
 import moment from "moment";
-import { IoMdCloseCircle } from "react-icons/io";
+import { MdClose } from "react-icons/md";
 
 function TestimonyCardModal(props) {
   return (
@@ -13,19 +13,20 @@ function TestimonyCardModal(props) {
           <div className="ModalHeader m-0">
             <span className="ModalTitle">Testimony</span>
             <div className="ModalCloseBtn" onClick={props.closeModal}>
-              <IoMdCloseCircle />
+              <MdClose />
             </div>
           </div>
           <div className="ModalBody">
-            <div className="testimonyCardDate">
-              {moment(props.createdAt).format("LL")}
-            </div>
             <div className="testimonyCardTitle">{props.title}</div>
             <div className="testimonyCardText">{props.text}</div>
             <div className="testimonyCardFrom">
               - {props.userName} from {props.satelliteChurch} satellite church
             </div>
           </div>
+        </div>
+        {/* Mobile Close Btn */}
+        <div className="ModalCloseMobile" onClick={props.closeModal}>
+          close
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "../css/notificationModal.css";
-import { IoMdCloseCircle } from "react-icons/io";
+import { MdClose } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
 
 function NotificationModal(props) {
@@ -22,12 +22,12 @@ function NotificationModal(props) {
   return (
     <div className="notificationModal">
       <div className="Modal row mobileContainer">
-        <div className="ModalBlind"></div>
+        <div className="ModalBlind" onClick={closeModal}></div>
         <div className="ModalContainer col-lg-6">
           <div className="ModalHeader">
             <span className="ModalTitle">Send Notification</span>
             <div className="ModalCloseBtn" onClick={closeModal}>
-              <IoMdCloseCircle />
+              <MdClose />
             </div>
           </div>
           <div className="ModalBody">
@@ -48,6 +48,10 @@ function NotificationModal(props) {
               <button className="mainBtn">Send Notification</button>
             </form>
           </div>
+        </div>
+        {/* Mobile Close Btn */}
+        <div className="ModalCloseMobile" onClick={closeModal}>
+          close
         </div>
       </div>
     </div>
