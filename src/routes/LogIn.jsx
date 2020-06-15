@@ -8,14 +8,13 @@ import fb from "../config/config";
 function LogIn(props) {
   const [uploading, setUploading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const logIn = e => {
+  const logIn = (e) => {
     e.preventDefault();
     const form = document.querySelector("form.logInForm");
-    // props.logIn(form.email.value, form.password.value);
     fb.auth()
       .signInWithEmailAndPassword(form.email.value, form.password.value)
       .then(() => props.checkData())
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
         setUploading(true);
         setAlertMessage(error.message);
@@ -32,7 +31,7 @@ function LogIn(props) {
         <img src={logo} className="logInLogo" width="30%" alt="logo" />
       </div>
       <div className="logInFormContainer">
-        <div className="logInLabel">SoulBook</div>
+        <div className="logInLabel">Soulbook</div>
         <form className="logInForm" onSubmit={logIn}>
           <div className="logInInputLabel">email</div>
           <input type="email" name="email" className="logInInputBox" required />
