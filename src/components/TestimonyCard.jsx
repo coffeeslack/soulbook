@@ -52,9 +52,10 @@ function TestimonyCard(props) {
               className="testimonyCardOption"
               style={{
                 display:
-                  props.store.accountType === "member" &&
-                  props.userId !== props.store.id &&
-                  "none",
+                  props.store.accountType === "member" ||
+                  ("soulEstablishment" &&
+                    props.userId !== props.store.id &&
+                    "none"),
               }}
               onClick={() => displayDeleteModal(true)}
             >
@@ -63,12 +64,14 @@ function TestimonyCard(props) {
             {/*  */}
           </div>
         </div>
-        <div className="testimonyCardBody" onClick={openModal}>
-          {/* Testimony Title */}
-          <div className="testimonyCardTitle">{props.title}</div>
-          {/* Testimony Text */}
-          <div className="testimonyCardText">
-            <Text />
+        <div className="testimonyCardBody">
+          <div onClick={openModal} className="testimonyMainContent">
+            {/* Testimony Title */}
+            <div className="testimonyCardTitle">{props.title}</div>
+            {/* Testimony Text */}
+            <div className="testimonyCardText">
+              <Text />
+            </div>
           </div>
           {/* Testimony Images */}
           <div className="testimonyAttachmentContainer row ">
@@ -93,7 +96,8 @@ function TestimonyCard(props) {
         </div>
         {/* Testimony User Detail */}
         <div className="testimonyCardFrom">
-          {props.userName} from {props.satelliteChurch} satellite church
+          <span className="font-weight-bold">{props.userName}</span> from{" "}
+          {props.satelliteChurch} satellite church
         </div>
       </div>
       {/* Testimony Modal To Display Long Testimonies */}
@@ -116,7 +120,7 @@ function TestimonyCard(props) {
             "testimony would be permanently deleted and cannot be recovered"
           }
           action={() => {
-            props.store.deleteTestimony(props.id);
+            props.store.deleteTestimony(props);
             displayDeleteModal(false);
           }}
         />

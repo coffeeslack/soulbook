@@ -85,7 +85,7 @@
   }
   .notificationsCardContainer {
     overflow: auto;
-    height: 510px;
+    height: 80vh;
     margin-top: 10px;
   }
   .notificationIcon {

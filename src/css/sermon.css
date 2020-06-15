@@ -72,3 +72,8 @@
     width: 60% !important;
   }
 }
+@media screen and (min-width: 2500px) {
+  .sermonCard {
+    width: 100% !important;
+  }
+}

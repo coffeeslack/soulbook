@@ -13,11 +13,14 @@ function SermonsSearchBar(props) {
         />
         <MdSearch />
       </div>
-      {/* Add Testimony Button */}
+      {/* Add Sermon Button */}
       <div
         className="soulsWonAddSoulBtn addSermonBtn"
         onClick={props.displayForm}
-        style={{ display: props.accountType === "member" && "none" }}
+        style={{
+          display:
+            props.accountType === "member" || ("soulEstablishment" && "none"),
+        }}
       >
         <span className="soulsWonAddSoulBtnText">Add Sermon</span>
         <span className="soulsWonAddSoulBtnIcon">

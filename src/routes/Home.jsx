@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import SideNav from "../components/SideNav";
 import DataSummary from "../components/DataSummary";
 import Loader from "../components/Loader";
+import OfflineError from "../components/OfflineError";
 
 function Home(props) {
   return (
@@ -20,15 +21,17 @@ function Home(props) {
             <SideNav page="home" {...props} />
           </div>
           <div className="mobileContainer col-lg-10 contentContainer">
-            {props.loading && (
+            {navigator.onLine && props.loading && (
               <div className="loaderContainer">
                 <Loader />
               </div>
             )}
+            {!navigator.onLine && props.loading && <OfflineError />}
             <div className="row" style={{ display: props.loading && "none" }}>
               <div className="mobileContainer col-lg-8">
                 <SlideShow
                   slideShowPics={props.slideShowPics}
+                  accountType={props.accountType}
                   deleteSlidePic={props.deleteSlidePic}
                   addSlidePic={props.addSlidePic}
                 />

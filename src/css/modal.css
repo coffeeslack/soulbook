@@ -33,6 +33,10 @@
   align-items: flex-start;
   justify-content: center;
 }
+.ImageModal {
+  display: flex;
+  align-items: center;
+}
 .ModalBlind {
   position: fixed;
   top: 0;
@@ -60,9 +64,14 @@
   overflow: auto;
 }
 .ImageModalContainer {
-  height: initial !important;
-  padding: 0 !important;
-  width: initial !important;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.3);
+  z-index: 7;
+  animation: zoom 0.2s ease both;
+  position: relative;
+}
+.ImageModalContainer img {
+  width: 100%;
+  border-radius: 5px;
 }
 .ModalHeader {
   display: flex;
@@ -99,6 +108,23 @@
   border-radius: 50px;
   padding: 5px;
   transition: 0.2s ease;
+}
+.imageModalCloseBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 20px;
+  font-size: 35px;
+  color: white;
+  z-index: 8;
+  transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.imageModalCloseBtn:hover {
+  background-color: red;
 }
 .ModalBody {
   height: 100%;

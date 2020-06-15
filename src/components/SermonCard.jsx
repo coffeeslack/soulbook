@@ -13,7 +13,7 @@ function SermonCard(props) {
   return (
     <>
       <div className="col-lg-4 pr-md-2 pr-0">
-        <div className="testimonyCardContainer">
+        <div className="testimonyCardContainer sermonCard">
           {/* BLUE LINE AT THE LEFT */}
           <div className="testimonyCardGradient"></div>
           {/* Sermon HEADER */}
@@ -28,7 +28,9 @@ function SermonCard(props) {
               <span
                 className="testimonyCardOption"
                 style={{
-                  display: props.store.accountType === "member" && "none",
+                  display:
+                    props.store.accountType === "member" ||
+                    ("soulEstablishment" && "none"),
                 }}
                 onClick={() => displayDeleteModal(true)}
               >
@@ -60,7 +62,7 @@ function SermonCard(props) {
             "sermon would be permanently deleted and cannot be recovered"
           }
           action={() => {
-            props.store.deleteSermon(props.id);
+            props.store.deleteSermon(props);
             displayDeleteModal(false);
           }}
         />

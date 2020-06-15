@@ -11,7 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 function SlideShowModal(props) {
   const [uploading, setUploading] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deletePicId, setDeletePicId] = useState(null);
 
   const closeModal = () => {
     document.querySelector(".slideShowModal").style.display = "none";
@@ -19,9 +19,11 @@ function SlideShowModal(props) {
   const handleSlideImageUpload = (e) => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
+      const imageName = `img_${uuidv4()}`;
+
       const uploadTask = firebase
         .storage()
-        .ref(`slideImages/${image.name}`)
+        .ref(`slideImages/${imageName}.jpg`)
         .put(image);
 
       uploadTask.on(
@@ -41,7 +43,9 @@ function SlideShowModal(props) {
         },
         () => {
           uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            setUploading(false);
+            setUploading(true);
+            setAlertMessage("upload complete");
+            setTimeout(() => setUploading(false), 1000);
             const pic = {
               id: uuidv4(),
               src: url,
@@ -49,44 +53,30 @@ function SlideShowModal(props) {
             };
             props.addSlidePic(pic);
           });
+
+          // Delete resized image
+          function deleteResizedImage() {
+            firebase
+              .storage()
+              .ref(`slideImages/${imageName}_1080x1080.jpg`)
+              .delete()
+              .catch((error) => {
+                error.code === "storage/object-not-found" && tryDeleteAgain();
+                console.log(error);
+              });
+          }
+
+          // try deleting image again if it fails
+          function tryDeleteAgain() {
+            deleteResizedImage();
+          }
+
+          deleteResizedImage();
         }
       );
     }
   };
-  const BannerContainer = (props) => (
-    <>
-      <div className="bannerContainer col-lg-6 ">
-        <img src={props.pic.src} alt="banner" />
-        <div
-          className="bannerDelete"
-          onClick={() => setShowDeleteModal(true)}
-          style={{
-            display:
-              props.slideShowPics && props.slideShowPics.length === 1 && "none",
-          }}
-        >
-          <FaRegTrashAlt />
-        </div>
-      </div>
-      <div
-        className="deleteOptionModal"
-        style={{ display: !showDeleteModal && "none" }}
-      >
-        <OptionModal
-          type="delete"
-          closeModal={() => setShowDeleteModal(false)}
-          title="Delete Banner?"
-          message={
-            "banner would be permanently deleted and cannot be recovered"
-          }
-          action={() => {
-            props.deleteSlidePic(props.pic.id);
-            setShowDeleteModal(false);
-          }}
-        />
-      </div>
-    </>
-  );
+
   return (
     <>
       <div className="slideShowModal">
@@ -103,14 +93,26 @@ function SlideShowModal(props) {
               </div>
             </div>
             <div className="ModalBody">
+              {/* all banners */}
               <div className="bannerContainerWrap">
                 <div className="row">
                   {props.slideShowPics &&
-                    props.slideShowPics.map((pic, i) => (
-                      <BannerContainer pic={pic} key={i} {...props} />
-                    ))}
+                    props.slideShowPics
+                      .sort((a, b) => (a.createdAt > b.createdAt ? -1 : 1))
+                      .map((pic) => (
+                        <div className="bannerContainer col-lg-6 " key={pic.id}>
+                          <img src={pic.src} alt="banner" />
+                          <div
+                            className="bannerDelete"
+                            onClick={() => setDeletePicId(pic.id)}
+                          >
+                            <FaRegTrashAlt />
+                          </div>
+                        </div>
+                      ))}
                 </div>
               </div>
+              {/* add picture input */}
               <div className="d-flex align-items-center justify-content-center mt-3">
                 <input
                   type="file"
@@ -130,6 +132,25 @@ function SlideShowModal(props) {
             close
           </div>
         </div>
+      </div>
+
+      {/* delete dialog modal  */}
+      <div
+        className="deleteOptionModal"
+        style={{ display: !deletePicId && "none" }}
+      >
+        <OptionModal
+          type="delete"
+          closeModal={() => setDeletePicId(null)}
+          title="Delete Banner?"
+          message={
+            "banner would be permanently deleted and cannot be recovered"
+          }
+          action={() => {
+            props.deleteSlidePic(deletePicId);
+            setDeletePicId(false);
+          }}
+        />
       </div>
     </>
   );

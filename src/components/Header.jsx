@@ -9,14 +9,14 @@ import fb from "../config/config.jsx";
 import profilePic from "../pics/avatar.png";
 
 function Navbar(props) {
+  const [showModal, setShowModal] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const showSideNav = () => {
     document.querySelector(".sideNavContainer").style.display = "block";
   };
-  const [showModal, setShowModal] = useState(false);
   const displayLogOutModal = (option) => {
     setShowModal(option);
   };
-  const [redirect, setRedirect] = useState(false);
   const renderRedirect = () => {
     if (redirect) {
       return <Redirect to="/" />;
@@ -26,6 +26,7 @@ function Navbar(props) {
     fb.auth().signOut().then(localStorage.clear("loginDetail"));
     setRedirect(true);
   };
+
   return (
     <div className="header">
       {renderRedirect()}

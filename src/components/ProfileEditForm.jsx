@@ -6,9 +6,10 @@ import firebase from "firebase/app";
 import "firebase/storage";
 import AlertBox from "./AlertBox";
 import profilePic from "../pics/pic1.png";
+import { v4 as uuidv4 } from "uuid";
 
 function ProfileEditForm(props) {
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(false);
   const [alertMessage, setAlertMessage] = useState(null);
 
   const handleEditProfile = (e) => {
@@ -18,7 +19,7 @@ function ProfileEditForm(props) {
       userName: form.userName.value,
       address: form.address.value,
       satelliteChurch: form.satelliteChurch.value,
-      profilePic: imageUrl,
+      profilePic: imageUrl ? imageUrl : props.profilePic,
       phoneNumber: form.phoneNumber.value,
       country: form.country.value,
       state: form.state.value,
@@ -27,18 +28,20 @@ function ProfileEditForm(props) {
       gender: form.gender.value,
       serviceGroup: form.serviceGroup.value,
     };
+
     props.editProfile(profile);
-    setAlertMessage(`saved`);
+    setAlertMessage(`profile updated`);
     setTimeout(() => setAlertMessage(null), 2000);
   };
 
   const handleProfileImageChange = (e) => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
+      const imageName = `img_${uuidv4()}`;
 
       const uploadTask = firebase
         .storage()
-        .ref(`images/${image.name}`)
+        .ref(`images/${imageName}.jpg`)
         .put(image);
 
       uploadTask.on(
@@ -51,40 +54,61 @@ function ProfileEditForm(props) {
         },
         (error) => {
           console.log(error);
-          setAlertMessage(error);
+          setAlertMessage(error.message);
         },
         () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            setAlertMessage(null);
-            setImageUrl(url);
-            const profile = {
-              userName: props.name,
-              address: props.address,
-              satelliteChurch: props.satelliteChurch,
-              profilePic: url,
-              phoneNumber: props.phoneNumber,
-              occupation: props.occupation,
-              busStop: props.busStop,
-              gender: props.gender,
-              serviceGroup: props.serviceGroup,
-            };
-            props.editProfile(profile);
+          // resize image to smaller size
+          function resizeAgain() {
+            getResizedImage();
+          }
+
+          function getResizedImage() {
+            firebase
+              .storage()
+              .ref(`images/${imageName}_1080x1080.jpg`)
+              .getDownloadURL()
+              .then((url) => {
+                setAlertMessage("upload complete");
+                setTimeout(() => setAlertMessage(null), 1500);
+                setImageUrl(url);
+                document.getElementById("profile-image-field").src = url;
+                const form = document.querySelector("form.profileEditForm");
+                const profile = {
+                  userName: form.userName.value,
+                  address: form.address.value,
+                  satelliteChurch: form.satelliteChurch.value,
+                  profilePic: imageUrl ? imageUrl : props.profilePic,
+                  phoneNumber: form.phoneNumber.value,
+                  country: form.country.value,
+                  state: form.state.value,
+                  occupation: form.occupation.value,
+                  busStop: form.busStop.value,
+                  gender: form.gender.value,
+                  serviceGroup: form.serviceGroup.value,
+                };
+                props.editProfile({ ...profile, profilePic: url });
+                 // Delete original uploaded images
+          firebase
+          .storage()
+          .ref(`images/${imageName}.jpg`)
+          .delete()
+          .catch((error) => {
+            console.log(error);
           });
+              })
+              .catch((error) => {
+                error.code === "storage/object-not-found"
+                  ? resizeAgain()
+                  : setAlertMessage(error.message);
+                setTimeout(() => setAlertMessage(null), 1500);
+                console.log(error);
+              });
+          }
+
+          getResizedImage();
         }
       );
     }
-    previewProfileImage(e.target.files[0]);
-  };
-  const previewProfileImage = (img) => {
-    var reader = new FileReader();
-    var imageField = document.getElementById("profile-image-field");
-
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        imageField.src = reader.result;
-      }
-    };
-    reader.readAsDataURL(img);
   };
 
   return (
@@ -279,7 +303,7 @@ function ProfileEditForm(props) {
                     <select
                       name="serviceGroup"
                       className="profileEditFormInputBox"
-                      defaultValue="props.serviceGroup"
+                      defaultValue={props.serviceGroup}
                     >
                       <option value="none">None</option>
                       <option value="childrenMinistry">

@@ -11,12 +11,17 @@ function Notifications(props) {
   };
   return (
     <div className="notificationsContainer">
+      {/* header */}
       <div className="notificationsHeader">
         <div className="notificationsHeaderTitle">Notifications</div>
+        {/* add button */}
         <div
           className="notificationsSendBtn"
           onClick={showModal}
-          style={{ display: props.accountType === "member" && "none" }}
+          style={{
+            display:
+              props.accountType === "member" || ("soulEstablishment" && "none"),
+          }}
         >
           Add{" "}
           <span className="ml-2">
@@ -24,6 +29,7 @@ function Notifications(props) {
           </span>
         </div>
       </div>
+      {/* notification container showing each notification */}
       <div className="notificationsCardContainer">
         {!props.notifications && (
           <div className="reactLoaderContainer">
@@ -44,6 +50,7 @@ function Notifications(props) {
           <div className="emptyDisplayText">no notification...</div>
         )}
       </div>
+      {/* add notification modal */}
       <NotificationModal {...props} />
     </div>
   );

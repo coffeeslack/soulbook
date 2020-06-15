@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import AppRouter from "./routes/AppRouter";
+import React, { Component, Suspense, lazy } from "react";
 import "./css/App.css";
 import "./css/bootstrap.min.css";
 import moment from "moment";
 import fb from "./config/config.jsx";
 import firebase from "firebase/app";
 // import data from "./data.js";
+import SplashScreen from "./components/SplashScreen";
+const AppRouter = lazy(() => import("./routes/AppRouter"));
 
 export default class App extends Component {
   constructor() {
     super();
-    // this.state = data();
+    this.state = data();
     this.state = {
       user: {},
       loading: true,
@@ -25,7 +26,6 @@ export default class App extends Component {
         this.setState({ user });
         this.checkData();
         this.checkSlideShowPics();
-        this.checkSermons();
       } else {
         this.setState({ user: null });
       }
@@ -48,6 +48,7 @@ export default class App extends Component {
             this.checkSoulsWon();
             this.checkNotifications();
             this.checkTestimonies();
+            this.checkSermons();
           }
         })
       );
@@ -214,11 +215,11 @@ export default class App extends Component {
       )
       .catch((error) => console.log(error));
   };
-  deleteSoul = (id) => {
+  deleteSoul = ({ name, id }) => {
     firebase
       .firestore()
       .collection("soulsWon")
-      .doc(`${id}`)
+      .doc(`${name}-${id}`)
       .delete()
       .then(
         this.setState((prevState) => ({
@@ -245,11 +246,11 @@ export default class App extends Component {
       )
       .catch((error) => console.log(error));
   };
-  deleteTestimony = (id) => {
+  deleteTestimony = ({ title, id }) => {
     firebase
       .firestore()
       .collection("testimonies")
-      .doc(`${id}`)
+      .doc(`${title}-${id}`)
       .delete()
       .then(
         this.setState((prevState) => ({
@@ -274,17 +275,12 @@ export default class App extends Component {
         }))
       )
       .catch((error) => console.log(error));
-
-    // this.setState((prevState) => ({
-    //   ...prevState,
-    //   sermons: [{ ...sermon, createdAt: moment() }, ...prevState.sermons],
-    // }));
   };
-  deleteSermon = (id) => {
+  deleteSermon = ({ title, id }) => {
     firebase
       .firestore()
       .collection("sermons")
-      .doc(`${id}`)
+      .doc(`${title}-${id}`)
       .delete()
       .then(
         this.setState((prevState) => ({
@@ -386,23 +382,25 @@ export default class App extends Component {
     };
     return (
       <div>
-        <AppRouter
-          {...this.state}
-          deleteNotification={this.deleteNotification}
-          deleteSlidePic={this.deleteSlidePic}
-          deleteTestimony={this.deleteTestimony}
-          createNotification={this.addNotification}
-          createTestimony={this.addTestimony}
-          addSermon={this.addSermon}
-          deleteSermon={this.deleteSermon}
-          addSoul={this.addSoul}
-          deleteSoul={this.deleteSoul}
-          deleteMember={this.deleteMember}
-          editProfile={this.editProfile}
-          checkData={this.checkData}
-          addSlidePic={this.addSlidePic}
-          checkData={this.checkData}
-        />
+        <Suspense fallback={<SplashScreen />}>
+          <AppRouter
+            {...this.state}
+            deleteNotification={this.deleteNotification}
+            deleteSlidePic={this.deleteSlidePic}
+            deleteTestimony={this.deleteTestimony}
+            createNotification={this.addNotification}
+            createTestimony={this.addTestimony}
+            addSermon={this.addSermon}
+            deleteSermon={this.deleteSermon}
+            addSoul={this.addSoul}
+            deleteSoul={this.deleteSoul}
+            deleteMember={this.deleteMember}
+            editProfile={this.editProfile}
+            checkData={this.checkData}
+            addSlidePic={this.addSlidePic}
+            checkData={this.checkData}
+          />
+        </Suspense>
       </div>
     );
   }

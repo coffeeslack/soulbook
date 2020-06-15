@@ -10,6 +10,7 @@ import "../css/soulsWon.css";
 import "../css/soulCard.css";
 import "../css/searchBar.css";
 import Loader from "../components/Loader";
+import OfflineError from "../components/OfflineError";
 
 function SoulsWon(props) {
   const [selectedTab, setSelectedTab] = useState("evangelism");
@@ -69,7 +70,20 @@ function SoulsWon(props) {
           <div className="mobileContainer col-lg-2">
             <SideNav page="soulsWon" {...props} />
           </div>
-          <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
+          <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer" style={{ display: props.soulsWon && "none" }}>
+            {/* loading component */}
+            {!props.soulsWon && navigator.onLine && (
+              <div className="loaderContainer">
+                <Loader />
+              </div>
+            )}
+            {/* offline component */}
+            {!navigator.onLine && !props.soulsWon && <OfflineError />}
+          </div>
+          <div
+            className="mobileContainer col-lg-10 pr-lg-0 scrollContainer"
+            style={{ display: !props.soulsWon && "none" }}
+          >
             <SearchBar
               {...props}
               showModal={showModal}
@@ -81,15 +95,7 @@ function SoulsWon(props) {
               searchValue={searchValue}
               changeSearchValue={changeSearchValue}
             />
-            {!props.soulsWon && (
-              <div className="loaderContainer">
-                <Loader />
-              </div>
-            )}
-            <div
-              className="soulsWonCardContainer row"
-              style={{ display: !props.soulsWon && "none" }}
-            >
+            <div className="soulsWonCardContainer row">
               {props.soulsWon && displayedSouls.length > 0 ? (
                 soulsWon
               ) : (

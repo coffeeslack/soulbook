@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import { v4 as uuidv4 } from "uuid";
 import { Redirect } from "react-router-dom";
 import Loader from "../components/Loader";
+import OfflineError from "../components/OfflineError";
 
 function AddSoul(props) {
   const [selectedTab, setSelectedTab] = useState("evangelism");
@@ -40,20 +41,30 @@ function AddSoul(props) {
   };
   return (
     <>
-      {props.loading ? (
-        <div className="loaderContainer">
-          <Loader />
-        </div>
-      ) : (
-        <div className="AddSoulPage">
-          {renderRedirect()}
-          <Header {...props} page="Add Soul" />
-          <Navbar page="addSoul" />
-          <SideNav page="addSoul" />
-          <div className="addSoulContainer">
+      <div className="AddSoulPage">
+        {renderRedirect()}
+        <Header {...props} page="Add Soul" />
+        <Navbar page="addSoul" />
+        <SideNav page="addSoul" />
+        <div className="addSoulContainer">
+          {/* loader */}
+          <div style={{ display: !props.loading && "none" }}>
+            {/* loading component */}
+            {navigator.onLine && props.loading && (
+              <div className="loaderContainer">
+                <Loader />
+              </div>
+            )}
+            {/* offline message */}
+            {!navigator.onLine && <OfflineError />}
+          </div>
+          {/* add soul form component */}
+          <div style={{ display: props.loading && "none" }}>
             <div
               className="addSoulTabMenu"
-              style={{ display: props.accountType === "member" && "none" }}
+              style={{
+                display: props.accountType === "member" && "none",
+              }}
             >
               <div
                 className={
@@ -86,6 +97,7 @@ function AddSoul(props) {
                 First timer
               </div>
             </div>
+            {/* form */}
             <form
               className="addSoulForm"
               onSubmit={addSoul}
@@ -147,20 +159,6 @@ function AddSoul(props) {
                   required
                 />
               </div>
-              {/* <div className="inputBoxContainer inputBoxContainerMobile">
-            <div className="inputBoxLabel">Member of Salvation Ministries?</div>
-            <select className="inputBox selectBox" required>
-              <option value="no">no</option>
-              <option value="yes">yes</option>
-            </select>
-          </div>
-          <div className="inputBoxContainer inputBoxContainerMobile">
-            <div className="inputBoxLabel">Be reminded about major events?</div>
-            <select className="inputBox selectBox" required>
-              <option value="no">no</option>
-              <option value="yes">yes</option>
-            </select>
-          </div> */}
               <div className="inputBoxContainer inputBoxContainerMobile">
                 <div className="inputBoxLabel">Prayer request</div>
                 <textarea
@@ -173,7 +171,7 @@ function AddSoul(props) {
             </form>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 }

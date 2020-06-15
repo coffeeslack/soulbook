@@ -3,11 +3,14 @@ import "../css/testimonyForm.css";
 import "../css/modal.css";
 import { MdClose } from "react-icons/md";
 import { v4 as uuidv4 } from "uuid";
-import placeholder from "../pics/profilePic.png";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import AlertBox from "./AlertBox";
+import firebase from "firebase/app";
 
 function TestimonyForm(props) {
   const [images, setImages] = useState([]);
+  const [alertMessage, setAlertMessage] = useState(null);
+
   const createTestimony = (e) => {
     e.preventDefault();
     const title = document.querySelector("input.testimonyFormTitle");
@@ -29,62 +32,68 @@ function TestimonyForm(props) {
     title.value = "";
     text.value = "";
   };
-  const addImage = () => {
-    setImages((prevState) => [...prevState, { src: placeholder }]);
+  const uploadAttachment = (e) => {
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      const imageName = `img_${uuidv4()}`;
+      const uploadTask = firebase
+        .storage()
+        .ref(`testimonyImages/${imageName}.jpg`)
+        .put(image);
+      console.log(image);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setAlertMessage(`uploading image...(${progress}%)`);
+        },
+        (error) => {
+          console.log(error);
+          setAlertMessage(error.message);
+        },
+        () => {
+          // resize image to smaller size
+          function resizeAgain() {
+            getResizedImage();
+          }
+
+          function getResizedImage() {
+            firebase
+              .storage()
+              .ref(`testimonyImages/${imageName}_1080x1080.jpg`)
+              .getDownloadURL()
+              .then((url) => {
+                setAlertMessage("upload complete");
+                setTimeout(() => setAlertMessage(null), 1500);
+                setImages((prevState) => [
+                  ...prevState,
+                  { src: url, id: uuidv4() },
+                ]);
+                // Delete original uploaded images
+                firebase
+                  .storage()
+                  .ref(`testimonyImages/${imageName}.jpg`)
+                  .delete()
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              })
+              .catch((error) => {
+                error.code === "storage/object-not-found"
+                  ? resizeAgain()
+                  : setAlertMessage(error.message);
+                setTimeout(() => setAlertMessage(null), 1500);
+              });
+          }
+
+          getResizedImage();
+        }
+      );
+    }
   };
-  // const uploadAttachment = (e) => {
-  //   if (e.target.files[0]) {
-  //     const image = e.target.files[0];
-
-  //     const uploadTask = firebase
-  //       .storage()
-  //       .ref(`images/${image.name}`)
-  //       .put(image);
-
-  //     uploadTask.on(
-  //       "state_changed",
-  //       (snapshot) => {
-  //         const progress = Math.round(
-  //           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-  //         );
-  //         setAlertMessage(`uploading image...(${progress})%`);
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       },
-  //       () => {
-  //         uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-  //           setAlertMessage(null);
-  //           setImageUrl(url);
-  //           const profile = {
-  //             userName: props.name,
-  //             address: props.address,
-  //             satelliteChurch: props.satelliteChurch,
-  //             profilePic: url,
-  //             phoneNumber: props.phoneNumber,
-  //             occupation: props.occupation,
-  //             busStop: props.busStop,
-  //             gender: props.gender,
-  //             serviceGroup: props.serviceGroup,
-  //           };
-  //           props.editProfile(profile);
-  //         });
-  //       }
-  //     );
-  //   }
-  //   previewAttachment(e.target.files[0]);
-  // };
-  // const previewAttachment = img => {
-  //   var reader = new FileReader();
-  //   var imageField = document.getElementById("profile-image-field");
-
-  //   reader.onload = () => {
-  //     if (reader.readyState === 2) {
-  //       imageField.src = reader.result;
-  //     }
-  //   };
-  //   reader.readAsDataURL(img);
-  // };
 
   return (
     <div className="Modal row">
@@ -113,6 +122,10 @@ function TestimonyForm(props) {
         </div>
         {/* Main Modal content */}
         <div className="ModalBody">
+          {/* Alert box */}
+          <div style={{ display: !alertMessage && "none" }}>
+            <AlertBox message={alertMessage} />
+          </div>
           <form onSubmit={createTestimony} className="row no-gutters">
             {/*  */}
             <div className="col-md-6 pr-md-3">
@@ -162,15 +175,23 @@ function TestimonyForm(props) {
                     </div>
                   </div>
                 ))}
+                {/* testimony image input */}
+                <input
+                  type="file"
+                  name="imageInput"
+                  id="testimonyImageInput"
+                  accept="image/*"
+                  onChange={uploadAttachment}
+                  className="d-none"
+                />
                 {/* Add Image Button */}
                 <div className="testimonyAttachmentWrapper col-md-2 col-4">
-                  <div
-                    className="testimonyAttachmentImage testimonyAttachmentBtn"
-                    onClick={addImage}
-                  >
-                    <AiOutlinePlusCircle />
-                    <div>Add Image</div>
-                  </div>
+                  <label htmlFor="testimonyImageInput">
+                    <div className="testimonyAttachmentImage testimonyAttachmentBtn">
+                      <AiOutlinePlusCircle />
+                      <div>Add Image</div>
+                    </div>
+                  </label>
                 </div>
               </div>
             </div>

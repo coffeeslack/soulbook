@@ -140,7 +140,7 @@ function SoulCard(props) {
               "soul would be permanently deleted and cannot be recovered"
             }
             action={() => {
-              props.store.deleteSoul(props.id);
+              props.store.deleteSoul(props);
               displayDeleteModal(false);
             }}
           />

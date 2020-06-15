@@ -71,6 +71,9 @@ select {
   border: none !important;
   outline: none !important;
 }
+.adminComponent {
+  display: none;
+}
 @media screen and (min-width: 800px) {
   .contentContainer {
     margin-top: 55px !important;
@@ -98,5 +101,12 @@ select {
   .optionBtn:hover {
     color: black !important;
     background-color: lightgray;
+  }
+}
+
+@media screen and (min-width: 2500px) {
+  .col-lg-4 {
+    flex: 0 0 20% !important;
+    max-width: 20% !important;
   }
 }

@@ -7,6 +7,7 @@ import SideNav from "../components/SideNav";
 import MemberCard from "../components/MemberCard";
 import moment from "moment";
 import Loader from "../components/Loader";
+import OfflineError from "../components/OfflineError";
 
 function Members(props) {
   const [month, setMonth] = useState("all");
@@ -75,7 +76,23 @@ function Members(props) {
           <div className="mobileContainer col-lg-2">
             <SideNav page="members" {...props} />
           </div>
-          <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
+          {/* loader */}
+          <div
+            className="mobileContainer col-lg-10 pr-lg-0 scrollContainer"
+            style={{ display: props.members && "none" }}
+          >
+            {navigator.onLine && !props.members && (
+              <div className="loaderContainer">
+                <Loader />
+              </div>
+            )}
+            {!navigator.onLine && !props.members && <OfflineError />}
+          </div>
+          {/* main content */}
+          <div
+            className="mobileContainer col-lg-10 pr-lg-0 scrollContainer"
+            style={{ display: !props.members && "none" }}
+          >
             <SearchBar
               {...props}
               searchValue={searchValue}
@@ -87,15 +104,7 @@ function Members(props) {
               sortBy={sortBy}
               setSortType={(value) => setSortBy(value)}
             />
-            {!props.members && (
-              <div className="loaderContainer">
-                <Loader />
-              </div>
-            )}
-            <div
-              className="membersContainer row section"
-              style={{ display: !props.members && "none" }}
-            >
+            <div className="membersContainer row section">
               {props.members && displayedMembers().length > 0 ? (
                 displayedMembers().map((member, i) => (
                   <MemberCard key={i} {...member} store={props} />

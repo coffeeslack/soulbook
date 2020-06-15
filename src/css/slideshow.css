@@ -11,11 +11,6 @@
   height: 100%;
   background-color: #b9b9b9;
 }
-.slideShowImageContainer img {
-  object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
 .slideShowEditBtn {
   background: rgba(0, 0, 0, 0.5);
   box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
@@ -33,69 +28,53 @@
   font-size: 30px;
   cursor: pointer;
 }
-.slideShowBtnContainer {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  padding: 7px;
-  border-radius: 50px;
-  width: 100%;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-}
-.slideShowNextBtn {
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
-  color: white;
-  position: absolute;
-  right: 10px;
-  padding: 2px;
-  border-radius: 50px;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  cursor: pointer;
-}
-.slideShowPrevBtn {
-  background: rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
-  color: white;
-  position: absolute;
-  left: 10px;
-  padding: 2px;
-  border-radius: 50px;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  font-size: 30px;
-  cursor: pointer;
-}
-@keyframes fade {
-  from {
-    opacity: 0.95;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@keyframes wide {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.5);
-  }
-}
-.slideShowImage {
-  /* animation: fade 1s ease both, wide 80s ease both;s */
-}
 #slideShowInput {
   display: none;
+}
+.slick-slider {
+  height: 100%;
+}
+.slick-list,
+.slick-track {
+  height: 100%;
+}
+.slick-dots {
+  bottom: 10px !important;
+}
+.slick-slide div {
+  height: 100%;
+  width: 100%;
+}
+.slick-slide div img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.slick-prev {
+  left: 10px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+.slick-next {
+  right: 10px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.slick-next::before,
+.slick-prev::before {
+  color: rgba(0, 0, 0, 0.5) !important;
+  font-size: 30px !important;
 }
 @media screen and (min-width: 800px) {
   .slideShowContainer {
@@ -103,7 +82,7 @@
     left: 0%;
     top: 0px;
     width: 100%;
-    height: 450px;
+    height: 500px;
     overflow: hidden;
     background-color: lightgray;
     margin-top: 0px;
@@ -125,46 +104,9 @@
     font-size: 30px;
     cursor: pointer;
   }
-  .slideShowBtnContainer {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    padding: 7px;
-    border-radius: 50px;
-    width: 100%;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-  }
-  .slideShowNextBtn {
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
-    color: white;
-    position: absolute;
-    right: 10px;
-    padding: 2px;
-    border-radius: 50px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    cursor: pointer;
-  }
-  .slideShowPrevBtn {
-    background: rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.2);
-    color: white;
-    position: absolute;
-    left: 10px;
-    padding: 2px;
-    border-radius: 50px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    font-size: 30px;
-    cursor: pointer;
+}
+@media screen and (min-width: 2500px) {
+  .slideShowContainer {
+    height: 900px;
   }
 }

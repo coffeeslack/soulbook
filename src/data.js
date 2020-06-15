@@ -1,5 +1,6 @@
 import moment from "moment";
 import placeholder from "./pics/profilePic.png";
+import placeholder2 from "./pics/pic1.png";
 
 export default function data() {
   return {
@@ -300,11 +301,11 @@ export default function data() {
       },
     ],
     slideShowPics: [
-      { src: placeholder, id: "1" },
+      { src: placeholder2, id: "1" },
       { src: placeholder, id: "2" },
-      { src: placeholder, id: "3" },
+      { src: placeholder2, id: "3" },
       { src: placeholder, id: "4" },
-      { src: placeholder, id: "5" },
+      { src: placeholder2, id: "5" },
     ],
     sermons: [
       {

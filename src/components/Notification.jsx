@@ -21,9 +21,9 @@ function Notification(props) {
           onClick={() => displayDeleteModal(true)}
           style={{
             display:
-              props.store.accountType &&
-              props.store.accountType === "member" &&
-              "none",
+              (props.store.accountType &&
+                props.store.accountType === "member") ||
+              ("soulEstablishment" && "none"),
           }}
         >
           delete

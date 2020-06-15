@@ -1,26 +1,18 @@
 import React, { useState } from "react";
 import "../css/profileEditForm.css";
-import {
-  MdPerson,
-  MdLocationOn,
-  MdPhone,
-  MdDirectionsBus,
-  MdBusinessCenter,
-  MdMyLocation,
-  MdClose,
-  MdLocationCity,
-  MdFlag,
-} from "react-icons/md";
-import { FaTransgender, FaRegImage, FaChurch } from "react-icons/fa";
+import { MdClose } from "react-icons/md";
+import { FaRegImage } from "react-icons/fa";
 import fb from "../config/config.jsx";
 import profilePic from "../pics/pic1.png";
 import AlertBox from "../components/AlertBox";
 import { Redirect } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import firebase from "firebase/app";
 
 function SignUpForm(props) {
   const [alertMessage, setAlertMessage] = useState(null);
   const [redirect, setRedirect] = useState(false);
+  const [imageUrl, setImageUrl] = useState(null);
   const [user, setUser] = useState({
     accountType: "member",
     createdAt: new Date(),
@@ -78,10 +70,11 @@ function SignUpForm(props) {
   const handleProfileImageChange = (e) => {
     if (e.target.files[0]) {
       const image = e.target.files[0];
+      const imageName = `img_${uuidv4()}`;
 
       const uploadTask = firebase
         .storage()
-        .ref(`images/${image.name}`)
+        .ref(`images/${imageName}.jpg`)
         .put(image);
 
       uploadTask.on(
@@ -90,33 +83,52 @@ function SignUpForm(props) {
           const progress = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
           );
-          setAlertMessage(`uploading image...(${progress})%`);
+          setAlertMessage(`uploading image...(${progress}%)`);
         },
         (error) => {
           console.log(error);
           setAlertMessage(error.message);
-          setTimeout(() => setAlertMessage(null), 5000);
+          setTimeout(() => setAlertMessage(null), 1500);
         },
         () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            setTimeout(() => setAlertMessage(null), 1000);
-            setUser((prevState) => ({ ...prevState, profilePic: url }));
-          });
+          // resize image to smaller size
+          function resizeAgain() {
+            getResizedImage();
+          }
+
+          function getResizedImage() {
+            firebase
+              .storage()
+              .ref(`images/${imageName}_1080x1080.jpg`)
+              .getDownloadURL()
+              .then((url) => {
+                setAlertMessage("upload complete");
+                setTimeout(() => setAlertMessage(null), 1500);
+                setImageUrl(url);
+                setUser((prevState) => ({ ...prevState, profilePic: url }));
+
+                // Delete original uploaded images
+                firebase
+                  .storage()
+                  .ref(`images/${imageName}.jpg`)
+                  .delete()
+                  .catch((error) => {
+                    console.log(error);
+                  });
+              })
+              .catch((error) => {
+                error.code === "storage/object-not-found"
+                  ? resizeAgain()
+                  : setAlertMessage(error.message);
+                setTimeout(() => setAlertMessage(null), 1500);
+                console.log(error);
+              });
+          }
+
+          getResizedImage();
         }
       );
     }
-    previewProfileImage(e.target.files[0]);
-  };
-  const previewProfileImage = (img) => {
-    var reader = new FileReader();
-    var imageField = document.getElementById("profile-image-field");
-
-    reader.onload = () => {
-      if (reader.readyState === 2) {
-        imageField.src = reader.result;
-      }
-    };
-    reader.readAsDataURL(img);
   };
 
   return (
@@ -148,11 +160,7 @@ function SignUpForm(props) {
               />
               {/* profile image */}
               <div className="profileEditPicContainer">
-                <img
-                  src={props.profilePic ? props.profilePic : profilePic}
-                  alt="profilePic"
-                  id="profile-image-field"
-                />
+                <img src={imageUrl ? imageUrl : profilePic} alt="profilePic" />
                 <label htmlFor="profileImageInput">
                   <div
                     className="profileEditFormEditBtnContainer"
@@ -298,7 +306,6 @@ function SignUpForm(props) {
                         name="gender"
                         className="profileEditFormInputBox"
                         onChange={handleChange}
-                        defaultValue="male"
                       >
                         <option value="male">male</option>
                         <option value="female">female</option>
@@ -343,7 +350,7 @@ function SignUpForm(props) {
                   </div>
                 </div>
               </div>
-              <button className="mainBtn">Save</button>
+              <button className="mainBtn">Sign Up</button>
             </form>
           </div>
         </div>

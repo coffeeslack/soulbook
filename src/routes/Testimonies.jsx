@@ -9,6 +9,7 @@ import SearchBar from "../components/TestimoniesSearchBar";
 import moment from "moment";
 import Loader from "../components/Loader";
 import { MdAdd } from "react-icons/md";
+import OfflineError from "../components/OfflineError";
 
 function Testimonies(props) {
   const [displayForm, setDisplayForm] = useState(false);
@@ -65,7 +66,25 @@ function Testimonies(props) {
           <div className="mobileContainer col-lg-2">
             <SideNav page="testimonies" {...props} />
           </div>
-          <div className="mobileContainer col-lg-10">
+          {/* loaders */}
+          <div
+            className="col-lg-10 mobileContainer p-0"
+            style={{ display: props.testimonies && "none" }}
+          >
+            {/* loading component */}
+            {navigator.onLine && !props.testimonies && (
+              <div className="loaderContainer">
+                <Loader />
+              </div>
+            )}
+            {/* offline component */}
+            {!navigator.onLine && !props.testimonies && <OfflineError />}
+          </div>
+          {/* main content */}
+          <div
+            className="mobileContainer col-lg-10"
+            style={{ display: !props.testimonies && "none" }}
+          >
             {/* Top Menu */}
             <SearchBar
               {...props}
@@ -81,20 +100,7 @@ function Testimonies(props) {
             />
             {/* Displayed Testimonies */}
             <div className="row">
-              <div
-                className="col-lg-10 mobileContainer p-0"
-                style={{ display: props.testimonies && "none" }}
-              >
-                {!props.testimonies && (
-                  <div className="loaderContainer">
-                    <Loader />
-                  </div>
-                )}
-              </div>
-              <div
-                className="col-lg-8 mobileContainer p-0"
-                style={{ display: !props.testimonies && "none" }}
-              >
+              <div className="col-lg-8 mobileContainer p-0">
                 <div className="soulsWonCardContainer">
                   {props.testimonies && displayedTestimonies.length > 0 ? (
                     displayedTestimonies
@@ -127,6 +133,7 @@ function Testimonies(props) {
         <div
           className="addTestimonyBtnMobile"
           onClick={() => setDisplayForm(true)}
+          style={{ display: !props.accountType && "none" }}
         >
           <MdAdd />
         </div>

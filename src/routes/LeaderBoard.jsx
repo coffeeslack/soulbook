@@ -7,6 +7,7 @@ import SideNav from "../components/SideNav";
 import LeaderBoardCard from "../components/LeaderBoardCard";
 import moment from "moment";
 import Loader from "../components/Loader";
+import OfflineError from "../components/OfflineError";
 
 function LeaderBoard(props) {
   const [month, setMonth] = useState("all");
@@ -64,7 +65,24 @@ function LeaderBoard(props) {
           <div className="mobileContainer col-lg-2">
             <SideNav page="leaderBoard" {...props} />
           </div>
-          <div className="mobileContainer col-lg-10 pr-lg-0 scrollContainer">
+          {/* loader */}
+          <div
+            className="mobileContainer col-lg-10 pr-lg-0 scrollContainer"
+            style={{ display: props.members && "none" }}
+          >
+            {/* loading component */}
+            {navigator.onLine && !props.members && (
+              <div className="loaderContainer">
+                <Loader />
+              </div>
+            )}
+            {/* offline compoent */}
+            {!navigator.onLine && !props.members && <OfflineError />}
+          </div>
+          <div
+            className="mobileContainer col-lg-10 pr-lg-0 scrollContainer"
+            style={{ display: !props.members && "none" }}
+          >
             <SearchBar
               {...props}
               searchValue={searchValue}
@@ -75,15 +93,7 @@ function LeaderBoard(props) {
               setServiceGroup={(value) => setServiceGroup(value)}
               page="leaderBoard"
             />
-            {!props.members && (
-              <div className="loaderContainer">
-                <Loader />
-              </div>
-            )}
-            <div
-              className="membersContainer row section"
-              style={{ display: !props.members && "none" }}
-            >
+            <div className="membersContainer row section">
               {props.members && displayedMembers().length > 0 ? (
                 displayedMembers().map((member, i) => (
                   <LeaderBoardCard key={i} {...member} rank={i} />

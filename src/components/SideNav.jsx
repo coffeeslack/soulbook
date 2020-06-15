@@ -131,7 +131,8 @@ function SideNav(props) {
             }
             style={{
               display:
-                props.accountType && props.accountType === "member" && "none",
+                (props.accountType === "member" && "none") ||
+                (!props.accountType && "none"),
             }}
           >
             <div className="sidenavIcon">
