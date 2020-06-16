@@ -6,7 +6,7 @@ export default function data() {
   return {
     user: { uid: "290" },
     loading: false,
-    accountType: "admin",
+    accountType: "soul establishment",
     address: "5 Beulah Avenue Trans Amadi",
     busStop: "amadi round about",
     country: "Nigeria",

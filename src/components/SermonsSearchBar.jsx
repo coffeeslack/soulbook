@@ -19,7 +19,7 @@ function SermonsSearchBar(props) {
         onClick={props.displayForm}
         style={{
           display:
-            props.accountType === "member" || ("soulEstablishment" && "none"),
+            props.accountType === "member" || ("soul establishment" && "none"),
         }}
       >
         <span className="soulsWonAddSoulBtnText">Add Sermon</span>

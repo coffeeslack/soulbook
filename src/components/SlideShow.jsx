@@ -63,7 +63,7 @@ function SlideShow(props) {
         onClick={openModal}
         style={{
           display:
-            props.accountType === "member" || ("soulEstablishment" && "none"),
+            props.accountType === "member" || ("soul establishment" && "none"),
         }}
       >
         <MdEdit />

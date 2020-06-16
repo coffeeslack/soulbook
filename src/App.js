@@ -11,7 +11,7 @@ const AppRouter = lazy(() => import("./routes/AppRouter"));
 export default class App extends Component {
   constructor() {
     super();
-    this.state = data();
+    // this.state = data();
     this.state = {
       user: {},
       loading: true,

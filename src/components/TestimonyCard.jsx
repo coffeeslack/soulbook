@@ -53,7 +53,7 @@ function TestimonyCard(props) {
               style={{
                 display:
                   props.store.accountType === "member" ||
-                  ("soulEstablishment" &&
+                  ("soul establishment" &&
                     props.userId !== props.store.id &&
                     "none"),
               }}

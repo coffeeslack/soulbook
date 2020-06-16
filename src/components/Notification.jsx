@@ -23,7 +23,7 @@ function Notification(props) {
             display:
               (props.store.accountType &&
                 props.store.accountType === "member") ||
-              ("soulEstablishment" && "none"),
+              ("soul establishment" && "none"),
           }}
         >
           delete

@@ -30,7 +30,7 @@ function SermonCard(props) {
                 style={{
                   display:
                     props.store.accountType === "member" ||
-                    ("soulEstablishment" && "none"),
+                    ("soul establishment" && "none"),
                 }}
                 onClick={() => displayDeleteModal(true)}
               >

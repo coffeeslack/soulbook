@@ -20,7 +20,8 @@ function Notifications(props) {
           onClick={showModal}
           style={{
             display:
-              props.accountType === "member" || ("soulEstablishment" && "none"),
+              props.accountType === "member" ||
+              ("soul establishment" && "none"),
           }}
         >
           Add{" "}
